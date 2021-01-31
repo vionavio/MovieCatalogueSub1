@@ -10,4 +10,4 @@ data class MovieEntity(
     var stars: String,
     var rating: Double,
     var imagePath: String
-        )
+)
