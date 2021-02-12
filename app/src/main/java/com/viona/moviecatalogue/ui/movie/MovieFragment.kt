@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
-import com.viona.moviecatalogue.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.viona.moviecatalogue.databinding.FragmentMovieBinding
+import com.viona.moviecatalogue.data.DataMovie
 
 
-class MovieFragment : Fragment() {
+class MovieFragment : Fragment(), MovieCallback {
 
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
 
@@ -29,7 +31,28 @@ class MovieFragment : Fragment() {
             val viewModel = ViewModelProvider(
                 requireActivity(),
                 ViewModelProvider.NewInstanceFactory()
-            )[]
+            )[MovieViewModel::class.java]
+            val movie = viewModel.getMovie()
+            val movieAdapter = MovieAdapter(this)
+            movieAdapter.setMovies(movie)
+
+            with(fragmentMovieBinding.rvMovie) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = movieAdapter
+            }
+        }
+    }
+
+    override fun onShareClick(movie: DataMovie) {
+        activity?.let {
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder
+                .from(requireActivity())
+                .setType(mimeType)
+                /*  .setChooserTitle(getString(R.string.share_title))
+                .setText(resources.getString(R.string.share_text, movie.title))*/
+                .startChooser()
         }
     }
 }

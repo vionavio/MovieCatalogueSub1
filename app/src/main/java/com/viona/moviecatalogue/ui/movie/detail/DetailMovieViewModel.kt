@@ -1,8 +1,8 @@
 package com.viona.moviecatalogue.ui.movie.detail
 
 import androidx.lifecycle.ViewModel
-import com.viona.moviecatalogue.data.MovieEntity
-import com.viona.moviecatalogue.utils.DataDummyMovie
+import com.viona.moviecatalogue.models.MovieEntity
+import com.viona.moviecatalogue.data.DataMovie
 
 class DetailMovieViewModel : ViewModel() {
     private lateinit var movieId: String
@@ -13,7 +13,7 @@ class DetailMovieViewModel : ViewModel() {
     }
 
     fun getMovie(): MovieEntity {
-        val movieEntities = DataDummyMovie.generateDummyMovie()
+        val movieEntities = DataMovie.generateDummyMovie()
         for (movieEntity in movieEntities) {
             if (movieEntity.movieId == movieId) {
                 movie = movieEntity
@@ -22,5 +22,4 @@ class DetailMovieViewModel : ViewModel() {
         return movie
     }
 
-    fun get
 }

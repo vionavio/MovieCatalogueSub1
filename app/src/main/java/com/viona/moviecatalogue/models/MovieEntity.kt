@@ -1,4 +1,4 @@
-package com.viona.moviecatalogue.data
+package com.viona.moviecatalogue.models
 
 data class MovieEntity(
     var movieId: String,

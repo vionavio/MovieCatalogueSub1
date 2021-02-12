@@ -1,4 +1,4 @@
-package com.viona.moviecatalogue.data
+package com.viona.moviecatalogue.models
 
 class TVShowEntity(
     var tvShowId: String,

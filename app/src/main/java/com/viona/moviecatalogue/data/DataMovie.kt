@@ -1,8 +1,8 @@
-package com.viona.moviecatalogue.utils
+package com.viona.moviecatalogue.data
 
-import com.viona.moviecatalogue.data.MovieEntity
+import com.viona.moviecatalogue.models.MovieEntity
 
-object DataDummyMovie {
+object DataMovie {
 
     fun generateDummyMovie(): List<MovieEntity> {
 
@@ -18,7 +18,7 @@ object DataDummyMovie {
                 " Pete Docter",
                 "Jamie Foxx, Tina Fey, Graham Norton",
                 8.1,
-                "http://bit.ly/3bJfWTT"
+                "https://www.imdb.com/title/tt2948372/mediaviewer/rm4113422337/"
             )
         )
 

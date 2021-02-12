@@ -1,8 +1,8 @@
-package com.viona.moviecatalogue.utils
+package com.viona.moviecatalogue.data
 
-import com.viona.moviecatalogue.data.TVShowEntity
+import com.viona.moviecatalogue.models.TVShowEntity
 
-object DataDummyTVShow {
+object DataTVShow {
 
     fun generateDummyTVShow(): List<TVShowEntity> {
 
