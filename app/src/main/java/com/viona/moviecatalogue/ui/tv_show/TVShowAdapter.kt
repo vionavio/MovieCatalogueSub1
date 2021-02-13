@@ -1,4 +1,4 @@
-package com.viona.moviecatalogue.ui.movie
+package com.viona.moviecatalogue.ui.tv_show
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,27 +7,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
-import com.viona.moviecatalogue.models.MovieEntity
-import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
+import com.viona.moviecatalogue.models.TVShowEntity
+import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
 import com.viona.moviecatalogue.utils.GlideApp
 
 
-class MovieAdapter(private val callback: MovieCallback) :
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-    private var listMovies = ArrayList<MovieEntity>()
+class TVShowAdapter(private val callback: TVShowCallback) :
+    RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
+    private var listTVShow = ArrayList<TVShowEntity>()
 
-    fun setMovies(movies: List<MovieEntity>?) {
-        movies?.let {
-            this.listMovies.clear()
-            this.listMovies.addAll(it)
+    fun setTVShows(tvShows: List<TVShowEntity>?) {
+        tvShows?.let {
+            this.listTVShow.clear()
+            this.listTVShow.addAll(it)
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MovieViewHolder {
-        return MovieViewHolder(
+    ): TVShowViewHolder {
+        return TVShowViewHolder(
             ItemsMovieBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
@@ -35,24 +35,24 @@ class MovieAdapter(private val callback: MovieCallback) :
         )
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-        holder.bind(listMovies[position])
+    override fun onBindViewHolder(holder: TVShowViewHolder, position: Int) =
+        holder.bind(listTVShow[position])
 
-    override fun getItemCount(): Int = listMovies.size
+    override fun getItemCount(): Int = listTVShow.size
 
-    class MovieViewHolder(private val binding: ItemsMovieBinding) :
+    class TVShowViewHolder(private val binding: ItemsMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: MovieEntity) {
+        fun bind(tvShow: TVShowEntity) {
             with(binding) {
-                tvItemTitle.text = movie.title
+                tvItemTitle.text = tvShow.title
                 tvItemYear.text = "year"
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie.movieId)
+                    val intent = Intent(itemView.context, DetailTVShowActivity::class.java)
+                    intent.putExtra(DetailTVShowActivity.EXTRA_TV_SHOW, tvShow.tvShowId)
                     itemView.context.startActivity(intent)
                 }
                 GlideApp.with(itemView.context)
-                    .load(movie.imagePath)
+                    .load(tvShow.imagePath)
                     .fitCenter()
                     .error(R.drawable.ic_error)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading2))

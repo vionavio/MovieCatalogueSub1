@@ -1,15 +1,15 @@
 package com.viona.moviecatalogue.ui.movie
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.viona.moviecatalogue.databinding.FragmentMovieBinding
 import com.viona.moviecatalogue.data.DataMovie
+import com.viona.moviecatalogue.databinding.FragmentMovieBinding
 
 
 class MovieFragment : Fragment(), MovieCallback {

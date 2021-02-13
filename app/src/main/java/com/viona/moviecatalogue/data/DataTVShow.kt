@@ -18,7 +18,7 @@ object DataTVShow {
                 "Documentary",
                 1,
                 9.5,
-                "http://bit.ly/3sIYuou"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F1.%20Planet%20Earth%20II.jpg?alt=media&token=b1092e14-0ebe-4132-b6d0-3d6eda3effe2"
             )
         )
 
@@ -32,7 +32,7 @@ object DataTVShow {
                 "Documentary",
                 13,
                 9.4,
-                "http://bit.ly/3c3ZBJJ"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F2.%20Planet%20Earth.jpg?alt=media&token=eee98f26-69fa-42d8-89cf-a41b7c3b28d3"
             )
         )
 
@@ -46,7 +46,7 @@ object DataTVShow {
                 "Action, Drama, History",
                 8,
                 9.4,
-                "http://bit.ly/2LWf6IU"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F3.%20Band%20of%20Brothers.jpg?alt=media&token=1a66a7ad-15d4-4749-9cc9-68394882d563"
             )
         )
 
@@ -60,7 +60,7 @@ object DataTVShow {
                 "Crime, Drama, Thriller",
                 83,
                 9.5,
-                "http://bit.ly/3c5Ns74"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F4.%20Breaking%20Bad.jpg?alt=media&token=b55c054b-43e5-49ff-9151-0414399cedff"
             )
         )
 
@@ -74,7 +74,7 @@ object DataTVShow {
                 "Drama, History, Thriller",
                 28,
                 9.4,
-                "http://bit.ly/397qR82"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F5.%20Chernobyl.jpg?alt=media&token=8a963dce-643a-4f61-af3a-87b7e24eaa50"
             )
         )
 
@@ -88,7 +88,7 @@ object DataTVShow {
                 "Documentary",
                 2,
                 9.3,
-                "http://bit.ly/399ahVg"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F6.%20Blue%20Planet%20II.jpg?alt=media&token=5d0bc36c-0f43-4fb2-b61d-1f2402aec854"
             )
         )
         tvShow.add(
@@ -101,7 +101,7 @@ object DataTVShow {
                 "Crime, Drama, Thriller",
                 9,
                 9.3,
-                "http://bit.ly/3sQTK0g"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F7.%20The%20Wire.jpg?alt=media&token=ba6f25ea-5314-44c7-8ab4-50b3e371d6d1"
             )
         )
         tvShow.add(
@@ -114,7 +114,7 @@ object DataTVShow {
                 "Documentary",
                 7,
                 9.3,
-                "http://bit.ly/364Pvo4"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F8.%20Our%20Planet.jpg?alt=media&token=e656229b-38ee-463c-af04-ca6f23ba8509"
             )
         )
         tvShow.add(
@@ -127,7 +127,7 @@ object DataTVShow {
                 "Documentary",
                 16,
                 9.3,
-                "http://bit.ly/3qLsHle"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F9.%20Cosmos.jpg?alt=media&token=a5cf4c18-d46a-4b5b-92f1-4929cac3d90b"
             )
         )
         tvShow.add(
@@ -140,7 +140,7 @@ object DataTVShow {
                 " Action, Adventure, Drama",
                 304,
                 9.3,
-                "http://bit.ly/3qOrOIj"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F10.%20Game%20of%20Thrones.jpg?alt=media&token=20507435-48a6-4ded-95ce-b7762f10008c"
             )
         )
         tvShow.add(
@@ -153,7 +153,7 @@ object DataTVShow {
                 "Animation, Action, Adventure",
                 19,
                 9.2,
-                "http://bit.ly/3c0qWwh"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F11.%20Avatar%20The%20Last%20Airbender.jpg?alt=media&token=041023b9-df1a-4a28-9907-aa379269e034"
             )
         )
         tvShow.add(
@@ -166,7 +166,7 @@ object DataTVShow {
                 "Animation, Adventure, Comedy",
                 20,
                 9.2,
-                "http://bit.ly/364CWJn"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F12.%20Rick%20and%20Morty.jpg?alt=media&token=d41fdd75-1768-4fce-9c05-948fa15c1e38"
             )
         )
 

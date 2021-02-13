@@ -18,7 +18,7 @@ object DataMovie {
                 " Pete Docter",
                 "Jamie Foxx, Tina Fey, Graham Norton",
                 8.1,
-                "https://www.imdb.com/title/tt2948372/mediaviewer/rm4113422337/"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F1.%20Soul%202020.jpg?alt=media&token=5b30ee71-6db2-494b-8b8f-b7364458b4c6"
             )
         )
 
@@ -32,7 +32,7 @@ object DataMovie {
                 "Christopher Nolan",
                 "John David Washington, Robert Pattinson, Elizabeth Debicki",
                 7.5,
-                "http://bit.ly/3qud2q4"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F2.%20Tenet%202020.jpg?alt=media&token=cd15f1e5-9984-4db0-ac8f-5a81ddccf643"
             )
         )
 
@@ -46,7 +46,7 @@ object DataMovie {
                 "Max Landis, Roseanne Liang",
                 "Chloë Grace Moretz, Nick Robinson, Beulah Koale",
                 4.7,
-                "http://bit.ly/3nPY243"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F3.%20Shadow%20In%20the%20Cloud%202019.jpg?alt=media&token=fe04ede3-646e-40d3-80fc-373d31b277a4"
             )
         )
 
@@ -60,7 +60,7 @@ object DataMovie {
                 "Christopher Markus",
                 " Robert Downey Jr., Chris Evans, Mark Ruffalo",
                 8.4,
-                "http://bit.ly/2XLGBHx"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F4.%20Avenger%202019.jpg?alt=media&token=87709de4-95d6-47ec-8bf6-fff45883015f"
             )
         )
 
@@ -73,7 +73,7 @@ object DataMovie {
                 "Niki Caro",
                 "Yifei Liu, Donnie Yen, Li Gong",
                 5.6,
-                "http://bit.ly/38WoiWB"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F5.%20Mulan%202020.jpg?alt=media&token=00167f4c-ce7a-45b7-be99-26a2e8c14cf1"
             )
         )
 
@@ -87,7 +87,7 @@ object DataMovie {
                 "Kata Wéber",
                 "Vanessa Kirby, Shia LaBeouf, Ellen Burstyn",
                 7.1,
-                "http://bit.ly/2LY5Rrg"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F6.%20Pieces%20of%20a%20Woman%202020.jpg?alt=media&token=fd428a3d-0b76-4d2b-9834-48c6bd721e91"
             )
         )
 
@@ -101,7 +101,7 @@ object DataMovie {
                 "Stephen King",
                 "Tim Robbins, Morgan Freeman, Bob Gunton",
                 9.3,
-                "http://bit.ly/2LH08WX"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F7.%20The%20Shawshank%20Redemption%201994.jpg?alt=media&token=73668134-713d-47ae-9279-3bab704e130b"
             )
         )
 
@@ -115,7 +115,7 @@ object DataMovie {
                 "Bong Joon Ho",
                 "Song Kang-Ho, Lee Sun-kyun, Cho Yeo-jeong",
                 8.6,
-                "http://bit.ly/38Rhx8g"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F8.%20Parasite%202019.jpg?alt=media&token=653ebc7e-29ed-4fd3-905b-e70a73b25156"
             )
         )
 
@@ -129,7 +129,7 @@ object DataMovie {
                 "Darius Marder, Abraham Marder",
                 "Riz Ahmed, Olivia Cooke, Paul Raci",
                 7.8,
-                "http://bit.ly/2XNuKIP"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F9.%20Sound%20of%20Metal%202019.jpg?alt=media&token=6da60187-2622-4d66-b5db-9301f52886df"
             )
         )
 
@@ -143,7 +143,7 @@ object DataMovie {
                 "Jeff Nathanson",
                 "Donald Glover, Beyoncé, Seth Rogen",
                 6.9,
-                "http://bit.ly/3nRYjDN"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F10.%20The%20Lion%20King%202019.jpg?alt=media&token=9e74d946-8175-4dce-82ad-2bfeab7c1075"
             )
         )
 
@@ -157,7 +157,7 @@ object DataMovie {
                 "Steven Knight",
                 "Chiwetel Ejiofor, Anne Hathaway, Sonic",
                 4.9,
-                "http://bit.ly/38PDJiX"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F11.%20Locked%20Down%202021.jpg?alt=media&token=c00e2ec2-6974-4db2-9837-b8df2a3a0391"
             )
         )
 
@@ -171,7 +171,7 @@ object DataMovie {
                 "Jonathan Nolan, Christopher Nolan",
                 "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
                 8.6,
-                "http://bit.ly/3ilKM66"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/Movie%2F12.%20Interstellar%202014.jpg?alt=media&token=9868d2a2-3262-449a-8f28-c64cfebf38d4"
             )
         )
 
