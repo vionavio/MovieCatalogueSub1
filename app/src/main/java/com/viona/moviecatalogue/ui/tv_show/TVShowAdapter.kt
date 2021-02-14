@@ -45,7 +45,10 @@ class TVShowAdapter(private val callback: TVShowCallback) :
         fun bind(tvShow: TVShowEntity) {
             with(binding) {
                 tvItemTitle.text = tvShow.title
-                tvItemYear.text = "year"
+                tvRating.text = itemView.resources.getString(
+                    R.string.rate, tvShow.rating
+                )
+                tvDesc.text = tvShow.description
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTVShowActivity::class.java)
                     intent.putExtra(DetailTVShowActivity.EXTRA_TV_SHOW, tvShow.tvShowId)
@@ -55,7 +58,7 @@ class TVShowAdapter(private val callback: TVShowCallback) :
                     .load(tvShow.imagePath)
                     .fitCenter()
                     .error(R.drawable.ic_error)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading2))
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .into(imgPoster)
             }
         }

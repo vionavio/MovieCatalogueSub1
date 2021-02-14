@@ -9,5 +9,9 @@ data class MovieEntity(
     var writers: String,
     var stars: String,
     var rating: Double,
-    var imagePath: String
+    var imagePath: String,
+    var tomatometer: String,
+    var people_rate: Int,
+    var duration: String,
+    var price: String
 )

@@ -21,5 +21,4 @@ class DetailMovieViewModel : ViewModel() {
         }
         return movie
     }
-
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
@@ -45,7 +46,11 @@ class MovieAdapter(private val callback: MovieCallback) :
         fun bind(movie: MovieEntity) {
             with(binding) {
                 tvItemTitle.text = movie.title
-                tvItemYear.text = "year"
+                tvRating.text = itemView.resources.getString(
+                    R.string.rate, movie.rating
+                )
+                tvDesc.text = movie.description
+
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie.movieId)
@@ -54,8 +59,9 @@ class MovieAdapter(private val callback: MovieCallback) :
                 GlideApp.with(itemView.context)
                     .load(movie.imagePath)
                     .fitCenter()
+                    .transform(RoundedCorners(16))
                     .error(R.drawable.ic_error)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading2))
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .into(imgPoster)
             }
         }
