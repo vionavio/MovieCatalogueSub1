@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.viona.moviecatalogue.data.DataMovie
-import com.viona.moviecatalogue.data.DataTVShow
 import com.viona.moviecatalogue.databinding.FragmentTvShowBinding
 
-class TVShowFragment : Fragment(), TVShowCallback {
+class TVShowFragment : Fragment() {
 
     private lateinit var fragmentTVShowBinding: FragmentTvShowBinding
 
@@ -28,16 +25,16 @@ class TVShowFragment : Fragment(), TVShowCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (activity != null){
+        if (activity != null) {
             val viewModel = ViewModelProvider(
                 requireActivity(),
                 ViewModelProvider.NewInstanceFactory()
             )[TVShowViewModel::class.java]
             val tvShow = viewModel.getTvShow()
-            val tvShowAdapter = TVShowAdapter(this)
+            val tvShowAdapter = TVShowAdapter()
             tvShowAdapter.setTVShows(tvShow)
 
-            with(fragmentTVShowBinding.rvTvShow){
+            with(fragmentTVShowBinding.rvTvShow) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvShowAdapter
@@ -46,15 +43,15 @@ class TVShowFragment : Fragment(), TVShowCallback {
         }
     }
 
-    override fun onShareClick(tvShows: DataTVShow) {
+    /*override fun onShareClick(tvShows: DataTVShow) {
         activity?.let {
             val mimeType = "text/plain"
             ShareCompat.IntentBuilder
                 .from(requireActivity())
                 .setType(mimeType)
-                /*  .setChooserTitle(getString(R.string.share_title))
-                .setText(resources.getString(R.string.share_text, movie.title))*/
+                *//*  .setChooserTitle(getString(R.string.share_title))
+                .setText(resources.getString(R.string.share_text, movie.title))*//*
                 .startChooser()
         }
-    }
+    }*/
 }

@@ -9,5 +9,6 @@ class TVShowEntity(
     var type: String,
     var episode: Int,
     var rating: Double,
+    var price: String,
     var imagePath: String,
 )

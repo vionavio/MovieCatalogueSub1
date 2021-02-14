@@ -13,7 +13,7 @@ import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
 import com.viona.moviecatalogue.utils.GlideApp
 
 
-class MovieAdapter(private val callback: MovieCallback) :
+class MovieAdapter :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     private var listMovies = ArrayList<MovieEntity>()
 

@@ -25,6 +25,6 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.viewPager.adapter = sectionsPagerAdapter
         activityMainBinding.tab.setupWithViewPager(activityMainBinding.viewPager)
 
-        supportActionBar?.title = getString(R.string.movies)
+        supportActionBar?.title = getString(R.string.app_name)
     }
 }

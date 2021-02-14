@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
@@ -12,7 +13,7 @@ import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
 import com.viona.moviecatalogue.utils.GlideApp
 
 
-class TVShowAdapter(private val callback: TVShowCallback) :
+class TVShowAdapter() :
     RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
     private var listTVShow = ArrayList<TVShowEntity>()
 
@@ -57,6 +58,7 @@ class TVShowAdapter(private val callback: TVShowCallback) :
                 GlideApp.with(itemView.context)
                     .load(tvShow.imagePath)
                     .fitCenter()
+                    .transform(RoundedCorners(16))
                     .error(R.drawable.ic_error)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .into(imgPoster)
