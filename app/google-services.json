@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "401579096082",
+    "project_id": "moviecatalogue-43cde",
+    "storage_bucket": "moviecatalogue-43cde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401579096082:android:c6b9153719eee1d02080cb",
+        "android_client_info": {
+          "package_name": "com.viona.moviecatalogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401579096082-epmt2ko114oaq1emki6ugffe3cd3p7cs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCMZ6kidl7SJAaj0anblTW1yenKlCDnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401579096082-epmt2ko114oaq1emki6ugffe3cd3p7cs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

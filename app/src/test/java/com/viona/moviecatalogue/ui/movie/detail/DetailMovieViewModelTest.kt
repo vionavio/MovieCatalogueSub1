@@ -1,6 +1,7 @@
 package com.viona.moviecatalogue.ui.movie.detail
 
 import com.viona.moviecatalogue.data.DataMovie
+import com.viona.moviecatalogue.models.MovieEntity
 import org.junit.Test
 
 import org.junit.Assert.*
