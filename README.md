@@ -2,11 +2,11 @@
 # Unit Testing View Model Movie Catalogue
 
 1. Movie View Model Test
-    Memastikan data movie tidak null
+    Memastikan data movie tidak kosong
     Memastikan jumlah data movie sesuai yang diharapkan
 
 2. TV Show View Model Test
-    Memastikan data tv show tidak null
+    Memastikan data tv show tidak kosong
     Memastikan jumlah data movie sesuai yang diharapkan
 
 3. Detail Movie View Model Test
