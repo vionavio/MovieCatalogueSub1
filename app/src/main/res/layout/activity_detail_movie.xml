@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:padding="10dp"
+    android:layout_margin="@dimen/margin_20dp"
+    android:padding="@dimen/padding_10dp"
     tools:context=".ui.movie.detail.DetailMovieActivity">
 
     <ImageView
@@ -24,8 +24,8 @@
         android:id="@+id/tv_item_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/margin_30dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="2"
@@ -41,7 +41,7 @@
         android:id="@+id/tv_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:gravity="start"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tv_item_title"
@@ -52,7 +52,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/img_poster">
@@ -67,8 +67,8 @@
                 android:id="@+id/tv_detail_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
-                android:text="@string/rate" />
+                android:text="@string/rate"
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -79,12 +79,9 @@
         </LinearLayout>
 
         <View
+            style="@style/ViewLine"
             android:layout_width="1dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/gray" />
+            android:layout_height="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -101,20 +98,19 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/tomato"
                     android:paddingStart="0dp"
-                    android:paddingEnd="10dp"
+                    android:paddingEnd="@dimen/padding_10dp"
+                    android:src="@drawable/tomato"
                     tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_tomato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_gray"
-                    android:text="@string/percent" />
+                    android:text="@string/percent"
+                    android:textColor="@color/dark_gray" />
 
             </LinearLayout>
-
 
             <TextView
                 android:id="@+id/textView4"
@@ -123,15 +119,11 @@
                 android:text="@string/tomatometer" />
         </LinearLayout>
 
-
         <View
             android:id="@+id/view"
+            style="@style/ViewLine"
             android:layout_width="1dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/gray" />
+            android:layout_height="30dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -143,8 +135,8 @@
                 android:id="@+id/tv_sum_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
-                android:text="@string/vote" />
+                android:text="@string/vote"
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -155,12 +147,9 @@
         </LinearLayout>
 
         <View
+            style="@style/ViewLine"
             android:layout_width="1dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/gray" />
+            android:layout_height="30dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -172,8 +161,8 @@
                 android:id="@+id/tv_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
-                android:text="@string/duratio" />
+                android:text="@string/duratio"
+                android:textColor="@color/dark_gray" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -188,11 +177,8 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextViewTitle"
         android:text="@string/about_this_movie"
-        android:textColor="@color/dark_gray"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -203,9 +189,7 @@
         android:id="@+id/tv_desctiption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextViewDesc"
         android:justificationMode="inter_word"
         android:text="@string/desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -217,11 +201,8 @@
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextViewTitle"
         android:text="@string/directors"
-        android:textColor="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_desctiption" />
@@ -230,23 +211,18 @@
         android:id="@+id/tv_directors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        tools:text="Ken Mok"
+        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        tools:text="Ken Mok" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextViewTitle"
         android:text="@string/stars"
-        android:textColor="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_directors" />
@@ -255,23 +231,18 @@
         android:id="@+id/tv_stars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        tools:text="Alan "
+        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:text="Alan " />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextViewTitle"
         android:text="@string/writers"
-        android:textColor="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_stars" />
@@ -280,13 +251,11 @@
         android:id="@+id/tv_writers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        tools:text="Hanna Mon"
+        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:text="Hanna Mon" />
 
     <Button
         android:id="@+id/button_buy"

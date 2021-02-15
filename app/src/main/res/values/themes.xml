@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-//Theme.MaterialComponents.DayNight.DarkActionBar
+
     <style name="Theme.MovieCatalogue" parent="Theme.AppCompat.DayNight">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
@@ -13,5 +13,25 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ViewLine">
+        <item name="android:layout_marginStart">@dimen/margin_10dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_10dp</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="TextViewDesc">
+        <item name="android:layout_marginStart">@dimen/margin_8dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_4dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_8dp</item>
+    </style>
+
+    <style name="TextViewTitle" >
+        <item name="android:layout_marginStart">@dimen/margin_8dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_16dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_8dp</item>
+        <item name="android:textColor">@color/dark_gray</item>
     </style>
 </resources>

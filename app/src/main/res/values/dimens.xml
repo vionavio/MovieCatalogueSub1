@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- margin or padding -->
+    <dimen name="margin_30dp">30dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_double_extra_small">2dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+
+
+    <!-- padding-->
+    <dimen name="padding_10dp">10dp</dimen>
+</resources>

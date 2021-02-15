@@ -34,6 +34,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         activityDetailTvShowBinding = ActivityDetailTvShowBinding.inflate(layoutInflater)
         setContentView(activityDetailTvShowBinding.root)
         initData()
+        initUI()
     }
 
     private fun initData() {
@@ -50,6 +51,11 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
             tvShow = viewModel.getTVShow()
             getDetail(tvShow)
         }
+    }
+
+    private fun initUI() {
+        supportActionBar?.title = tvShow.title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun getDetail(tvShows: TVShowEntity) {
