@@ -12,7 +12,6 @@ import com.viona.moviecatalogue.models.MovieEntity
 import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
 import com.viona.moviecatalogue.utils.GlideApp
 
-
 class MovieAdapter :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     private var listMovies = ArrayList<MovieEntity>()
@@ -59,7 +58,7 @@ class MovieAdapter :
                 GlideApp.with(itemView.context)
                     .load(movie.imagePath)
                     .fitCenter()
-                    .transform(RoundedCorners(16))
+                    .transform(RoundedCorners(18))
                     .error(R.drawable.ic_error)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .into(imgPoster)

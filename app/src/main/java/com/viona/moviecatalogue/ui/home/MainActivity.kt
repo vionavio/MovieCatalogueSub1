@@ -6,14 +6,9 @@ import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    companion object {
-        private val TAG = MainActivity::class.java.simpleName
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initUI()
     }
 

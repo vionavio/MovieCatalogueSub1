@@ -42,16 +42,4 @@ class TVShowFragment : Fragment() {
 
         }
     }
-
-    /*override fun onShareClick(tvShows: DataTVShow) {
-        activity?.let {
-            val mimeType = "text/plain"
-            ShareCompat.IntentBuilder
-                .from(requireActivity())
-                .setType(mimeType)
-                *//*  .setChooserTitle(getString(R.string.share_title))
-                .setText(resources.getString(R.string.share_text, movie.title))*//*
-                .startChooser()
-        }
-    }*/
 }

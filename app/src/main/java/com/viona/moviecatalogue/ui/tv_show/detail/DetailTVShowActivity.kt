@@ -33,7 +33,6 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         setContentView(R.layout.activity_detail_tv_show)
         activityDetailTvShowBinding = ActivityDetailTvShowBinding.inflate(layoutInflater)
         setContentView(activityDetailTvShowBinding.root)
-
         initData()
     }
 
@@ -54,14 +53,14 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun getDetail(tvShows: TVShowEntity) {
-        activityDetailTvShowBinding.tvItemTitle.text = tvShows.title
+        activityDetailTvShowBinding.tvShowTitle.text = tvShows.title
         activityDetailTvShowBinding.tvYear.text = tvShows.year.toString()
         activityDetailTvShowBinding.tvShowRate.text = resources.getString(
             R.string.rate, tvShows.rating
         )
-        /*  activityDetailTvShowBinding.tvEpisodes.text = resources.getString(
-              R.string.episode, tvShows.episode
-          )*/
+        activityDetailTvShowBinding.tvEpisodes.text = resources.getString(
+            R.string.episode, tvShows.episode
+        )
         activityDetailTvShowBinding.tvTypeShow.text = tvShows.type
         activityDetailTvShowBinding.tvActor.text = tvShows.star
         activityDetailTvShowBinding.tvDesc.text = tvShows.description
@@ -69,7 +68,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
         GlideApp.with(this)
             .load(tvShows.imagePath)
-            .transform(RoundedCorners(16))
+            .transform(RoundedCorners(18))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailTvShowBinding.imgPoster)
 

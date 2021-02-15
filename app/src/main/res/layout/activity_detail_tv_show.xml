@@ -21,7 +21,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/tv_item_title"
+        android:id="@+id/tv_show_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -44,8 +44,8 @@
         android:layout_marginTop="8dp"
         android:gravity="start"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_item_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_show_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_show_title"
         tools:text="@string/year" />
 
     <TextView

@@ -9,7 +9,7 @@ import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.ui.movie.MovieFragment
 import com.viona.moviecatalogue.ui.tv_show.TVShowFragment
 
-class SectionsPagerAdapter(private  val mContext: Context, fragmentManager: FragmentManager) :
+class SectionsPagerAdapter(private val mContext: Context, fragmentManager: FragmentManager) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
@@ -26,6 +26,6 @@ class SectionsPagerAdapter(private  val mContext: Context, fragmentManager: Frag
             else -> Fragment()
         }
 
-    override fun getPageTitle(position: Int): CharSequence? =
+    override fun getPageTitle(position: Int): CharSequence =
         mContext.resources.getString(TAB_TITLES[position])
 }

@@ -81,7 +81,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
 
         GlideApp.with(this)
             .load(movies.imagePath)
-            .transform(RoundedCorners(16))
+            .transform(RoundedCorners(18))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailMovieBinding.imgPoster)
         val price = resources.getString(R.string.price, movies.price)

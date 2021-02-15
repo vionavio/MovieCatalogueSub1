@@ -6,7 +6,7 @@
     <string name="title">Title</string>
     <string name="year">Year</string>
     <string name="rate">%.1f ⭐</string>
-    <string name="episode">%.1f episodes</string>
+    <string name="episode">%d episodes</string>
     <string name="desc">Description</string>
     <string name="reviews">Reviews</string>
     <string name="tomatometer">Tomatometer</string>

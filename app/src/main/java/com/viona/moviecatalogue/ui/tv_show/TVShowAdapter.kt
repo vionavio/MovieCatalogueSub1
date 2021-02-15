@@ -13,7 +13,7 @@ import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
 import com.viona.moviecatalogue.utils.GlideApp
 
 
-class TVShowAdapter() :
+class TVShowAdapter :
     RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
     private var listTVShow = ArrayList<TVShowEntity>()
 
@@ -58,7 +58,7 @@ class TVShowAdapter() :
                 GlideApp.with(itemView.context)
                     .load(tvShow.imagePath)
                     .fitCenter()
-                    .transform(RoundedCorners(16))
+                    .transform(RoundedCorners(18))
                     .error(R.drawable.ic_error)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .into(imgPoster)
