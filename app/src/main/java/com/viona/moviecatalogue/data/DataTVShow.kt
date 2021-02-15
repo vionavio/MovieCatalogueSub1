@@ -19,7 +19,7 @@ object DataTVShow {
                 1,
                 9.5,
                 "50.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F1.%20Planet%20Earth%20II.jpg?alt=media&token=b1092e14-0ebe-4132-b6d0-3d6eda3effe2"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F1.%20Planet%20Earth%20II.jpg?alt=media&token=166641f3-3611-4ff7-a324-f9df287e4cfa"
             )
         )
 
@@ -34,7 +34,7 @@ object DataTVShow {
                 13,
                 9.4,
                 "250.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F2.%20Planet%20Earth.jpg?alt=media&token=eee98f26-69fa-42d8-89cf-a41b7c3b28d3"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F2.%20Planet%20Earth.jpg?alt=media&token=79c38917-892e-4269-90a0-c9df8b28453a"
             )
         )
 
@@ -49,7 +49,7 @@ object DataTVShow {
                 8,
                 9.4,
                 "200.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F3.%20Band%20of%20Brothers.jpg?alt=media&token=1a66a7ad-15d4-4749-9cc9-68394882d563"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F3.%20Band%20of%20Brothers.jpg?alt=media&token=7cb1e938-f180-44d3-961e-2dbeec64e4fb"
             )
         )
 
@@ -64,7 +64,7 @@ object DataTVShow {
                 83,
                 9.5,
                 "500.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F4.%20Breaking%20Bad.jpg?alt=media&token=b55c054b-43e5-49ff-9151-0414399cedff"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F4.%20Breaking%20Bad.jpg?alt=media&token=c11603f3-f120-4b55-979c-4b89a106024f"
             )
         )
 
@@ -79,7 +79,7 @@ object DataTVShow {
                 28,
                 9.4,
                 "150.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F5.%20Chernobyl.jpg?alt=media&token=8a963dce-643a-4f61-af3a-87b7e24eaa50"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F5.%20Chernobyl.jpg?alt=media&token=8ffc8b16-54a9-4c26-8cde-571ba5fc3554"
             )
         )
 
@@ -94,7 +94,7 @@ object DataTVShow {
                 2,
                 9.3,
                 "70.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F6.%20Blue%20Planet%20II.jpg?alt=media&token=5d0bc36c-0f43-4fb2-b61d-1f2402aec854"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F6.%20Blue%20Planet%20II.jpg?alt=media&token=d74e986c-0ae5-4122-9db8-2e78f02b21f8"
             )
         )
         tvShow.add(
@@ -108,7 +108,7 @@ object DataTVShow {
                 9,
                 9.3,
                 "120.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F7.%20The%20Wire.jpg?alt=media&token=ba6f25ea-5314-44c7-8ab4-50b3e371d6d1"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F7.%20The%20Wire.jpg?alt=media&token=e209c646-698c-4e5c-9b55-9dac63f7d8dc"
             )
         )
         tvShow.add(
@@ -122,7 +122,7 @@ object DataTVShow {
                 7,
                 9.3,
                 "100.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F8.%20Our%20Planet.jpg?alt=media&token=e656229b-38ee-463c-af04-ca6f23ba8509"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F8.%20Our%20Planet.jpg?alt=media&token=d7b4623c-590b-4dea-8e17-aa59cd35d1d2"
             )
         )
         tvShow.add(
@@ -136,7 +136,7 @@ object DataTVShow {
                 16,
                 9.3,
                 "140.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F9.%20Cosmos.jpg?alt=media&token=a5cf4c18-d46a-4b5b-92f1-4929cac3d90b"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F9.%20Cosmos.jpg?alt=media&token=95330db5-6303-44fc-aa86-541e7da12640"
             )
         )
         tvShow.add(
@@ -150,7 +150,7 @@ object DataTVShow {
                 304,
                 9.3,
                 "700.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F10.%20Game%20of%20Thrones.jpg?alt=media&token=20507435-48a6-4ded-95ce-b7762f10008c"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F10.%20Game%20of%20Thrones.jpg?alt=media&token=0f1191f5-ff9a-4de1-acef-6c5132f9834b"
             )
         )
         tvShow.add(
@@ -164,7 +164,7 @@ object DataTVShow {
                 19,
                 9.2,
                 "130.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F11.%20Avatar%20The%20Last%20Airbender.jpg?alt=media&token=041023b9-df1a-4a28-9907-aa379269e034"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F11.%20Avatar%20The%20Last%20Airbender.jpg?alt=media&token=bfa0da86-6849-4615-850f-351cb0aa4163"
             )
         )
         tvShow.add(
@@ -178,10 +178,9 @@ object DataTVShow {
                 20,
                 9.2,
                 "90.000",
-                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F12.%20Rick%20and%20Morty.jpg?alt=media&token=d41fdd75-1768-4fce-9c05-948fa15c1e38"
+                "https://firebasestorage.googleapis.com/v0/b/moviecatalogue-43cde.appspot.com/o/TV%20Show%2F12.%20Rick%20and%20Morty.jpg?alt=media&token=4eda7529-d756-41b7-824b-b9a2e6ca5447"
             )
         )
-
         return tvShow
     }
 }

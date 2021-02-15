@@ -86,7 +86,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             .into(activityDetailMovieBinding.imgPoster)
         val price = resources.getString(R.string.price, movies.price)
         activityDetailMovieBinding.buttonBuy.setOnClickListener {
-            Toast.makeText(this, price, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
         }
     }
 

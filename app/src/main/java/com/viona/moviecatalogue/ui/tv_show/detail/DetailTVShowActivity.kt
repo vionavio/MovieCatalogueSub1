@@ -81,7 +81,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         val price = resources.getString(R.string.price, tvShows.price)
         activityDetailTvShowBinding.buttonBuy.text = price
         activityDetailTvShowBinding.buttonBuy.setOnClickListener {
-            Toast.makeText(this, price, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
         }
     }
 
