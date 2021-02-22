@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.viona.moviecatalogue.databinding.FragmentTvShowBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TVShowFragment : Fragment() {
 
     private lateinit var fragmentTVShowBinding: FragmentTvShowBinding
+    private val tvShowViewModel: TVShowViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,20 +27,25 @@ class TVShowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(
-                requireActivity(),
-                ViewModelProvider.NewInstanceFactory()
-            )[TVShowViewModel::class.java]
-            val tvShow = viewModel.getTvShow()
-            val tvShowAdapter = TVShowAdapter()
-            tvShowAdapter.setTVShows(tvShow)
+            tvShowViewModel.getTVShows()
 
-            with(fragmentTVShowBinding.rvTvShow) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = tvShowAdapter
-            }
+            tvShowViewModel.tvShows.observe(viewLifecycleOwner, { responseTVShows ->
+                val tvShowAdapter = TVShowAdapter()
+                responseTVShows?.results?.let {
+                    ArrayList(it).let { it1 ->
+                        tvShowAdapter.setTVShows(
+                            it1
+                        )
+                    }
+                }
 
+                with(fragmentTVShowBinding.rvTvShow) {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(true)
+                    adapter = tvShowAdapter
+                }
+
+            })
         }
     }
 }

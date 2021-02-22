@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit
 class MyAppGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         val client = OkHttpClient.Builder()
-            .readTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
             .build()
         val factory = OkHttpUrlLoader.Factory(client)
         glide.registry.replace(GlideUrl::class.java, InputStream::class.java, factory)

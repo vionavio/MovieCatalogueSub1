@@ -1,24 +1,20 @@
 package com.viona.moviecatalogue.ui.movie.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.viona.moviecatalogue.models.MovieEntity
-import com.viona.moviecatalogue.data.DataMovie
+import com.viona.moviecatalogue.data.repository.DataRepository
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
 
-class DetailMovieViewModel : ViewModel() {
-    private lateinit var movieId: String
-    private lateinit var movie: MovieEntity
+class DetailMovieViewModel(private val dataRepository: DataRepository) : ViewModel() {
 
-    fun setSelectedMovie(movieId: String) {
-        this.movieId = movieId
+    lateinit var movie: LiveData<MovieDetailResponse?>
+    private var id: Int = 0
+
+    fun setMovieId(id: Int) {
+        this.id = id
     }
 
-    fun getMovie(): MovieEntity {
-        val movieEntities = DataMovie.generateDummyMovie()
-        for (movieEntity in movieEntities) {
-            if (movieEntity.movieId == movieId) {
-                movie = movieEntity
-            }
-        }
-        return movie
+    fun getMovieDetail() {
+        movie = dataRepository.getMovieDetail(id)
     }
 }

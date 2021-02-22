@@ -1,24 +1,19 @@
 package com.viona.moviecatalogue.ui.tv_show.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.viona.moviecatalogue.data.DataTVShow
-import com.viona.moviecatalogue.models.TVShowEntity
+import com.viona.moviecatalogue.data.repository.DataRepository
+import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 
-class DetailTVShowViewModel : ViewModel() {
-    private lateinit var tvShowId: String
-    private lateinit var tvShow: TVShowEntity
+class DetailTVShowViewModel(private val dataRepository: DataRepository) : ViewModel() {
+    lateinit var tvShow: LiveData<TVShowDetailResponse?>
+    private var id: Int = 0
 
-    fun setSelectedTVShow(tvShowId: String) {
-        this.tvShowId = tvShowId
+    fun setTVShowId(id: Int) {
+        this.id = id
     }
 
-    fun getTVShow(): TVShowEntity {
-        val tvShowEntities = DataTVShow.generateDummyTVShow()
-        for (tvShowEntity in tvShowEntities) {
-            if (tvShowEntity.tvShowId == tvShowId) {
-                tvShow = tvShowEntity
-            }
-        }
-        return tvShow
+    fun getTVShowDetail() {
+        tvShow = dataRepository.getTVShowDetail(id)
     }
 }

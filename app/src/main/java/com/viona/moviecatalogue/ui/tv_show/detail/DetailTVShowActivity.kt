@@ -7,26 +7,24 @@ import android.text.SpannableString
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.ActivityDetailTvShowBinding
-import com.viona.moviecatalogue.models.TVShowEntity
+import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
-    companion object {
-        const val EXTRA_TV_SHOW = "extra_tv_show"
-    }
 
     private lateinit var activityDetailTvShowBinding: ActivityDetailTvShowBinding
-    private lateinit var viewModel: DetailTVShowViewModel
-    private lateinit var tvShow: TVShowEntity
+    private val detailTVShowViewModel: DetailTVShowViewModel by viewModel()
+    private lateinit var tvShow: TVShowResultsItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,29 +36,30 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun initData() {
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[DetailTVShowViewModel::class.java]
+        tvShow = TVShowResultsItem()
 
         intent.extras?.let {
-            val tvShowId = it.getString(EXTRA_TV_SHOW)
-            if (tvShowId != null) {
-                viewModel.setSelectedTVShow(tvShowId)
-            }
-            tvShow = viewModel.getTVShow()
-            getDetail(tvShow)
+            val tvShowId = it.getInt(Constants.EXTRA_TV_SHOW)
+
+            detailTVShowViewModel.setTVShowId(tvShowId)
+            detailTVShowViewModel.getTVShowDetail()
+            detailTVShowViewModel.tvShow.observe(this, { tvShows ->
+                if (tvShows != null) {
+                    getDetail(tvShows)
+                }
+            })
+
         }
     }
 
     private fun initUI() {
-        supportActionBar?.title = tvShow.title
+        supportActionBar?.title = tvShow.name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getDetail(tvShows: TVShowEntity) {
-        activityDetailTvShowBinding.tvShowTitle.text = tvShows.title
-        activityDetailTvShowBinding.tvYear.text = tvShows.year.toString()
+    private fun getDetail(tvShows: TVShowDetailResponse) {
+        activityDetailTvShowBinding.tvShowTitle.text = tvShows.name
+       /* activityDetailTvShowBinding.tvYear.text = tvShows.year.toString()
         activityDetailTvShowBinding.tvShowRate.text = resources.getString(
             R.string.rate, tvShows.rating
         )
@@ -70,19 +69,13 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         activityDetailTvShowBinding.tvTypeShow.text = tvShows.type
         activityDetailTvShowBinding.tvActor.text = tvShows.star
         activityDetailTvShowBinding.tvDesc.text = tvShows.description
-
+*/
 
         GlideApp.with(this)
-            .load(tvShows.imagePath)
-            .transform(RoundedCorners(18))
+            .load(Constants.IMAGE_URL + tvShows.posterPath)
+            .transform(RoundedCorners(Constants.ROUND_RADIUS))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailTvShowBinding.imgPoster)
-
-        val price = resources.getString(R.string.price, tvShows.price)
-        activityDetailTvShowBinding.buttonBuy.text = price
-        activityDetailTvShowBinding.buttonBuy.setOnClickListener {
-            Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -117,13 +110,13 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
 
-    override fun onShareClick(tvShow: TVShowEntity) {
+    override fun onShareClick(tvShow: TVShowResultsItem) {
         this.let {
-            val mimeType = "text/plain"
+            val mimeType = Constants.MIME_TYPE
             ShareCompat.IntentBuilder
                 .from(this)
                 .setType(mimeType)
-                .setText(resources.getString(R.string.share_movie, tvShow.title))
+                .setText(resources.getString(R.string.share_movie, tvShow.name))
                 .startChooser()
         }
     }

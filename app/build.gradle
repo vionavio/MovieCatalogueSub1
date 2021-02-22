@@ -42,7 +42,7 @@ ext {
     appCompatVersion = '1.2.0'
     coreVersion = '1.3.2'
     constraintLayoutVersion = '2.0.4'
-    junitVersion = '4.13.1'
+    junitVersion = '4.13.2'
     junitExtversion = '1.1.2'
     androidTestVersion = '1.3.0'
     espressoVersion = '3.3.0'
@@ -52,8 +52,14 @@ ext {
     glideVersion = '4.11.0'
     glideOkhttpVersion = '4.7.1'
     okhttpVersion = '4.2.1'
+    retrovitVersion = '2.9.0'
 
     firebaseVersion = '26.4.0'
+    mockitoVersion = '3.6.0'
+    mockitoKotlinVersion = '2.2.0'
+    idleResourceVersion = '3.3.0'
+
+    koinVersion = '2.2.2'
 }
 
 dependencies {
@@ -78,4 +84,28 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-storage'
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrovitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrovitVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    // idling resource
+    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+
+    // mockito
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // lifecycle
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+
+    // di
+    implementation "org.koin:koin-core:$koinVersion"
+    // or Koin for Lifecycle scoping
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    // or Koin for Android Architecture ViewModel
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+
 }

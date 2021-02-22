@@ -7,27 +7,27 @@ import android.text.SpannableString
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
-import com.viona.moviecatalogue.models.MovieEntity
+import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetailMovieActivity : AppCompatActivity(), MovieCallback {
-    companion object {
-        const val EXTRA_MOVIE = "extra_movie"
-    }
 
     private lateinit var activityDetailMovieBinding: ActivityDetailMovieBinding
     private lateinit var viewModel: DetailMovieViewModel
-    private lateinit var movie: MovieEntity
+    private val detailMovieViewModel: DetailMovieViewModel by viewModel()
+    private lateinit var movie: MovieResultsItem
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,54 +40,53 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     private fun initData() {
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        )[DetailMovieViewModel::class.java]
 
         intent.extras?.let {
-            val movieId = it.getString(EXTRA_MOVIE)
-            if (movieId != null) {
-                viewModel.setSelectedMovie(movieId)
-            }
-            movie = viewModel.getMovie()
-            getDetail(movie)
+            val movieId = it.getInt(Constants.EXTRA_MOVIE)
+
+            detailMovieViewModel.setMovieId(movieId)
+            detailMovieViewModel.getMovieDetail()
+            detailMovieViewModel.movie.observe(this, { movies ->
+                if (movies != null) {
+                    getDetail(movies)
+                }
+            })
         }
     }
 
     private fun initUI() {
-        supportActionBar?.title = movie.title
+        // supportActionBar?.title = movie.title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getDetail(movies: MovieEntity) {
+    private fun getDetail(movies: MovieDetailResponse) {
         activityDetailMovieBinding.tvItemTitle.text = movies.title
-        activityDetailMovieBinding.tvYear.text = movies.year.toString()
-        activityDetailMovieBinding.tvDetailRate.text = resources.getString(
-            R.string.rate, movies.rating
-        )
-        activityDetailMovieBinding.tvTomato.text = resources.getString(
-            R.string.percent, movies.tomatometer
-        )
-        activityDetailMovieBinding.tvSumRate.text = movies.people_rate.toString()
-        activityDetailMovieBinding.tvDuration.text = movies.duration
-        activityDetailMovieBinding.tvDesctiption.text = movies.description
-        activityDetailMovieBinding.tvDirectors.text = movies.director
-        activityDetailMovieBinding.tvStars.text = movies.stars
-        activityDetailMovieBinding.tvWriters.text = movies.writers
-        activityDetailMovieBinding.buttonBuy.text = resources.getString(
-            R.string.price, movies.price
-        )
-
+        /* activityDetailMovieBinding.tvYear.text = movies.year.toString()
+         activityDetailMovieBinding.tvDetailRate.text = resources.getString(
+             R.string.rate, movies.rating
+         )
+         activityDetailMovieBinding.tvTomato.text = resources.getString(
+             R.string.percent, movies.tomatometer
+         )
+         activityDetailMovieBinding.tvSumRate.text = movies.people_rate.toString()
+         activityDetailMovieBinding.tvDuration.text = movies.duration
+         activityDetailMovieBinding.tvDesctiption.text = movies.description
+         activityDetailMovieBinding.tvDirectors.text = movies.director
+         activityDetailMovieBinding.tvStars.text = movies.stars
+         activityDetailMovieBinding.tvWriters.text = movies.writers
+         activityDetailMovieBinding.buttonBuy.text = resources.getString(
+             R.string.price, movies.price
+         )
+ */
         GlideApp.with(this)
-            .load(movies.imagePath)
+            .load("https://image.tmdb.org/t/p/w500/${movies.posterPath}")
             .transform(RoundedCorners(18))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailMovieBinding.imgPoster)
-        val price = resources.getString(R.string.price, movies.price)
-        activityDetailMovieBinding.buttonBuy.setOnClickListener {
-            Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
-        }
+        //val price = resources.getString(R.string.price, movies.price)
+        /* activityDetailMovieBinding.buttonBuy.setOnClickListener {
+             Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
+         }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -121,9 +120,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         return sb
     }
 
-    override fun onShareClick(movie: MovieEntity) {
+    override fun onShareClick(movie: MovieResultsItem) {
         this.let {
-            val mimeType = "text/plain"
+            val mimeType = Constants.MIME_TYPE
             ShareCompat.IntentBuilder
                 .from(this)
                 .setType(mimeType)

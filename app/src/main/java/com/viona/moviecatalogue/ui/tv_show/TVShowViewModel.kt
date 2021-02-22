@@ -1,9 +1,14 @@
 package com.viona.moviecatalogue.ui.tv_show
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.viona.moviecatalogue.data.DataTVShow
-import com.viona.moviecatalogue.models.TVShowEntity
+import com.viona.moviecatalogue.data.repository.DataRepository
+import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
 
-class TVShowViewModel : ViewModel() {
-    fun getTvShow(): List<TVShowEntity> = DataTVShow.generateDummyTVShow()
+class TVShowViewModel(private val dataRepository: DataRepository) : ViewModel() {
+    var tvShows = MutableLiveData<TVShowsResponse?>()
+
+    fun getTVShows() {
+        tvShows = dataRepository.getTVShows()
+    }
 }
