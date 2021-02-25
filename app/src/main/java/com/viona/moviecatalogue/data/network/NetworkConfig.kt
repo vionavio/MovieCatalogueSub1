@@ -1,5 +1,6 @@
-package com.viona.moviecatalogue.utils.network
+package com.viona.moviecatalogue.data.network
 
+import com.viona.moviecatalogue.BuildConfig
 import com.viona.moviecatalogue.utils.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -9,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkConfig {
 
-    fun getApiService(): NetworkService {
+    fun getApiService(): ApiService {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -17,7 +18,7 @@ class NetworkConfig {
                 val original = chain.request()
                 val originalHttpUrl = original.url
                 val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("api_key", "d88141e51ed4b69d58b9531c5ac82e8d")
+                    .addQueryParameter("api_key", BuildConfig.TOKEN)
                     .build()
 
                 val requestBuilder = original.newBuilder().url(url)
@@ -36,6 +37,6 @@ class NetworkConfig {
             .client(client)
             .build()
 
-        return retrofit.create(NetworkService::class.java)
+        return retrofit.create(ApiService::class.java)
     }
 }

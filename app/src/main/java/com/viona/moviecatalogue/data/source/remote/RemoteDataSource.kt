@@ -8,7 +8,7 @@ import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
 import com.viona.moviecatalogue.utils.EspressoIdlingResource
-import com.viona.moviecatalogue.utils.network.NetworkConfig
+import com.viona.moviecatalogue.data.network.NetworkConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

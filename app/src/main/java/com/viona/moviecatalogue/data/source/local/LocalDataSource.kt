@@ -22,15 +22,6 @@ class LocalDataSource {
         )
     }
 
-//    fun getRandomMovieDetail(): MovieResultsItem {
-//        val movies = Gson().fromJson(
-//            InputStreamReader(javaClass.getResourceAsStream("get_movies.json")),
-//            MoviesResponse::class.java
-//        )
-//
-//        return movies.results.random()
-//    }
-
     fun getTVShows(): TVShowsResponse {
         return Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("get_tv_shows.json")),

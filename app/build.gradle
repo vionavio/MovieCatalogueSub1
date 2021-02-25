@@ -18,6 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField("String", "TOKEN",'"16e971add9953399244f28905bcd8673"')
     }
 
     buildTypes {
@@ -100,6 +101,7 @@ dependencies {
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     // di
     implementation "org.koin:koin-core:$koinVersion"
