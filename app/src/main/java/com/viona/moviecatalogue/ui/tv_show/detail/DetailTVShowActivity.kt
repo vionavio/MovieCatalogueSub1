@@ -58,7 +58,14 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun getDetail(tvShows: TVShowDetailResponse) {
-        activityDetailTvShowBinding.tvShowTitle.text = tvShows.name
+        activityDetailTvShowBinding.apply {
+            tvShowTitle.text = tvShows.name
+            tvShowRate.text = resources.getString(
+                R.string.rate, tvShows.voteAverage
+            )
+            tvDesc.text = tvShows.overview
+        }
+
        /* activityDetailTvShowBinding.tvYear.text = tvShows.year.toString()
         activityDetailTvShowBinding.tvShowRate.text = resources.getString(
             R.string.rate, tvShows.rating

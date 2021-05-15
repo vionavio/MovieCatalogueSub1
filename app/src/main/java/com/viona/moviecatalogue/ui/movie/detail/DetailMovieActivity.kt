@@ -1,5 +1,6 @@
 package com.viona.moviecatalogue.ui.movie.detail
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Spannable
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.remote.response.GenresItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
@@ -60,7 +62,33 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     private fun getDetail(movies: MovieDetailResponse) {
-        activityDetailMovieBinding.tvItemTitle.text = movies.title
+        activityDetailMovieBinding.apply {
+            tvItemTitle.text = movies.title
+            tvDetailRate.text = resources.getString(
+                R.string.rate, movies.voteAverage
+            )
+            tvDesctiption.text = movies.overview
+            tvSumRate.text = movies.voteCount.toString()
+            tvPopularity.text =  movies.popularity.toString()
+            if (movies.status == getString(R.string.released)) {
+                tvStatus.setTextColor(Color.RED)
+            }
+            tvStatus.text = movies.status
+            tvGenre.text = movies.genres.toString()
+            tvDateRelase.text = movies.releaseDate
+            tvLanguage.text = movies.originalLanguage
+
+            val builder = StringBuilder()
+            val genreList: List<GenresItem?>? = movies.genres
+            if (genreList != null) {
+                for (genre in genreList) {
+                    builder.append(genre?.name.toString() + "  ")
+                }
+            }
+            tvGenre.text = builder
+        }
+
+
         /* activityDetailMovieBinding.tvYear.text = movies.year.toString()
          activityDetailMovieBinding.tvDetailRate.text = resources.getString(
              R.string.rate, movies.rating
@@ -80,7 +108,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
  */
         GlideApp.with(this)
             .load("https://image.tmdb.org/t/p/w500/${movies.posterPath}")
-            .transform(RoundedCorners(18))
+            .transform(RoundedCorners(Constants.ROUND_RADIUS))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailMovieBinding.imgPoster)
         //val price = resources.getString(R.string.price, movies.price)

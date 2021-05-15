@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.base.BaseActivity
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
 import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
@@ -55,6 +56,7 @@ class TVShowAdapter :
                     val intent = Intent(itemView.context, DetailTVShowActivity::class.java)
                     intent.putExtra(Constants.EXTRA_TV_SHOW, tvShow.id)
                     itemView.context.startActivity(intent)
+
                 }
                 GlideApp.with(itemView.context)
                     .load(Constants.IMAGE_URL + tvShow.posterPath)

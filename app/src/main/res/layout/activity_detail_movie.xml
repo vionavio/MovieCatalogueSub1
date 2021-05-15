@@ -89,41 +89,43 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/margin_24dp"
+                    android:layout_height="@dimen/margin_24dp"
                     android:paddingStart="0dp"
                     android:paddingEnd="@dimen/padding_10dp"
-                    android:src="@drawable/tomato"
+                    android:src="@drawable/ic_fire"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/tv_tomato"
+                    android:id="@+id/tv_popularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/percent"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/dark_gray"
+                    tools:text="6767.6" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tomatometer" />
+                android:text="@string/popularity" />
         </LinearLayout>
 
         <View
             android:id="@+id/view"
             style="@style/ViewLine"
             android:layout_width="1dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -149,7 +151,7 @@
         <View
             style="@style/ViewLine"
             android:layout_width="1dp"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -158,26 +160,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_duration"
+                android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/duratio"
-                android:textColor="@color/dark_gray" />
+                android:text="@string/status"
+                android:textColor="@color/teal_700" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/duration" />
+                android:text="@string/status" />
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextViewTitle"
         android:text="@string/about_this_movie"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,9 +189,9 @@
 
     <TextView
         android:id="@+id/tv_desctiption"
+        style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewDesc"
         android:justificationMode="inter_word"
         android:text="@string/desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,63 +201,63 @@
 
     <TextView
         android:id="@+id/textView11"
+        style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewTitle"
-        android:text="@string/directors"
+        android:text="@string/genres"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_desctiption" />
 
     <TextView
-        android:id="@+id/tv_directors"
+        android:id="@+id/tv_genre"
+        style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        tools:text="Ken Mok" />
+        tools:text="Action" />
 
     <TextView
         android:id="@+id/textView13"
+        style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewTitle"
-        android:text="@string/stars"
+        android:text="@string/release_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_directors" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
 
     <TextView
-        android:id="@+id/tv_stars"
+        android:id="@+id/tv_date_relase"
+        style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:text="Alan " />
+        tools:text="02 Mei 2020 " />
 
     <TextView
         android:id="@+id/textView15"
+        style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewTitle"
-        android:text="@string/writers"
+        android:text="@string/original_language"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stars" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_relase" />
 
     <TextView
-        android:id="@+id/tv_writers"
+        android:id="@+id/tv_language"
+        style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextViewDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        tools:text="Hanna Mon" />
+        tools:text="En" />
 
     <Button
         android:id="@+id/button_buy"
