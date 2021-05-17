@@ -57,7 +57,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     private fun initUI() {
-        // supportActionBar?.title = movie.title
+        supportActionBar?.title = movie.title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -69,7 +69,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             )
             tvDesctiption.text = movies.overview
             tvSumRate.text = movies.voteCount.toString()
-            tvPopularity.text =  movies.popularity.toString()
+            tvPopularity.text = movies.popularity.toString()
             if (movies.status == getString(R.string.released)) {
                 tvStatus.setTextColor(Color.RED)
             }
@@ -78,43 +78,20 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             tvDateRelase.text = movies.releaseDate
             tvLanguage.text = movies.originalLanguage
 
-            val builder = StringBuilder()
+            val genreMovie = StringBuilder()
             val genreList: List<GenresItem?>? = movies.genres
             if (genreList != null) {
                 for (genre in genreList) {
-                    builder.append(genre?.name.toString() + "  ")
+                    genreMovie.append(genre?.name.toString() + "  ")
                 }
             }
-            tvGenre.text = builder
+            tvGenre.text = genreMovie
         }
-
-
-        /* activityDetailMovieBinding.tvYear.text = movies.year.toString()
-         activityDetailMovieBinding.tvDetailRate.text = resources.getString(
-             R.string.rate, movies.rating
-         )
-         activityDetailMovieBinding.tvTomato.text = resources.getString(
-             R.string.percent, movies.tomatometer
-         )
-         activityDetailMovieBinding.tvSumRate.text = movies.people_rate.toString()
-         activityDetailMovieBinding.tvDuration.text = movies.duration
-         activityDetailMovieBinding.tvDesctiption.text = movies.description
-         activityDetailMovieBinding.tvDirectors.text = movies.director
-         activityDetailMovieBinding.tvStars.text = movies.stars
-         activityDetailMovieBinding.tvWriters.text = movies.writers
-         activityDetailMovieBinding.buttonBuy.text = resources.getString(
-             R.string.price, movies.price
-         )
- */
         GlideApp.with(this)
             .load("https://image.tmdb.org/t/p/w500/${movies.posterPath}")
             .transform(RoundedCorners(Constants.ROUND_RADIUS))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailMovieBinding.imgPoster)
-        //val price = resources.getString(R.string.price, movies.price)
-        /* activityDetailMovieBinding.buttonBuy.setOnClickListener {
-             Toast.makeText(this, price, Toast.LENGTH_SHORT).show()
-         }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

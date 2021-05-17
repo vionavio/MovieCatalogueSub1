@@ -114,10 +114,10 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:text="@string/popularity" />
         </LinearLayout>
 
@@ -160,17 +160,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status" />
+
+            <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/status"
                 android:textColor="@color/teal_700" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/status" />
         </LinearLayout>
 
     </LinearLayout>
@@ -258,18 +258,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         tools:text="En" />
-
-    <Button
-        android:id="@+id/button_buy"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/rounded_accent"
-        android:text="@string/price"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

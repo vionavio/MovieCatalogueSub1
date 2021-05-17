@@ -2,14 +2,14 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Title</string>
     <string name="year">Year</string>
     <string name="rate">%.1f ⭐</string>
+    <string name="rates">%.1f ⭐ from %d votes</string>
     <string name="episode">%d episodes</string>
+    <string name="episodes_seasons">%d episodes, %d seasons</string>
     <string name="desc">Description</string>
     <string name="reviews">Reviews</string>
-    <string name="tomatometer">Tomatometer</string>
     <string name="rating">Rating</string>
     <string name="duration">Duration</string>
     <string name="percent"> %s</string>
@@ -28,7 +28,12 @@
     <string name="popularity">Popularity</string>
     <string name="status">Status</string>
     <string name="released">Released</string>
+    <string name="ended">Ended</string>
     <string name="genres">Genres</string>
     <string name="release_date">Release Date</string>
     <string name="original_language">Original Language</string>
+    <string name="first_air_date">First Air Date</string>
+    <string name="seasons">Seasons</string>
+    <string name="language">%s  %s</string>
+    <string name="image_poster">Image Poster</string>
 </resources>

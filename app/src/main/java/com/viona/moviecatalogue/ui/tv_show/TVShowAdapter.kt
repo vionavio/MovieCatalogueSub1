@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
-import com.viona.moviecatalogue.base.BaseActivity
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
 import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
