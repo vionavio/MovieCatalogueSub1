@@ -4,55 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_20dp"
-    android:padding="@dimen/padding_10dp"
+    android:layout_margin="@dimen/_20dp"
+    android:padding="@dimen/_10dp"
     tools:context=".ui.movie.detail.DetailMovieActivity">
 
     <ImageView
         android:id="@+id/img_poster"
-        android:layout_width="120dp"
-        android:layout_height="170dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:src="@color/teal_200"
-        app:layout_constraintCircleRadius="4dp"
+        android:layout_width="@dimen/width_poster"
+        android:layout_height="@dimen/height_poster"
+        style="@style/ImageViewPoster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tv_item_title"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_30dp"
-        android:layout_marginEnd="@dimen/margin_16dp"
-        android:ellipsize="end"
-        android:gravity="start"
-        android:maxLines="2"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        style="@style/mainTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_poster"
+        app:layout_constraintStart_toEndOf="@id/img_poster"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/title" />
 
     <TextView
-        android:id="@+id/tv_year"
+        android:id="@+id/tv_tagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/_8dp"
         android:gravity="start"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_item_title"
-        app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
-        tools:text="@string/year" />
+        app:layout_constraintStart_toStartOf="@id/tv_item_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_title"
+        tools:text="Get Over Here" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/img_poster">
@@ -64,17 +54,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rating" />
+
+            <TextView
                 android:id="@+id/tv_detail_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rate"
                 android:textColor="@color/dark_gray" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rating" />
 
         </LinearLayout>
 
@@ -86,7 +75,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popularity" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -96,10 +91,10 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
-                    android:layout_width="@dimen/margin_24dp"
-                    android:layout_height="@dimen/margin_24dp"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="@dimen/padding_10dp"
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:paddingStart="@dimen/_0dp"
+                    android:paddingEnd="@dimen/_10dp"
                     android:src="@drawable/ic_fire"
                     tools:ignore="ContentDescription" />
 
@@ -112,13 +107,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="@string/popularity" />
         </LinearLayout>
 
         <View
@@ -134,24 +122,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews" />
+
+            <TextView
                 android:id="@+id/tv_sum_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vote"
                 android:textColor="@color/dark_gray" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reviews" />
-
         </LinearLayout>
 
         <View
             style="@style/ViewLine"
-            android:layout_width="1dp"
-            android:layout_height="30dp" />
+            android:layout_width="@dimen/_1dp"
+            android:layout_height="@dimen/_30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -160,7 +147,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/status" />
@@ -176,7 +162,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/about_movie"
         style="@style/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,10 +171,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
     <TextView
-        android:id="@+id/tv_desctiption"
+        android:id="@+id/tv_description"
         style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -197,17 +183,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@id/about_movie" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/genre"
         style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/genres"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desctiption" />
+        app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
     <TextView
         android:id="@+id/tv_genre"
@@ -216,38 +202,38 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@id/genre"
         tools:text="Action" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/release_date"
         style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/release_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
+        app:layout_constraintTop_toBottomOf="@id/tv_genre" />
 
     <TextView
-        android:id="@+id/tv_date_relase"
+        android:id="@+id/tv_date_release"
         style="@style/TextViewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@id/release_date"
         tools:text="02 Mei 2020 " />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/language"
         style="@style/TextViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/original_language"
+        android:text="@string/languages"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date_relase" />
+        app:layout_constraintTop_toBottomOf="@id/tv_date_release" />
 
     <TextView
         android:id="@+id/tv_language"
@@ -256,7 +242,27 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@id/language"
         tools:text="En" />
+
+    <TextView
+        android:id="@+id/budget"
+        style="@style/TextViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/budget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_language" />
+
+    <TextView
+        android:id="@+id/tv_budget"
+        style="@style/TextViewDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/budget"
+        tools:text="$ 12323" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

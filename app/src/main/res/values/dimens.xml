@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- margin or padding -->
-    <dimen name="margin_30dp">30dp</dimen>
-    <dimen name="margin_24dp">24dp</dimen>
-    <dimen name="margin_20dp">20dp</dimen>
-    <dimen name="margin_16dp">16dp</dimen>
-    <dimen name="margin_10dp">10dp</dimen>
-    <dimen name="margin_8dp">8dp</dimen>
-    <dimen name="margin_5dp">5dp</dimen>
-    <dimen name="margin_4dp">4dp</dimen>
-    <dimen name="margin_double_extra_small">2dp</dimen>
-    <dimen name="margin_extra_small">4dp</dimen>
-    <dimen name="margin_small">8dp</dimen>
 
+    <dimen name="_150dp">150dp</dimen>
+    <dimen name="_100dp">100dp</dimen>
+    <dimen name="_30dp">30dp</dimen>
+    <dimen name="_25dp">25dp</dimen>
+    <dimen name="_24dp">24dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_16dp">16dp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_8dp">8dp</dimen>
+    <dimen name="_5dp">5dp</dimen>
+    <dimen name="_4dp">4dp</dimen>
+    <dimen name="_2dp">2dp</dimen>
+    <dimen name="_1dp">1dp</dimen>
+    <dimen name="_0dp">0dp</dimen>
 
-    <!-- padding-->
-    <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="width_poster">120dp</dimen>
+    <dimen name="height_poster">170dp</dimen>
+
 </resources>

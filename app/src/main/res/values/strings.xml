@@ -13,17 +13,10 @@
     <string name="desc">Description</string>
     <string name="reviews">Reviews</string>
     <string name="rating">Rating</string>
-    <string name="duration">Duration</string>
-    <string name="percent"> %s</string>
     <string name="vote">17</string>
-    <string name="duratio">1hr 35min</string>
     <string name="about_this_movie">About this Movie</string>
     <string name="about_this_show">About this TV Show</string>
-    <string name="directors">Directors</string>
-    <string name="stars">Stars</string>
-    <string name="writers">Writers</string>
     <string name="price">Buy from IDR %s</string>
-    <string name="type">Type</string>
     <string name="share">Share</string>
     <string name="share_movie">Let\'s watch \"%s\" movie \n%s</string>
     <string name="share_tv_show">Let\'s watch \"%s\" TV Show \n%s</string>
@@ -34,9 +27,11 @@
     <string name="ended">Ended</string>
     <string name="genres">Genres</string>
     <string name="release_date">Release Date</string>
-    <string name="original_language">Original Language</string>
     <string name="first_air_date">First Air Date</string>
     <string name="seasons">Seasons</string>
     <string name="language">%s  %s</string>
+    <string name="languages">Language</string>
     <string name="image_poster">Image Poster</string>
+    <string name="budget">Budget</string>
+    <string name="budgets">$ %s</string>
 </resources>
