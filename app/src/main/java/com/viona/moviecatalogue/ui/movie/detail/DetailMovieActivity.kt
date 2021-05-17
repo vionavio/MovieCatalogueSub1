@@ -16,7 +16,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.remote.response.GenresItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
@@ -26,9 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailMovieActivity : AppCompatActivity(), MovieCallback {
 
     private lateinit var activityDetailMovieBinding: ActivityDetailMovieBinding
-    private lateinit var viewModel: DetailMovieViewModel
     private val detailMovieViewModel: DetailMovieViewModel by viewModel()
-    private lateinit var movie: MovieResultsItem
+    private var movie = mutableListOf<String?>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,22 +40,23 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     private fun initData() {
-
         intent.extras?.let {
             val movieId = it.getInt(Constants.EXTRA_MOVIE)
 
-            detailMovieViewModel.setMovieId(movieId)
-            detailMovieViewModel.getMovieDetail()
-            detailMovieViewModel.movie.observe(this, { movies ->
-                if (movies != null) {
-                    getDetail(movies)
-                }
-            })
+            detailMovieViewModel.apply {
+                setMovieId(movieId)
+                getMovieDetail()
+                movie.observe(this@DetailMovieActivity, { movies ->
+                    if (movies != null) {
+                        getDetail(movies)
+                    }
+                })
+            }
         }
     }
 
     private fun initUI() {
-        supportActionBar?.title = movie.title
+        supportActionBar?.title = getString(R.string.movie)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -86,6 +85,10 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                 }
             }
             tvGenre.text = genreMovie
+            movie.apply {
+                add(movies.title)
+                add(movies.homepage)
+            }
         }
         GlideApp.with(this)
             .load("https://image.tmdb.org/t/p/w500/${movies.posterPath}")
@@ -125,13 +128,13 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         return sb
     }
 
-    override fun onShareClick(movie: MovieResultsItem) {
+    override fun onShareClick(movie: MutableList<String?>) {
         this.let {
             val mimeType = Constants.MIME_TYPE
             ShareCompat.IntentBuilder
                 .from(this)
                 .setType(mimeType)
-                .setText(resources.getString(R.string.share_movie, movie.title))
+                .setText(resources.getString(R.string.share_movie, movie[0], movie[1]))
                 .startChooser()
         }
     }

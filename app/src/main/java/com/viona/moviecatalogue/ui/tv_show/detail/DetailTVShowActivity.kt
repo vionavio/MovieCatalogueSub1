@@ -17,7 +17,6 @@ import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.remote.response.GenresItem
 import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
-import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
@@ -27,7 +26,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     private lateinit var activityDetailTvShowBinding: ActivityDetailTvShowBinding
     private val detailTVShowViewModel: DetailTVShowViewModel by viewModel()
-    private lateinit var tvShow: TVShowResultsItem
+    private var tvShow = mutableListOf<String?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,24 +38,23 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun initData() {
-        tvShow = TVShowResultsItem()
-
         intent.extras?.let {
             val tvShowId = it.getInt(Constants.EXTRA_TV_SHOW)
 
-            detailTVShowViewModel.setTVShowId(tvShowId)
-            detailTVShowViewModel.getTVShowDetail()
-            detailTVShowViewModel.tvShow.observe(this, { tvShows ->
-                if (tvShows != null) {
-                    getDetail(tvShows)
-                }
-            })
-
+            detailTVShowViewModel.apply {
+                setTVShowId(tvShowId)
+                getTVShowDetail()
+                tvShow.observe(this@DetailTVShowActivity, { tvShows ->
+                    if (tvShows != null) {
+                        getDetail(tvShows)
+                    }
+                })
+            }
         }
     }
 
     private fun initUI() {
-        //supportActionBar?.title = tvShow.name
+        supportActionBar?.title = getString(R.string.tv_show)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -72,6 +70,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 tvShows.numberOfEpisodes,
                 tvShows.numberOfSeasons
             )
+
             val spokenLanguage = StringBuilder()
             val nameLanguage = StringBuilder()
             val languageItem: List<SpokenLanguagesItem?>? = tvShows.spokenLanguages
@@ -82,6 +81,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 }
             }
             tvLanguage.text = resources.getString(R.string.language, spokenLanguage, nameLanguage)
+
             val genreMovie = StringBuilder()
             val genreList: List<GenresItem?>? = tvShows.genres
             if (genreList != null) {
@@ -99,6 +99,10 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
             tvAirDate.text = tvShows.firstAirDate
 
             rvPoster.adapter = PosterAdapter(this@DetailTVShowActivity, tvShows.seasons)
+            tvShow.apply {
+                add(tvShows.name)
+                add(tvShows.homepage)
+            }
         }
 
         GlideApp.with(this)
@@ -123,6 +127,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+
             1 -> {
                 onShareClick(tvShow)
                 true
@@ -139,13 +144,13 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         return sb
     }
 
-    override fun onShareClick(tvShow: TVShowResultsItem) {
+    override fun onShareClick(tvShow: MutableList<String?>) {
         this.let {
             val mimeType = Constants.MIME_TYPE
             ShareCompat.IntentBuilder
                 .from(this)
                 .setType(mimeType)
-                .setText(resources.getString(R.string.share_movie, tvShow.name))
+                .setText(resources.getString(R.string.share_tv_show, tvShow[0], tvShow[1]))
                 .startChooser()
         }
     }
