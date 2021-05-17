@@ -15,11 +15,14 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.remote.response.GenresItem
+import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.NumberFormat
+import java.util.*
 
 
 class DetailMovieActivity : AppCompatActivity(), MovieCallback {
@@ -63,35 +66,28 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     private fun getDetail(movies: MovieDetailResponse) {
         activityDetailMovieBinding.apply {
             tvItemTitle.text = movies.title
+            tvTagline.text = movies.tagline
             tvDetailRate.text = resources.getString(
                 R.string.rate, movies.voteAverage
             )
-            tvDesctiption.text = movies.overview
-            tvSumRate.text = movies.voteCount.toString()
             tvPopularity.text = movies.popularity.toString()
-            if (movies.status == getString(R.string.released)) {
-                tvStatus.setTextColor(Color.RED)
-            }
+            tvSumRate.text = movies.voteCount.toString()
+            if (movies.status == getString(R.string.released)) tvStatus.setTextColor(Color.RED)
             tvStatus.text = movies.status
+            tvDescription.text = movies.overview
             tvGenre.text = movies.genres.toString()
-            tvDateRelase.text = movies.releaseDate
-            tvLanguage.text = movies.originalLanguage
+            tvDateRelease.text = movies.releaseDate
+            tvLanguage.text = getLanguage(movies)
+            tvGenre.text = getGenre(movies.genres)
+            tvBudget.text = getBudget(movies.budget)
 
-            val genreMovie = StringBuilder()
-            val genreList: List<GenresItem?>? = movies.genres
-            if (genreList != null) {
-                for (genre in genreList) {
-                    genreMovie.append(genre?.name.toString() + "  ")
-                }
-            }
-            tvGenre.text = genreMovie
             movie.apply {
                 add(movies.title)
                 add(movies.homepage)
             }
         }
         GlideApp.with(this)
-            .load("https://image.tmdb.org/t/p/w500/${movies.posterPath}")
+            .load(Constants.IMAGE_URL + movies.posterPath)
             .transform(RoundedCorners(Constants.ROUND_RADIUS))
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
             .into(activityDetailMovieBinding.imgPoster)
@@ -99,7 +95,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menu?.add(
-            0, 1, 1,
+            Constants.ZERO, Constants.ONE, Constants.ONE,
             ContextCompat.getDrawable(this, R.drawable.ic_share)?.let {
                 menuIconWithText(
                     it,
@@ -121,10 +117,10 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     private fun menuIconWithText(r: Drawable, title: String): CharSequence {
-        r.setBounds(0, 0, r.intrinsicWidth, r.intrinsicHeight)
+        r.setBounds(Constants.ZERO, Constants.ZERO, r.intrinsicWidth, r.intrinsicHeight)
         val sb = SpannableString("    $title")
         val imageSpan = ImageSpan(r, ImageSpan.ALIGN_BOTTOM)
-        sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        sb.setSpan(imageSpan, Constants.ZERO, Constants.ONE, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         return sb
     }
 
@@ -137,5 +133,36 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                 .setText(resources.getString(R.string.share_movie, movie[0], movie[1]))
                 .startChooser()
         }
+    }
+
+    private fun getLanguage(movies: MovieDetailResponse): String {
+        val spokenLanguage = StringBuilder()
+        val nameLanguage = StringBuilder()
+        val languageItem: List<SpokenLanguagesItem?>? = movies.spokenLanguages
+        if (languageItem != null) {
+            for (language in languageItem) {
+                spokenLanguage.append(language?.englishName + "  ")
+                nameLanguage.append(language?.name + "   ")
+            }
+        }
+        return spokenLanguage.append(nameLanguage).toString()
+    }
+
+    private fun getGenre(genreMovies: List<GenresItem?>?): String {
+        val genreMovie = StringBuilder()
+        val genreList: List<GenresItem?>? = genreMovies
+        if (genreList != null) {
+            for (genre in genreList) {
+                genreMovie.append(genre?.name.toString() + "  ")
+            }
+        }
+        return genreMovie.toString()
+    }
+
+    private fun getBudget(budget: Int?): String {
+        val formatBudgt: NumberFormat = NumberFormat.getCurrencyInstance()
+        formatBudgt.maximumFractionDigits = Constants.ZERO
+        formatBudgt.currency = Currency.getInstance(Constants.USD)
+        return formatBudgt.format(budget)
     }
 }

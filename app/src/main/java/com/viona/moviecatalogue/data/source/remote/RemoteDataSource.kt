@@ -150,7 +150,6 @@ class RemoteDataSource(private val networkConfig: NetworkConfig) :
                     decrementIdlingResource()
                 }
             })
-
         return tvShow
     }
 }

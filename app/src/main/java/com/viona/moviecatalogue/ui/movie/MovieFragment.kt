@@ -28,7 +28,6 @@ class MovieFragment : Fragment() {
         if (activity != null) {
 
             movieViewModel.getMovie()
-
             movieViewModel.movies.observe(viewLifecycleOwner, { movies ->
                 val movieAdapter = MovieAdapter()
                 movies?.results?.let { ArrayList(it).let { it1 -> movieAdapter.setMovies(it1) } }

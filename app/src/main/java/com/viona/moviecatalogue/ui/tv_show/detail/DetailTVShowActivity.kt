@@ -70,35 +70,16 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 tvShows.numberOfEpisodes,
                 tvShows.numberOfSeasons
             )
-
-            val spokenLanguage = StringBuilder()
-            val nameLanguage = StringBuilder()
-            val languageItem: List<SpokenLanguagesItem?>? = tvShows.spokenLanguages
-            if (languageItem != null) {
-                for (language in languageItem) {
-                    spokenLanguage.append(language?.englishName + "  ")
-                    nameLanguage.append(language?.name + "   ")
-                }
-            }
-            tvLanguage.text = resources.getString(R.string.language, spokenLanguage, nameLanguage)
-
-            val genreMovie = StringBuilder()
-            val genreList: List<GenresItem?>? = tvShows.genres
-            if (genreList != null) {
-                for (genre in genreList) {
-                    genreMovie.append(genre?.name.toString() + "\n")
-                }
-            }
-            tvGenreShow.text = genreMovie
+            tvLanguage.text = getLanguage(tvShows)
+            tvGenreShow.text = getGenre(tvShows.genres)
             tvDesc.text = tvShows.overview
             tvPopularity.text = tvShows.popularity.toString()
-            if (tvShows.status == getString(R.string.ended)) {
-                tvStatus.setTextColor(Color.RED)
-            }
+            if (tvShows.status == getString(R.string.ended)) tvStatus.setTextColor(Color.RED)
             tvStatus.text = tvShows.status
             tvAirDate.text = tvShows.firstAirDate
 
             rvPoster.adapter = PosterAdapter(this@DetailTVShowActivity, tvShows.seasons)
+
             tvShow.apply {
                 add(tvShows.name)
                 add(tvShows.homepage)
@@ -114,7 +95,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menu?.add(
-            0, 1, 1,
+            Constants.ZERO, Constants.ONE, Constants.ONE,
             ContextCompat.getDrawable(this, R.drawable.ic_share)?.let {
                 menuIconWithText(
                     it,
@@ -137,10 +118,10 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun menuIconWithText(r: Drawable, title: String): CharSequence {
-        r.setBounds(0, 0, r.intrinsicWidth, r.intrinsicHeight)
+        r.setBounds(Constants.ZERO, Constants.ZERO, r.intrinsicWidth, r.intrinsicHeight)
         val sb = SpannableString("    $title")
         val imageSpan = ImageSpan(r, ImageSpan.ALIGN_BOTTOM)
-        sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        sb.setSpan(imageSpan, Constants.ZERO, Constants.ONE, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         return sb
     }
 
@@ -153,5 +134,29 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 .setText(resources.getString(R.string.share_tv_show, tvShow[0], tvShow[1]))
                 .startChooser()
         }
+    }
+
+    private fun getLanguage(tvShows: TVShowDetailResponse): String {
+        val spokenLanguage = StringBuilder()
+        val nameLanguage = StringBuilder()
+        val languageItem: List<SpokenLanguagesItem?>? = tvShows.spokenLanguages
+        if (languageItem != null) {
+            for (language in languageItem) {
+                spokenLanguage.append(language?.englishName + "  ")
+                nameLanguage.append(language?.name + "   ")
+            }
+        }
+        return spokenLanguage.append(nameLanguage).toString()
+    }
+
+    private fun getGenre(genres: List<GenresItem?>?): String {
+        val genreMovie = StringBuilder()
+        val genreList: List<GenresItem?>? = genres
+        if (genreList != null) {
+            for (genre in genreList) {
+                genreMovie.append(genre?.name.toString() + "\n")
+            }
+        }
+        return genreMovie.toString()
     }
 }

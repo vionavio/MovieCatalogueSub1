@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:padding="20dp"
-    tools:context=".ui.movie.detail.DetailMovieActivity">
+    android:layout_margin="@dimen/_20dp"
+    android:padding="@dimen/_20dp"
+    tools:context=".ui.tv_show.detail.DetailTVShowActivity">
 
     <ImageView
         android:id="@+id/img_poster"
-        android:layout_width="120dp"
-        android:layout_height="170dp"
+        android:layout_width="@dimen/width_poster"
+        android:layout_height="@dimen/height_poster"
         style="@style/ImageViewPoster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
