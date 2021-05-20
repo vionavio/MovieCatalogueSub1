@@ -53,6 +53,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                 movie.observe(this@DetailMovieActivity, { movies ->
                     if (movies != null) {
                         activityDetailMovieBinding.progressBars.root.visibility = View.GONE
+                        activityDetailMovieBinding.scrollview.visibility = View.VISIBLE
                         getDetail(movies)
                     }
                 })
