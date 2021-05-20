@@ -10,28 +10,28 @@ import java.io.InputStreamReader
 class LocalDataSource {
     fun getMovies(): MoviesResponse {
         return Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movies.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movies.json")),
             MoviesResponse::class.java
         )
     }
 
     fun getMovieDetail(): MovieDetailResponse {
         return Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movie.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movie.json")),
             MovieDetailResponse::class.java
         )
     }
 
     fun getTVShows(): TVShowsResponse {
         return Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_tv_shows.json")),
+            InputStreamReader(javaClass.getResourceAsStream("tv_shows.json")),
             TVShowsResponse::class.java
         )
     }
 
     fun getTVShowDetail(): TVShowDetailResponse {
         return Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_tv_show.json")),
+            InputStreamReader(javaClass.getResourceAsStream("tv_show.json")),
             TVShowDetailResponse::class.java
         )
 

@@ -40,7 +40,7 @@ class TVShowViewModelTest {
     @Test
     fun getTVShow() {
         val sampleTVShows = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_tv_shows.json")),
+            InputStreamReader(javaClass.getResourceAsStream("tv_shows.json")),
             TVShowsResponse::class.java
         )
         val tvShows = MutableLiveData<TVShowsResponse>()

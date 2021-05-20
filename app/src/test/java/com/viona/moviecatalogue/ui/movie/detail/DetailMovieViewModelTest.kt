@@ -43,7 +43,7 @@ class DetailMovieViewModelTest {
     fun getMovie() {
 
         dataMovie = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movie.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movie.json")),
             MovieDetailResponse::class.java
         )
         val movieLive = MutableLiveData<MovieDetailResponse>()

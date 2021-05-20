@@ -41,7 +41,7 @@ class MovieViewModelTest {
     @Test
     fun getMovie() {
         val sampleMovies = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movies.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movies.json")),
             MoviesResponse::class.java
         )
         val movies = MutableLiveData<MoviesResponse>()

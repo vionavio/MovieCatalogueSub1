@@ -19,7 +19,7 @@ class DataRepositoryTest {
     @Test
     fun getMovies() {
         val sampleMovies = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movies.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movies.json")),
             MoviesResponse::class.java
         )
         Mockito.`when`(remoteDataSource.getMovies()).thenReturn(MutableLiveData(sampleMovies))
@@ -32,7 +32,7 @@ class DataRepositoryTest {
     @Test
     fun getMovieDetail() {
         val sampleMovie = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_movie.json")),
+            InputStreamReader(javaClass.getResourceAsStream("movie.json")),
             MovieDetailResponse::class.java
         )
         var sampleMovieId: Int
@@ -52,7 +52,7 @@ class DataRepositoryTest {
     @Test
     fun getTVShows() {
         val sampleTVShows = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_tv_shows.json")),
+            InputStreamReader(javaClass.getResourceAsStream("tv_shows.json")),
             TVShowsResponse::class.java
         )
         Mockito.`when`(remoteDataSource.getTVShows()).thenReturn(MutableLiveData(sampleTVShows))
@@ -65,7 +65,7 @@ class DataRepositoryTest {
     @Test
     fun getTVShowDetail() {
         val sampleTVShow = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("get_tv_show.json")),
+            InputStreamReader(javaClass.getResourceAsStream("tv_show.json")),
             TVShowDetailResponse::class.java
         )
         var sampleTVShowId: Int
