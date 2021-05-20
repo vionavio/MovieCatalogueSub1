@@ -1,6 +1,6 @@
 package com.viona.moviecatalogue.ui.movie
 
-import android.content.Intent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,12 +9,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
-import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
 
-class MovieAdapter :
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(
+    val context: Context,
+    private val onItemClickListener: (MovieResultsItem) -> Unit
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var listMovies = ArrayList<MovieResultsItem?>()
 
@@ -33,7 +34,7 @@ class MovieAdapter :
             ItemsMovieBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
-            )
+            ), onItemClickListener
         )
     }
 
@@ -43,8 +44,11 @@ class MovieAdapter :
 
     override fun getItemCount(): Int = listMovies.size
 
-    class MovieViewHolder(private val binding: ItemsMovieBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class MovieViewHolder(
+        private val binding: ItemsMovieBinding,
+        val onItemClickListener: (MovieResultsItem) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(movie: MovieResultsItem) {
             with(binding) {
                 tvItemTitle.text = movie.title
@@ -52,12 +56,8 @@ class MovieAdapter :
                     R.string.rate, movie.voteAverage
                 )
                 tvDesc.text = movie.overview
+                itemView.setOnClickListener { onItemClickListener(movie) }
 
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(Constants.EXTRA_MOVIE, movie.id)
-                    itemView.context.startActivity(intent)
-                }
                 GlideApp.with(itemView.context)
                     .load(Constants.IMAGE_URL + movie.posterPath)
                     .fitCenter()

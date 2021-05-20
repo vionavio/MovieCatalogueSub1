@@ -1,17 +1,22 @@
 package com.viona.moviecatalogue.ui.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.databinding.FragmentMovieBinding
+import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
+import com.viona.moviecatalogue.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
 
     private lateinit var fragmentMovieBinding: FragmentMovieBinding
+    private lateinit var movieAdapter: MovieAdapter
     private val movieViewModel: MovieViewModel by viewModel()
 
     override fun onCreateView(
@@ -28,9 +33,8 @@ class MovieFragment : Fragment() {
         if (activity != null) {
 
             movieViewModel.getMovie()
-
             movieViewModel.movies.observe(viewLifecycleOwner, { movies ->
-                val movieAdapter = MovieAdapter()
+                movieAdapter = MovieAdapter(requireContext()) { movie -> gotoResult(movie) }
                 movies?.results?.let { ArrayList(it).let { it1 -> movieAdapter.setMovies(it1) } }
 
                 fragmentMovieBinding.progressBars.root.visibility = View.GONE
@@ -41,5 +45,11 @@ class MovieFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun gotoResult(movie: MovieResultsItem) {
+        val intent = Intent(context, DetailMovieActivity::class.java)
+        intent.putExtra(Constants.EXTRA_MOVIE, movie.id)
+        context?.startActivity(intent)
     }
 }

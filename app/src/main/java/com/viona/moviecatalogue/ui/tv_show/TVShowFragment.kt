@@ -1,17 +1,22 @@
 package com.viona.moviecatalogue.ui.tv_show
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.FragmentTvShowBinding
+import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
+import com.viona.moviecatalogue.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TVShowFragment : Fragment() {
 
     private lateinit var fragmentTVShowBinding: FragmentTvShowBinding
+    private lateinit var tvShowAdapter: TVShowAdapter
     private val tvShowViewModel: TVShowViewModel by viewModel()
 
     override fun onCreateView(
@@ -30,7 +35,7 @@ class TVShowFragment : Fragment() {
             tvShowViewModel.getTVShows()
 
             tvShowViewModel.tvShows.observe(viewLifecycleOwner, { responseTVShows ->
-                val tvShowAdapter = TVShowAdapter()
+                tvShowAdapter = TVShowAdapter(requireContext()) { tvShow -> gotoResult(tvShow) }
                 responseTVShows?.results?.let {
                     ArrayList(it).let { it1 ->
                         tvShowAdapter.setTVShows(
@@ -47,5 +52,11 @@ class TVShowFragment : Fragment() {
 
             })
         }
+    }
+
+    private fun gotoResult(tvShow: TVShowResultsItem) {
+        val intent = Intent(context, DetailTVShowActivity::class.java)
+        intent.putExtra(Constants.EXTRA_TV_SHOW, tvShow.id)
+        context?.startActivity(intent)
     }
 }
