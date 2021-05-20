@@ -1,3 +1,5 @@
+Keterangan test ada di file README
+
 
 # Unit Testing View Model Movie Catalogue
 
@@ -13,7 +15,7 @@
     memastikan metode kelas repository terpanggil
     
     Memastikan data tv show tidak kosong
-    Memastikan jumlah data movie sesuai yang diharapkan
+    Memastikan jumlah data tv Show sesuai yang diharapkan
 
 3. Detail Movie View Model Test
     Memanipulasi data ketika pemanggilan data movie di kelas repository
@@ -53,8 +55,8 @@
     Memastikan Menu share dapat di klik
 
 3. Menampilkan data tv show
-    Memastikan rv_movie dalam keadaan tampil
-    Gulir rv_movie ke posisi data terakhir
+    Memastikan tv show dalam keadaan tampil
+    Gulir tv show ke posisi data terakhir
     Memastikan TextView untuk title tampil sesuai yang diharapkan
     
 4. Menampilkan data detail tv show
@@ -72,5 +74,3 @@
     Memastikan TextView untuk first air date tampil sesuai yang diharapkan
     Memastikan TextView untuk popularity tampil sesuai yang diharapkan
     Memastikan Menu share dapat di klik
-
-
