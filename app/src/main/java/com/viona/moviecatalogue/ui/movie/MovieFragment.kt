@@ -28,10 +28,12 @@ class MovieFragment : Fragment() {
         if (activity != null) {
 
             movieViewModel.getMovie()
+
             movieViewModel.movies.observe(viewLifecycleOwner, { movies ->
                 val movieAdapter = MovieAdapter()
                 movies?.results?.let { ArrayList(it).let { it1 -> movieAdapter.setMovies(it1) } }
 
+                fragmentMovieBinding.progressBars.root.visibility = View.GONE
                 with(fragmentMovieBinding.rvMovie) {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)

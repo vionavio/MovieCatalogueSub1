@@ -12,11 +12,10 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.network.NetworkConfig
 import com.viona.moviecatalogue.data.source.remote.RemoteDataSource
 import com.viona.moviecatalogue.utils.EspressoIdlingResource
-import com.viona.moviecatalogue.data.network.NetworkConfig
 import org.hamcrest.CoreMatchers
-import org.hamcrest.Matchers.allOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -59,24 +58,31 @@ class MainActivityTest {
 
     @Test
     fun loadDetailMovie() {
-        val dataMovie = dataMovies.value?.results?.get(0)
-
         onView(withText(R.string.movies)).perform(click())
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
 
+        val dataMovie = dataMovies.value?.results?.get(0)
+        val position = dataMovies.value?.results?.indexOf(dataMovie)
+
         onView(withId(R.id.rv_movie)).perform(
-            dataMovies.value?.results?.indexOf(dataMovie)?.let {
+            position?.let {
+                RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                    it
+                )
+            }
+        )
+        onView(withId(R.id.rv_movie)).perform(
+            position?.let {
                 RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                     it,
                     click()
                 )
             }
         )
+
         onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_item_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_item_title)).check(matches(withText(dataMovie?.title)))
-        //onView(withId(R.id.tv_year)).check(matches(isDisplayed()))
-        //onView(withId(R.id.tv_year)).check(matches(withText(dataMovie?.releaseDate.toString())))
         onView(withId(R.id.tv_detail_rate)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_detail_rate)).check(
             matches(
@@ -88,26 +94,11 @@ class MainActivityTest {
             )
         )
         onView(withId(R.id.tv_sum_rate)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_sum_rate)).check(matches(withText(dataMovie?.voteCount.toString())))
-
-        //onView(withId(R.id.tv_duration)).check(matches(isDisplayed()))
-        //onView(withId(R.id.tv_duration)).check(matches(withText(dataMovie.duration)))
-
-        /*onView(withId(R.id.tv_desctiption)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_desctiption)).check(matches(withText(dataMovie?.overview)))
-
-        onView(withId(R.id.tv_directors)).check(matches(isDisplayed()))*/
-        /*onView(withId(R.id.tv_directors)).check(matches(withText(dataMovie.director)))
-
-        onView(withId(R.id.tv_stars)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_stars)).check(matches(withText(dataMovie.stars)))
-
-        onView(withId(R.id.tv_writers)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_writers)).check(matches(withText(dataMovie.writers)))*/
-
-       // onView(withId(R.id.button_buy)).perform(click()).check(matches(isClickable()))
+        onView(withId(R.id.tv_date_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_date_release)).check(matches(withText(dataMovie?.releaseDate)))
+        onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description)).check(matches(withText(dataMovie?.overview)))
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
-
     }
 
     @Test
@@ -125,11 +116,13 @@ class MainActivityTest {
 
     @Test
     fun loadDetailTVShow() {
-        val dataTVShow = dataTVShows.value?.results?.get(0)
-
         onView(withText(R.string.tv_shows)).perform(click())
+        onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
+        val dataTVShow = dataTVShows.value?.results?.get(0)
+        val position = dataTVShows.value?.results?.indexOf(dataTVShow)
+
         onView(withId(R.id.rv_tv_show)).perform(
-            dataTVShows.value?.results?.indexOf(dataTVShow)?.let {
+            position?.let {
                 RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                     it,
                     click()
@@ -139,15 +132,7 @@ class MainActivityTest {
 
         onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_show_title)).check(matches(isDisplayed()))
-        onView(
-            allOf(
-                withId(R.id.tv_show_title),
-                withText(dataTVShow?.name)
-            )
-        ).check(matches(withText(dataTVShow?.name)))
-
-        //onView(withId(R.id.tv_year)).check(matches(isDisplayed()))
-        //onView(withId(R.id.tv_year)).check(matches(withText(dataTVShow?.firstAirDate.toString())))
+        onView(withId(R.id.tv_show_title)).check(matches(withText(dataTVShow?.name)))
 
         onView(withId(R.id.tv_show_rate)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_show_rate)).check(
@@ -159,27 +144,13 @@ class MainActivityTest {
                 )
             )
         )
-       // onView(withId(R.id.tv_episodes)).check(matches(isDisplayed()))
-        /*onView(withId(R.id.tv_episodes)).check(
-            matches(
-                withText(
-                    CoreMatchers.containsString(
-                        dataTVShow.episode.toString()
-                    )
-                )
-            )
-        )*/
 
-        /*onView(withId(R.id.tv_type_show)).check(matches(isDisplayed()))
-        //onView(withId(R.id.tv_type_show)).check(matches(withText(dataTVShow.type)))
-
-        onView(withId(R.id.tv_actor)).check(matches(isDisplayed()))
-        //onView(withId(R.id.tv_actor)).check(matches(withText(dataTVShow.star)))*/
-
+        onView(withId(R.id.tv_original_name)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_original_name)).check(matches(withText(dataTVShow?.originalName)))
         onView(withId(R.id.tv_desc)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_desc)).check(matches(withText(dataTVShow?.overview)))
-
-        //onView(withId(R.id.button_buy)).perform(click()).check(matches(isClickable()))
+        onView(withId(R.id.tv_air_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_air_date)).check(matches(withText(dataTVShow?.firstAirDate)))
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
     }
 }

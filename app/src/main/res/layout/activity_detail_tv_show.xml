@@ -10,18 +10,18 @@
 
     <ImageView
         android:id="@+id/img_poster"
+        style="@style/ImageViewPoster"
         android:layout_width="@dimen/width_poster"
         android:layout_height="@dimen/height_poster"
-        style="@style/ImageViewPoster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tv_show_title"
+        style="@style/mainTitle"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        style="@style/mainTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/img_poster"
         app:layout_constraintTop_toTopOf="parent"
@@ -57,9 +57,11 @@
         tools:text="326 episodes 2 seasons" />
 
     <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -149,12 +151,12 @@
                 android:id="@+id/ic_popular"
                 android:layout_width="@dimen/_24dp"
                 android:layout_height="@dimen/_24dp"
+                android:contentDescription="@string/popularity"
                 android:paddingStart="@dimen/_0dp"
                 android:paddingEnd="@dimen/_10dp"
                 android:src="@drawable/ic_fire"
                 app:layout_constraintStart_toStartOf="@id/popularity"
-                app:layout_constraintTop_toTopOf="@id/tv_popularity"
-                android:contentDescription="@string/popularity" />
+                app:layout_constraintTop_toTopOf="@id/tv_popularity" />
 
             <TextView
                 android:id="@+id/tv_popularity"
@@ -226,5 +228,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/progress_bars"
+        layout="@layout/progress_bars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

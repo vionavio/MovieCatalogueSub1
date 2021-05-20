@@ -10,18 +10,18 @@
 
     <ImageView
         android:id="@+id/img_poster"
+        style="@style/ImageViewPoster"
         android:layout_width="@dimen/width_poster"
         android:layout_height="@dimen/height_poster"
-        style="@style/ImageViewPoster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tv_item_title"
+        style="@style/mainTitle"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        style="@style/mainTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/img_poster"
         app:layout_constraintTop_toTopOf="parent"
@@ -264,5 +264,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/budget"
         tools:text="$ 12323" />
+
+    <include
+        android:id="@+id/progress_bars"
+        layout="@layout/progress_bars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

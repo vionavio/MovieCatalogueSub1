@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movie.MovieFragment">
+    tools:context=".ui.tv_show.TVShowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tv_show"
@@ -17,5 +17,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/items_movie" />
+
+    <include
+        android:id="@+id/progress_bars"
+        layout="@layout/progress_bars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

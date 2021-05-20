@@ -47,6 +47,7 @@ ext {
     junitExtversion = '1.1.2'
     androidTestVersion = '1.3.0'
     espressoVersion = '3.3.0'
+    legacyVersion = '1.0.0'
 
     materialVersion = '1.3.0'
     recyclerViewVersion = '1.1.0'
@@ -54,11 +55,17 @@ ext {
     glideOkhttpVersion = '4.7.1'
     okhttpVersion = '4.2.1'
     retrovitVersion = '2.9.0'
+    loggingVersion = '4.9.1'
 
     firebaseVersion = '26.4.0'
     mockitoVersion = '3.6.0'
     mockitoKotlinVersion = '2.2.0'
+    mockwebserverVrsion = '4.9.1'
+    coreTestingVersion = '2.1.0'
     idleResourceVersion = '3.3.0'
+
+    viewModelVersion = '2.3.1'
+    extensionVersion = '2.2.0'
 
     koinVersion = '2.2.2'
 }
@@ -69,7 +76,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:$legacyVersion"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
@@ -89,7 +96,7 @@ dependencies {
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrovitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrovitVersion"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingVersion"
 
     // idling resource
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
@@ -97,17 +104,18 @@ dependencies {
     // mockito
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserverVrsion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
 
     // lifecycle
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$extensionVersion"
 
     // di
     implementation "org.koin:koin-core:$koinVersion"
-    // or Koin for Lifecycle scoping
+    // Koin for Lifecycle scoping
     implementation "org.koin:koin-androidx-scope:$koinVersion"
-    // or Koin for Android Architecture ViewModel
+    // Koin for Android Architecture ViewModel
     implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
 
 }

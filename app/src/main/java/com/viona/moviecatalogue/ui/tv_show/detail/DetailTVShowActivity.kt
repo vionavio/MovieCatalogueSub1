@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
@@ -46,6 +47,8 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 getTVShowDetail()
                 tvShow.observe(this@DetailTVShowActivity, { tvShows ->
                     if (tvShows != null) {
+                        activityDetailTvShowBinding.progressBars.root.visibility = View.GONE
+                        activityDetailTvShowBinding.scrollview.visibility = View.VISIBLE
                         getDetail(tvShows)
                     }
                 })

@@ -39,9 +39,6 @@ class TVShowViewModelTest {
 
     @Test
     fun getTVShow() {
-        /*val tvShowEntities = viewModel.getTVShows()
-        assertNotNull(tvShowEntities)
-        assertEquals(12, tvShowEntities.size)*/
         val sampleTVShows = Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("get_tv_shows.json")),
             TVShowsResponse::class.java

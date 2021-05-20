@@ -38,7 +38,7 @@ class TVShowFragment : Fragment() {
                         )
                     }
                 }
-
+                fragmentTVShowBinding.progressBars.root.visibility = View.GONE
                 with(fragmentTVShowBinding.rvTvShow) {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)

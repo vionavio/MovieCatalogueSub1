@@ -6,11 +6,11 @@ import androidx.lifecycle.Observer
 import com.google.gson.Gson
 import com.viona.moviecatalogue.data.repository.DataRepository
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -22,8 +22,8 @@ import java.io.InputStreamReader
 class DetailTVShowViewModelTest {
 
     private lateinit var viewModel: DetailTVShowViewModel
-    private lateinit var dataTVShow : TVShowDetailResponse
-    private var tvShowId : Int = 0
+    private lateinit var dataTVShow: TVShowDetailResponse
+    private var tvShowId: Int = 0
 
     @Mock
     private lateinit var repository: DataRepository
@@ -46,20 +46,6 @@ class DetailTVShowViewModelTest {
 
     @Test
     fun getTVShow() {
-        /*viewModel.setSelectedTVShow(dataTVShow.tvShowId)
-        val tvShowEntity = viewModel.getTVShow()
-        assertNotNull(tvShowEntity)
-        assertEquals(dataTVShow.tvShowId, tvShowEntity.tvShowId)
-        assertEquals(dataTVShow.title, tvShowEntity.title)
-        assertEquals(dataTVShow.year, tvShowEntity.year)
-        assertEquals(dataTVShow.star, tvShowEntity.star)
-        assertEquals(dataTVShow.description, tvShowEntity.description)
-        assertEquals(dataTVShow.type, tvShowEntity.type)
-        assertEquals(dataTVShow.episode, tvShowEntity.episode)
-        assertEquals(dataTVShow.rating, tvShowEntity.rating, 0.0001)
-        assertEquals(dataTVShow.price, tvShowEntity.price)
-        assertEquals(dataTVShow.imagePath, tvShowEntity.imagePath)*/
-
         dataTVShow = Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("get_tv_show.json")),
             TVShowDetailResponse::class.java
@@ -79,13 +65,18 @@ class DetailTVShowViewModelTest {
 
         assertEquals(dataTVShow.id, tvShow?.id)
         assertEquals(dataTVShow.name, tvShow?.name)
-        assertEquals(dataTVShow.overview, tvShow?.overview)
-        assertEquals(dataTVShow.posterPath, tvShow?.posterPath)
-        assertEquals(dataTVShow.firstAirDate, tvShow?.firstAirDate)
-        assertEquals(dataTVShow.voteCount, tvShow?.voteCount)
-
-        assertEquals(dataTVShow.popularity as Double, tvShow?.popularity as Double, 0.0001)
-        assertEquals(dataTVShow.voteAverage as Double, tvShow.voteAverage as Double, 0.0001)
+        assertEquals(dataTVShow.originalName, tvShow?.originalName)
+        assertEquals(dataTVShow.voteAverage as Double, tvShow?.voteAverage as Double, 0.0001)
+        assertEquals(dataTVShow.voteCount, tvShow.voteCount)
+        assertEquals(dataTVShow.numberOfEpisodes, tvShow.numberOfEpisodes)
+        assertEquals(dataTVShow.numberOfSeasons, tvShow.numberOfSeasons)
+        assertEquals(dataTVShow.spokenLanguages, tvShow.spokenLanguages)
+        assertEquals(dataTVShow.genres, tvShow.genres)
+        assertEquals(dataTVShow.overview, tvShow.overview)
+        assertEquals(dataTVShow.status, tvShow.status)
+        assertEquals(dataTVShow.posterPath, tvShow.posterPath)
+        assertEquals(dataTVShow.firstAirDate, tvShow.firstAirDate)
+        assertEquals(dataTVShow.popularity as Double, tvShow.popularity as Double, 0.0001)
 
         viewModel.tvShow.observeForever(observer)
         verify(observer).onChanged(dataTVShow)

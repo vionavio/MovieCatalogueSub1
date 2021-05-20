@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
@@ -51,6 +52,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                 getMovieDetail()
                 movie.observe(this@DetailMovieActivity, { movies ->
                     if (movies != null) {
+                        activityDetailMovieBinding.progressBars.root.visibility = View.GONE
                         getDetail(movies)
                     }
                 })
@@ -75,7 +77,6 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             if (movies.status == getString(R.string.released)) tvStatus.setTextColor(Color.RED)
             tvStatus.text = movies.status
             tvDescription.text = movies.overview
-            tvGenre.text = movies.genres.toString()
             tvDateRelease.text = movies.releaseDate
             tvLanguage.text = getLanguage(movies)
             tvGenre.text = getGenre(movies.genres)

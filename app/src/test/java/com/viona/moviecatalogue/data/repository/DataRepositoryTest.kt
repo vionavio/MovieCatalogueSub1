@@ -19,7 +19,7 @@ class DataRepositoryTest {
     @Test
     fun getMovies() {
         val sampleMovies = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("movies.json")),
+            InputStreamReader(javaClass.getResourceAsStream("get_movies.json")),
             MoviesResponse::class.java
         )
         Mockito.`when`(remoteDataSource.getMovies()).thenReturn(MutableLiveData(sampleMovies))
