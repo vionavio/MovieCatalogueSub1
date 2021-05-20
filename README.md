@@ -9,7 +9,7 @@
     Memastikan jumlah data movie sesuai yang diharapkan
 
 2. TV Show View Model Test
-    Memanipulasi data ketika pemanggilan data tv Show di kals repository
+    Memanipulasi data ketika pemanggilan data tv Show di kelas repository
     memastikan metode kelas repository terpanggil
     
     Memastikan data tv show tidak kosong
@@ -23,7 +23,7 @@
     Memastikan detail data movie sesuai yang diharapkan
 
 4. Detail TV Show View Model Test
-    Memanipulasi data ketika pemanggilan data tv show di kals repository
+    Memanipulasi data ketika pemanggilan data tv show di kelas repository
     memastikan metode kelas repository terpanggil
     
     Memastikan detail data tv show tidak kosong
@@ -50,7 +50,6 @@
     Memastikan TextView untuk genre tampil sesuai yang diharapkan
     Memastikan TextView untuk release date tampil sesuai yang diharapkan
     Memastikan TextView untuk spoken language tampil sesuai yang diharapkan
-    
     Memastikan Menu share dapat di klik
 
 3. Menampilkan data tv show
@@ -72,7 +71,6 @@
     Memastikan TextView untuk status tampil sesuai yang diharapkan
     Memastikan TextView untuk first air date tampil sesuai yang diharapkan
     Memastikan TextView untuk popularity tampil sesuai yang diharapkan
-    Memastikan Button buy dapat di klik dan menampilkan pesan toast sesuai yang diharapkan
     Memastikan Menu share dapat di klik
 
 
