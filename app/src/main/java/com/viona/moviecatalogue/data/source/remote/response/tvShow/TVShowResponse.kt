@@ -12,7 +12,6 @@ data class TVShowsResponse(
     val totalResults: Int? = null
 )
 
-
 data class TVShowResultsItem(
 
     @field:SerializedName("first_air_date")
@@ -37,4 +36,19 @@ data class TVShowResultsItem(
     val id: Int? = null,
     @field:SerializedName("vote_count")
     val voteCount: Int? = null
-)
+){
+    companion object {
+        fun fromTVShowDetailResponse(tvShow: TVShowDetailResponse?): TVShowResultsItem {
+            return TVShowResultsItem(
+                id = tvShow?.id ?: 0,
+                name = tvShow?.name ?: "",
+                overview = tvShow?.overview ?: "",
+                popularity = tvShow?.popularity ?: 0.0,
+                posterPath = tvShow?.posterPath ?: "",
+                firstAirDate = tvShow?.firstAirDate ?: "",
+                voteAverage = tvShow?.voteAverage ?: 0.0,
+                voteCount = tvShow?.voteCount ?: 0,
+            )
+        }
+    }
+}

@@ -1,7 +1,7 @@
 package com.viona.moviecatalogue.data.source.local
 
 import com.google.gson.Gson
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -15,10 +15,10 @@ class LocalDataSource {
         )
     }
 
-    fun getMovieDetail(): MovieDetailResponse {
+    fun getMovieDetail(): DetailMovieResponse {
         return Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("movie.json")),
-            MovieDetailResponse::class.java
+            DetailMovieResponse::class.java
         )
     }
 

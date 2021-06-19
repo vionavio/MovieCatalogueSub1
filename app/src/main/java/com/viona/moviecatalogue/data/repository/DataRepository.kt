@@ -2,7 +2,7 @@ package com.viona.moviecatalogue.data.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.viona.moviecatalogue.data.source.remote.RemoteDataSource
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -12,7 +12,7 @@ class DataRepository(private val remoteRemoteDataSource: RemoteDataSource) {
         return remoteRemoteDataSource.getMovies()
     }
 
-    fun getMovieDetail(id: Int): MutableLiveData<MovieDetailResponse?> {
+    fun getMovieDetail(id: Int): MutableLiveData<DetailMovieResponse?> {
         return remoteRemoteDataSource.getMovieDetail(id)
     }
 

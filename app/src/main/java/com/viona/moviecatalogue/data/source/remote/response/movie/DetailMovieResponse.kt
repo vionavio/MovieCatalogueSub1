@@ -6,7 +6,7 @@ import com.viona.moviecatalogue.data.source.remote.response.ProductionCompaniesI
 import com.viona.moviecatalogue.data.source.remote.response.ProductionCountriesItem
 import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
 
-data class MovieDetailResponse(
+data class DetailMovieResponse(
 
     @field:SerializedName("original_language")
     val originalLanguage: String? = null,
@@ -69,7 +69,29 @@ data class MovieDetailResponse(
     val homepage: String? = null,
 
     val status: String? = null
-)
+){
+    companion object {
+        fun fromMovieDetailResponse(movie: DetailMovieResponse?): DetailMovieResponse {
+            return DetailMovieResponse(
+                id = movie?.id ?: 0,
+                title = movie?.title ?: "",
+                tagline = movie?.tagline ?: "",
+                voteAverage = movie?.voteAverage ?: 0.0,
+                popularity = movie?.popularity ?: 0.0,
+                voteCount = movie?.voteCount ?: 0,
+                status = movie?.status ?: "",
+                overview = movie?.overview ?: "",
+                releaseDate = movie?.releaseDate ?: "",
+                spokenLanguages = movie?.spokenLanguages,
+                genres = movie?.genres,
+                budget = movie?.budget ?: 0,
+                homepage = movie?.homepage ?: "",
+                posterPath = movie?.posterPath ?: "",
+            )
+        }
+    }
+}
+
 
 
 

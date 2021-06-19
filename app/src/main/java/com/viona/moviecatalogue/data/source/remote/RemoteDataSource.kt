@@ -3,7 +3,7 @@ package com.viona.moviecatalogue.data.source.remote
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.viona.moviecatalogue.data.source.DataSourceInterface
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -61,29 +61,29 @@ class RemoteDataSource(private val networkConfig: NetworkConfig) :
         return movies
     }
 
-    override fun getMovieDetail(id: Int): MutableLiveData<MovieDetailResponse?> {
+    override fun getMovieDetail(id: Int): MutableLiveData<DetailMovieResponse?> {
         incrementIdlingResource()
 
-        val movie = MutableLiveData<MovieDetailResponse?>()
+        val movie = MutableLiveData<DetailMovieResponse?>()
         val client = networkConfig.getApiService().getMovieDetail(id)
 
         client
             .enqueue(object :
-                Callback<MovieDetailResponse> {
+                Callback<DetailMovieResponse> {
                 override fun onResponse(
-                    call: Call<MovieDetailResponse>,
-                    response: Response<MovieDetailResponse>
+                    call: Call<DetailMovieResponse>,
+                    movieResponse: Response<DetailMovieResponse>
                 ) {
-                    if (response.isSuccessful) {
-                        response.body()?.let { movie.postValue(it) }
+                    if (movieResponse.isSuccessful) {
+                        movieResponse.body()?.let { movie.postValue(it) }
                     } else {
-                        Log.e(TAG, "onFailure: ${response.message()}")
+                        Log.e(TAG, "onFailure: ${movieResponse.message()}")
                     }
 
                     decrementIdlingResource()
                 }
 
-                override fun onFailure(call: Call<MovieDetailResponse>, t: Throwable) {
+                override fun onFailure(call: Call<DetailMovieResponse>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                     decrementIdlingResource()
                 }

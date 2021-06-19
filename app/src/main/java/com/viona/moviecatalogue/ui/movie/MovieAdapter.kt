@@ -3,26 +3,31 @@ package com.viona.moviecatalogue.ui.movie
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
+import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.databinding.ItemsMovieBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
 
 class MovieAdapter(
     val context: Context,
-    private val onItemClickListener: (MovieResultsItem) -> Unit
-) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+    private val onItemClickListener: (MovieEntity) -> Unit
+) : PagedListAdapter<MovieEntity, MovieAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
-    private var listMovies = ArrayList<MovieResultsItem?>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setMovies(movies: ArrayList<MovieResultsItem?>) {
-        movies.let {
-            this.listMovies.clear()
-            this.listMovies.addAll(it)
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 
@@ -39,17 +44,17 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        listMovies[position]?.let { holder.bind(it) }
+        val movie = getItem(position)
+        movie?.let { holder.bind(it) }
     }
 
-    override fun getItemCount(): Int = listMovies.size
 
-    class MovieViewHolder(
+    inner class MovieViewHolder(
         private val binding: ItemsMovieBinding,
-        val onItemClickListener: (MovieResultsItem) -> Unit
+        val onItemClickListener: (MovieEntity) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: MovieResultsItem) {
+        fun bind(movie: MovieEntity) {
             with(binding) {
                 tvItemTitle.text = movie.title
                 tvRating.text = itemView.resources.getString(

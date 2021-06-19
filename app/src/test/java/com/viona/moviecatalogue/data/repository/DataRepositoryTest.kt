@@ -3,7 +3,7 @@ package com.viona.moviecatalogue.data.repository
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.viona.moviecatalogue.data.source.remote.RemoteDataSource
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -33,7 +33,7 @@ class DataRepositoryTest {
     fun getMovieDetail() {
         val sampleMovie = Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("movie.json")),
-            MovieDetailResponse::class.java
+            DetailMovieResponse::class.java
         )
         var sampleMovieId: Int
         sampleMovie?.id.let { sampleMovieId = it ?: 0 }

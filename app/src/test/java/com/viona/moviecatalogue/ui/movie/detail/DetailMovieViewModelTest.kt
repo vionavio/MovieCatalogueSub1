@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.gson.Gson
 import com.viona.moviecatalogue.data.repository.DataRepository
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -22,7 +22,7 @@ import java.io.InputStreamReader
 class DetailMovieViewModelTest {
 
     private lateinit var viewModel: DetailMovieViewModel
-    private lateinit var dataMovie: MovieDetailResponse
+    private lateinit var dataMovie: DetailMovieResponse
     private var movieId: Int = 0
 
     @Mock
@@ -32,7 +32,7 @@ class DetailMovieViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var observer: Observer<MovieDetailResponse?>
+    private lateinit var observer: Observer<DetailMovieResponse?>
 
     @Before
     fun setUp() {
@@ -44,9 +44,9 @@ class DetailMovieViewModelTest {
 
         dataMovie = Gson().fromJson(
             InputStreamReader(javaClass.getResourceAsStream("movie.json")),
-            MovieDetailResponse::class.java
+            DetailMovieResponse::class.java
         )
-        val movieLive = MutableLiveData<MovieDetailResponse>()
+        val movieLive = MutableLiveData<DetailMovieResponse>()
         movieLive.value = dataMovie
 
 

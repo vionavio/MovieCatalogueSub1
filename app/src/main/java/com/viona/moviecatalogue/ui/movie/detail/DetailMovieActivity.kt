@@ -15,9 +15,10 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.remote.response.GenresItem
 import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
-import com.viona.moviecatalogue.data.source.remote.response.movie.MovieDetailResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
@@ -66,7 +67,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getDetail(movies: MovieDetailResponse) {
+    private fun getDetail(movies: MovieEntity) {
         activityDetailMovieBinding.apply {
             tvItemTitle.text = movies.title
             tvTagline.text = movies.tagline
@@ -137,7 +138,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         }
     }
 
-    private fun getLanguage(movies: MovieDetailResponse): String {
+    private fun getLanguage(movies: DetailMovieResponse): String {
         val spokenLanguage = StringBuilder()
         val nameLanguage = StringBuilder()
         val languageItem: List<SpokenLanguagesItem?>? = movies.spokenLanguages
