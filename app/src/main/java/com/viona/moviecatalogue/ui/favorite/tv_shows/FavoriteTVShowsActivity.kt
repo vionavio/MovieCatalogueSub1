@@ -7,9 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
-import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowResultsItem
 import com.viona.moviecatalogue.databinding.ActivityFavoriteTvShowsBinding
-import com.viona.moviecatalogue.ui.movie.MovieAdapter
 import com.viona.moviecatalogue.ui.tv_show.TVShowAdapter
 import com.viona.moviecatalogue.ui.tv_show.detail.DetailTVShowActivity
 import com.viona.moviecatalogue.ui.tv_show.detail.TVShowCallback
@@ -57,16 +55,6 @@ class FavoriteTVShowsActivity : AppCompatActivity(), TVShowCallback {
 
         return super.onOptionsItemSelected(item)
     }
-
-    /*override fun onShareClick(tvShow: TVShowEntity?) {
-        val mimeType = "text/plain"
-        ShareCompat.IntentBuilder
-            .from(this)
-            .setType(mimeType)
-           *//* .setChooserTitle(getString(R.string.share_title))
-            .setText(resources.getString(R.string.share_text, tvShow?.name))*//*
-            .startChooser()
-    }*/
 
     private fun gotoResult(tvShow: TVShowEntity) {
         val intent = Intent(this, DetailTVShowActivity::class.java)

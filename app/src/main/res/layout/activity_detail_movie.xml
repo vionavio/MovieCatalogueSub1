@@ -4,54 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/_20dp"
-    android:padding="@dimen/_10dp"
+
     tools:context=".ui.movie.detail.DetailMovieActivity">
 
     <ImageView
-        android:id="@+id/img_poster"
+        android:id="@+id/backdrop_path"
         style="@style/ImageViewPoster"
-        android:layout_width="@dimen/width_poster"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/height_poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/tv_item_title"
-        style="@style/mainTitle"
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/img_poster"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/title" />
-
-    <TextView
-        android:id="@+id/tv_tagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
-        android:gravity="start"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tv_item_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_title"
-        tools:text="Get Over Here" />
 
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_0dp"
         android:layout_marginTop="@dimen/_20dp"
+        android:paddingStart="@dimen/_20dp"
+        android:paddingEnd="@dimen/_20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_poster">
+        app:layout_constraintTop_toBottomOf="@id/backdrop_path">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_poster"
+                style="@style/ImageViewPoster"
+                android:layout_width="@dimen/width_poster"
+                android:layout_height="@dimen/height_poster"
+                android:paddingTop="@dimen/_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_item_title"
+                style="@style/mainTitle"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_poster"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/title" />
+
+            <TextView
+                android:id="@+id/tv_original_title"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/_10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_poster"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_title"
+                tools:text="@string/title" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -59,9 +71,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:paddingTop="@dimen/_20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/img_poster">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -151,30 +164,6 @@
 
                 </LinearLayout>
 
-                <View
-                    style="@style/ViewLine"
-                    android:layout_width="@dimen/_1dp"
-                    android:layout_height="@dimen/_30dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/status" />
-
-                    <TextView
-                        android:id="@+id/tv_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/status"
-                        android:textColor="@color/teal_700" />
-                </LinearLayout>
-
             </LinearLayout>
 
             <TextView
@@ -202,26 +191,6 @@
                 app:layout_constraintTop_toBottomOf="@id/about_movie" />
 
             <TextView
-                android:id="@+id/genre"
-                style="@style/TextViewTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/genres"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_description" />
-
-            <TextView
-                android:id="@+id/tv_genre"
-                style="@style/TextViewDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genre"
-                tools:text="Action" />
-
-            <TextView
                 android:id="@+id/release_date"
                 style="@style/TextViewTitle"
                 android:layout_width="match_parent"
@@ -229,7 +198,7 @@
                 android:text="@string/release_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_genre" />
+                app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
             <TextView
                 android:id="@+id/tv_date_release"
@@ -256,30 +225,11 @@
                 style="@style/TextViewDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/language"
                 tools:text="En" />
-
-            <TextView
-                android:id="@+id/budget"
-                style="@style/TextViewTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/budget"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_language" />
-
-            <TextView
-                android:id="@+id/tv_budget"
-                style="@style/TextViewDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/budget"
-                tools:text="$ 12323" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

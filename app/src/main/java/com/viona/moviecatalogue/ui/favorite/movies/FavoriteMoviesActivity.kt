@@ -33,7 +33,6 @@ class FavoriteMoviesActivity : AppCompatActivity(), MovieCallback {
 
     private fun initView() {
         supportActionBar?.title = "Favorite Movies"
-       // adapter = MovieAdapter(this)
         adapter = MovieAdapter(this) { movie -> gotoResult(movie) }
 
         binding?.progressBar?.visibility = View.VISIBLE
@@ -66,14 +65,4 @@ class FavoriteMoviesActivity : AppCompatActivity(), MovieCallback {
         intent.putExtra(Constants.EXTRA_MOVIE, movie.id)
         this.startActivity(intent)
     }
-
-    /*override fun onShareClick(movie: MovieEntity?) {
-        val mimeType = "text/plain"
-        ShareCompat.IntentBuilder
-            .from(this)
-            .setType(mimeType)
-            .setChooserTitle(getString(R.string.share_title))
-            .setText(resources.getString(R.string.share_text, movie?.title))
-            .startChooser()
-    }*/
 }

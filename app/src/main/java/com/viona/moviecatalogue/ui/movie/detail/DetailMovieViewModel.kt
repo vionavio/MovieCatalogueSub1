@@ -1,20 +1,35 @@
 package com.viona.moviecatalogue.ui.movie.detail
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.viona.moviecatalogue.data.repository.DataRepository
-import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
+import com.viona.moviecatalogue.data.repository.MovieRepository
+import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
+import com.viona.moviecatalogue.vo.Resource
 
-class DetailMovieViewModel(private val dataRepository: DataRepository) : ViewModel() {
+class DetailMovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    lateinit var movie: LiveData<DetailMovieResponse?>
-    private var id: Int = 0
+    private var id = MutableLiveData<Int>()
 
     fun setMovieId(id: Int) {
-        this.id = id
+        this.id.value = id
     }
 
-    fun getMovieDetail() {
-        movie = dataRepository.getMovieDetail(id)
+    var movie: LiveData<Resource<MovieEntity>> =
+        Transformations.switchMap(id) { mId ->
+            repository.getMovie(mId)
+        }
+
+    fun setFavorite() {
+        val movieResource = movie.value
+
+        if (movieResource != null) {
+            val movieData = movieResource.data
+
+            movieData?.let {
+                repository.setFavoriteMovie(it, !it.favorite)
+            }
+        }
     }
 }

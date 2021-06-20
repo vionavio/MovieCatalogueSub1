@@ -30,6 +30,4 @@ interface MovieDao {
 
     @Delete
     fun deleteMovie(movie: MovieEntity)
-
-
 }

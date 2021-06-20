@@ -40,4 +40,22 @@ data class MovieResultsItem(
 
     @field:SerializedName("vote_count")
     val voteCount: Int? = null
-)
+) {
+    companion object {
+        fun fromMovieDetailResponse(movie: DetailMovieResponse?): MovieResultsItem {
+            return MovieResultsItem(
+                id = movie?.id ?: 0,
+                title = movie?.title ?: "",
+                overview = movie?.overview ?: "",
+                posterPath = movie?.posterPath ?: "",
+                backdropPath = movie?.backdropPath ?: "",
+                popularity = movie?.popularity ?: 0.0,
+                voteAverage = movie?.voteAverage ?:0.0,
+                voteCount = movie?.voteCount ?: 0,
+                originalTitle = movie?.originalTitle ?: "",
+                originalLanguage = movie?.originalLanguage ?: "",
+            )
+        }
+    }
+}
+

@@ -1,6 +1,5 @@
 package com.viona.moviecatalogue.ui.tv_show.detail
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Spannable
@@ -15,19 +14,25 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.data.source.remote.response.GenresItem
 import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
+import com.viona.moviecatalogue.utils.Notification
+import com.viona.moviecatalogue.vo.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     private lateinit var activityDetailTvShowBinding: ActivityDetailTvShowBinding
+    private val mainBinding get() = activityDetailTvShowBinding
+
     private val detailTVShowViewModel: DetailTVShowViewModel by viewModel()
     private var tvShow = mutableListOf<String?>()
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +49,29 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
             detailTVShowViewModel.apply {
                 setTVShowId(tvShowId)
-                getTVShowDetail()
+
                 tvShow.observe(this@DetailTVShowActivity, { tvShows ->
                     if (tvShows != null) {
-                        activityDetailTvShowBinding.progressBars.root.visibility = View.GONE
-                        activityDetailTvShowBinding.scrollview.visibility = View.VISIBLE
-                        getDetail(tvShows)
+                        /*  activityDetailTvShowBinding.progressBars.root.visibility = View.GONE
+                          activityDetailTvShowBinding.scrollview.visibility = View.VISIBLE
+                          getDetail(tvShows)
+  */
+                        when (tvShows.status) {
+                            Status.LOADING -> mainBinding.progressBars.root.visibility =
+                                View.VISIBLE
+                            Status.SUCCESS -> tvShows.data?.let { tvShow ->
+                                mainBinding.progressBars.root.visibility = View.GONE
+
+                                getDetail(tvShow)
+                            }
+                            Status.ERROR -> {
+                                mainBinding.progressBars.root.visibility = View.GONE
+                                Notification.showToast(
+                                    this@DetailTVShowActivity,
+                                    "Terjadi kesalahan"
+                                )
+                            }
+                        }
                     }
                 })
             }
@@ -61,34 +83,43 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getDetail(tvShows: TVShowDetailResponse) {
-        activityDetailTvShowBinding.apply {
+    private fun getDetail(tvShows: TVShowEntity) {
+        mainBinding.apply {
             tvShowTitle.text = tvShows.name
             tvOriginalName.text = tvShows.originalName
+            tvLanguage.text = tvShows.originalLanguage
             tvShowRate.text = resources.getString(
                 R.string.rates, tvShows.voteAverage, tvShows.voteCount
             )
-            tvEpisode.text = resources.getString(
-                R.string.episodes_seasons,
-                tvShows.numberOfEpisodes,
-                tvShows.numberOfSeasons
-            )
-            tvLanguage.text = getLanguage(tvShows)
-            tvGenreShow.text = getGenre(tvShows.genres)
+
             tvDesc.text = tvShows.overview
             tvPopularity.text = tvShows.popularity.toString()
-            if (tvShows.status == getString(R.string.ended)) tvStatus.setTextColor(Color.RED)
-            tvStatus.text = tvShows.status
             tvAirDate.text = tvShows.firstAirDate
-
-            rvPoster.adapter = PosterAdapter(this@DetailTVShowActivity, tvShows.seasons)
-
             tvShow.apply {
                 add(tvShows.name)
-                add(tvShows.homepage)
             }
         }
 
+        imgPoster(tvShows)
+
+        if (tvShows.backdrop_path != null) backdropPath(tvShows)
+        else imgPoster(tvShows)
+    }
+
+    private fun backdropPath(tvShows: TVShowEntity) {
+        if (tvShows.backdrop_path != null) {
+            GlideApp.with(this)
+                .load(Constants.IMAGE_URL + tvShows.backdrop_path)
+                .centerCrop()
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading_backdrop)
+                        .error(R.drawable.ic_error_backdrop)
+                )
+                .into(activityDetailTvShowBinding.tvBackdropPath)
+        }
+    }
+
+    private fun imgPoster(tvShows: TVShowEntity) {
         GlideApp.with(this)
             .load(Constants.IMAGE_URL + tvShows.posterPath)
             .transform(RoundedCorners(Constants.ROUND_RADIUS))
@@ -97,35 +128,53 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.add(
-            Constants.ZERO, Constants.ONE, Constants.ONE,
-            ContextCompat.getDrawable(this, R.drawable.ic_share)?.let {
-                menuIconWithText(
-                    it,
-                    resources.getString(R.string.share)
-                )
+        menuInflater.inflate(R.menu.menu_favorite, menu)
+        this.menu = menu
+
+        detailTVShowViewModel.tvShow.observe(this, { tvShowResource ->
+            tvShowResource.data?.let {
+                val state = it.favorite
+                setFavoriteState(state)
             }
-        )
+        })
+
         return true
+    }
+
+    private fun setFavoriteState(state: Boolean) {
+        menu?.let {
+            val menuItem = it.findItem(R.id.action_favorite)
+            if (state) {
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorited_white)
+            } else {
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-
-            1 -> {
+            R.id.action_share -> {
                 onShareClick(tvShow)
+                true
+            }
+            R.id.action_favorite -> {
+                detailTVShowViewModel.setFavorite()
+                showNotification()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun menuIconWithText(r: Drawable, title: String): CharSequence {
-        r.setBounds(Constants.ZERO, Constants.ZERO, r.intrinsicWidth, r.intrinsicHeight)
-        val sb = SpannableString("    $title")
-        val imageSpan = ImageSpan(r, ImageSpan.ALIGN_BOTTOM)
-        sb.setSpan(imageSpan, Constants.ZERO, Constants.ONE, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        return sb
+    private fun showNotification() {
+        val isFavorite = detailTVShowViewModel.tvShow.value?.data?.favorite ?: false
+        val message: String = if (isFavorite) {
+            "Menghapus dari favorit..."
+        } else {
+            "Menambahkan ke favorit..."
+        }
+        mainBinding.root.let { Notification.showSnackbar(it, message) }
     }
 
     override fun onShareClick(tvShow: MutableList<String?>) {
@@ -134,32 +183,8 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
             ShareCompat.IntentBuilder
                 .from(this)
                 .setType(mimeType)
-                .setText(resources.getString(R.string.share_tv_show, tvShow[0], tvShow[1]))
+                .setText(resources.getString(R.string.share_tv_show, tvShow[0]))
                 .startChooser()
         }
-    }
-
-    private fun getLanguage(tvShows: TVShowDetailResponse): String {
-        val spokenLanguage = StringBuilder()
-        val nameLanguage = StringBuilder()
-        val languageItem: List<SpokenLanguagesItem?>? = tvShows.spokenLanguages
-        if (languageItem != null) {
-            for (language in languageItem) {
-                spokenLanguage.append(language?.englishName + "  ")
-                nameLanguage.append(language?.name + "   ")
-            }
-        }
-        return spokenLanguage.append(nameLanguage).toString()
-    }
-
-    private fun getGenre(genres: List<GenresItem?>?): String {
-        val genreMovie = StringBuilder()
-        val genreList: List<GenresItem?>? = genres
-        if (genreList != null) {
-            for (genre in genreList) {
-                genreMovie.append(genre?.name.toString() + "\n")
-            }
-        }
-        return genreMovie.toString()
     }
 }

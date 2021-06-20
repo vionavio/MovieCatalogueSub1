@@ -17,6 +17,7 @@ interface Constants {
         const val TIMEOUT : Long = 30
         const val ZERO = 0
         const val ONE = 1
+        const val TWO = 2
 
         const val USD = "USD"
 

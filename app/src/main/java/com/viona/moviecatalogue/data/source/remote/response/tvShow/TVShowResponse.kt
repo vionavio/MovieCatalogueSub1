@@ -48,6 +48,9 @@ data class TVShowResultsItem(
                 firstAirDate = tvShow?.firstAirDate ?: "",
                 voteAverage = tvShow?.voteAverage ?: 0.0,
                 voteCount = tvShow?.voteCount ?: 0,
+                backdropPath = tvShow?.backdropPath ?: "",
+                originalName = tvShow?.originalName ?: "",
+                originalLanguage = tvShow?.originalLanguage ?: "",
             )
         }
     }

@@ -9,6 +9,7 @@ import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.remote.ApiResponse
 import com.viona.moviecatalogue.data.source.remote.MovieRemoteDataSource
 import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.utils.AppExecutors
 import com.viona.moviecatalogue.vo.Resource

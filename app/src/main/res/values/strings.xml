@@ -19,8 +19,8 @@
     <string name="about_this_show">About this TV Show</string>
     <string name="price">Buy from IDR %s</string>
     <string name="share">Share</string>
-    <string name="share_movie">Let\'s watch \"%s\" movie \n%s</string>
-    <string name="share_tv_show">Let\'s watch \"%s\" TV Show \n%s</string>
+    <string name="share_movie">Let\'s watch \"%s\" movie</string>
+    <string name="share_tv_show">Let\'s watch \"%s\" TV Show</string>
     <string name="overview">Overview</string>
     <string name="popularity">Popularity</string>
     <string name="status">Status</string>

@@ -4,118 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/_20dp"
-    android:padding="@dimen/_20dp"
     tools:context=".ui.tv_show.detail.DetailTVShowActivity">
 
     <ImageView
-        android:id="@+id/img_poster"
+        android:id="@+id/tv_backdrop_path"
         style="@style/ImageViewPoster"
-        android:layout_width="@dimen/width_poster"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/height_poster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/tv_show_title"
-        style="@style/mainTitle"
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/img_poster"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/title" />
-
-    <TextView
-        android:id="@+id/tv_original_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8dp"
-        android:gravity="start"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tv_show_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_show_title"
-        tools:text="@string/title" />
-
-    <TextView
-        android:id="@+id/tv_show_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16dp"
-        android:text="@string/rates"
-        app:layout_constraintStart_toStartOf="@id/tv_original_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_original_name" />
-
-    <TextView
-        android:id="@+id/tv_episode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16dp"
-        app:layout_constraintStart_toStartOf="@id/tv_show_rate"
-        app:layout_constraintTop_toBottomOf="@id/tv_show_rate"
-        tools:text="326 episodes 2 seasons" />
-
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_0dp"
-        android:layout_marginTop="@dimen/_20dp"
+        android:padding="@dimen/_20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_poster">
+        app:layout_constraintTop_toBottomOf="@id/tv_backdrop_path">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/img_poster"
+                style="@style/ImageViewPoster"
+                android:layout_width="@dimen/width_poster"
+                android:layout_height="@dimen/height_poster"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_show_title"
+                style="@style/mainTitle"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_poster"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/title" />
+
+            <TextView
+                android:id="@+id/tv_original_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8dp"
+                android:gravity="start"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tv_show_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_show_title"
+                tools:text="@string/title" />
+
+            <TextView
+                android:id="@+id/tv_show_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16dp"
+                android:text="@string/rates"
+                app:layout_constraintStart_toStartOf="@id/tv_original_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_original_name" />
+
             <TextView
                 android:id="@+id/about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_10dp"
                 android:text="@string/about_this_show"
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/img_poster" />
 
-            <TextView
-                android:id="@+id/language"
-                style="@style/TextViewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/languages"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/about" />
 
-            <TextView
-                android:id="@+id/tv_language"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4dp"
-                app:layout_constraintStart_toStartOf="@id/tv_type"
-                app:layout_constraintTop_toBottomOf="@id/language"
-                tools:text="language" />
-
-            <TextView
-                android:id="@+id/tv_type"
-                style="@style/TextViewTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/genres"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_language" />
-
-            <TextView
-                android:id="@+id/tv_genre_show"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4dp"
-                app:layout_constraintStart_toStartOf="@id/tv_type"
-                app:layout_constraintTop_toBottomOf="@id/tv_type"
-                tools:text="Action" />
 
             <TextView
                 android:id="@+id/overview"
@@ -126,7 +91,7 @@
                 android:textColor="@color/dark_gray"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/ic_popular"
-                app:layout_constraintTop_toBottomOf="@id/tv_popularity" />
+                app:layout_constraintTop_toBottomOf="@id/about" />
 
             <TextView
                 android:id="@+id/tv_desc"
@@ -143,9 +108,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/popularity"
+                android:paddingTop="@dimen/_8dp"
                 android:textColor="@color/dark_gray"
-                app:layout_constraintStart_toStartOf="@id/tv_genre_show"
-                app:layout_constraintTop_toBottomOf="@id/tv_genre_show" />
+                app:layout_constraintStart_toStartOf="@id/tv_desc"
+                app:layout_constraintTop_toBottomOf="@id/tv_desc" />
 
             <ImageView
                 android:id="@+id/ic_popular"
@@ -168,34 +134,15 @@
                 tools:text="23.3232" />
 
             <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_30dp"
-                android:text="@string/status"
-                android:textColor="@color/dark_gray"
-                app:layout_constraintStart_toEndOf="@id/tv_popularity"
-                app:layout_constraintTop_toBottomOf="@id/tv_genre_show" />
-
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4dp"
-                android:textColor="@color/teal_700"
-                app:layout_constraintStart_toStartOf="@id/status"
-                app:layout_constraintTop_toBottomOf="@id/popularity"
-                tools:text="Finished" />
-
-            <TextView
                 android:id="@+id/air_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_30dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/first_air_date"
                 android:textColor="@color/dark_gray"
-                app:layout_constraintStart_toEndOf="@id/tv_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_genre_show" />
+                app:layout_constraintStart_toEndOf="@+id/tv_popularity"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
             <TextView
                 android:id="@+id/tv_air_date"
@@ -207,23 +154,23 @@
                 tools:text="2020 Mei 18" />
 
             <TextView
-                android:id="@+id/seasons"
+                android:id="@+id/language"
+                style="@style/TextViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16dp"
-                android:text="@string/seasons"
-                android:textColor="@color/dark_gray"
-                app:layout_constraintStart_toStartOf="@id/tv_desc"
-                app:layout_constraintTop_toBottomOf="@id/tv_desc" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_poster"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:text="@string/languages"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/seasons"
-                app:spanCount="2" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_air_date" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/language"
+                tools:text="language" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
