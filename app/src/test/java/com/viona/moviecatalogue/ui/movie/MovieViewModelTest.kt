@@ -48,10 +48,10 @@ class MoviesViewModelTest {
         val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
         movies.value = dummyMovies
 
-        Mockito.`when`(repository.getDetailMovie()).thenReturn(movies)
+        Mockito.`when`(repository.getMovie()).thenReturn(movies)
         val moviesEntity = viewModel.getMovie().value?.data
 
-        verify(repository).getDetailMovie()
+        verify(repository).getMovie()
         TestCase.assertNotNull(moviesEntity)
         TestCase.assertEquals(randomNumber, moviesEntity?.size)
 

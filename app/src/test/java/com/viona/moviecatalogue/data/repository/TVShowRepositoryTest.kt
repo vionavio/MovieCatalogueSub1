@@ -31,8 +31,8 @@ class TVShowRepositoryTest {
 
     private val repository = TVShowRepository(remote, local, appExecutor)
 
-    private val sampleTVShowsResponse = dataDummy.getTVShows()
-    private val sampleTVShowResponse = dataDummy.getTVShow()
+    private val sampleTVShowsResponse = dataDummy.getTVShow()
+    private val sampleTVShowResponse = dataDummy.getDetailTVShow()
     private val sampleTVShowId = sampleTVShowResponse.id!!
     private val sampleTVShowEntity = TVShowEntity.fromTVShowResponse(sampleTVShowResponse)
 
@@ -42,9 +42,9 @@ class TVShowRepositoryTest {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TVShowEntity>
         `when`(local.getTVShows()).thenReturn(dataSourceFactory)
-        repository.getDetailTVShow()
+        repository.getTVShow()
 
-        val tvShowsEntity = TVShowEntity.fromTVShowsResponse(dataDummy.getTVShows())!!
+        val tvShowsEntity = TVShowEntity.fromTVShowsResponse(dataDummy.getTVShow())!!
         val tvShowsPaged = PagedListUtil.mockPagedList(tvShowsEntity)
         val tvShowsResource = Resource.success(tvShowsPaged)
 
@@ -74,7 +74,7 @@ class TVShowRepositoryTest {
         `when`(local.getFavoriteTVShows()).thenReturn(dataSourceFactory)
         repository.getFavoriteTVShow()
 
-        val tvShowsEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
+        val tvShowsEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovie())!!
         val tvShowsPaged = PagedListUtil.mockPagedList(tvShowsEntity)
         val tvShowsResource = Resource.success(tvShowsPaged)
 

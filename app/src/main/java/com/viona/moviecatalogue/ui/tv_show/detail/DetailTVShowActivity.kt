@@ -149,14 +149,14 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
             }
             R.id.action_favorite -> {
                 detailTVShowViewModel.setFavorite()
-                showNotification()
+                Notification()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun showNotification() {
+    private fun Notification() {
         val isFavorite = detailTVShowViewModel.tvShow.value?.data?.favorite ?: false
         val message: String = if (isFavorite) getString(R.string.remove_favorite)
         else getString(R.string.add_favorite)

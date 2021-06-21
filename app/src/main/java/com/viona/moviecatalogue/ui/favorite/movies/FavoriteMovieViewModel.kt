@@ -7,7 +7,7 @@ import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 
 class FavoriteMovieViewModel(private val repository: MovieRepository) : ViewModel() {
-    fun getFavoriteMovie(): LiveData<PagedList<MovieEntity>> {
+    fun favoriteMovie(): LiveData<PagedList<MovieEntity>> {
         return repository.getFavoriteMovie()
     }
 }

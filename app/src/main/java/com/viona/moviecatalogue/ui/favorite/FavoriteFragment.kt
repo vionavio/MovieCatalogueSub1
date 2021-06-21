@@ -47,11 +47,11 @@ class FavoriteFragment : Fragment() {
             binding?.tvTvShowCount?.text = getString(R.string.text_count_item, it)
         })
 
-        binding?.cardMovies?.setOnClickListener {
+        binding?.cvMovies?.setOnClickListener {
             val intent = Intent(context, FavoriteMovieActivity::class.java)
             startActivity(intent)
         }
-        binding?.cardTvShows?.setOnClickListener {
+        binding?.cvTvShows?.setOnClickListener {
             val intent = Intent(context, FavoriteTVShowActivity::class.java)
             startActivity(intent)
         }

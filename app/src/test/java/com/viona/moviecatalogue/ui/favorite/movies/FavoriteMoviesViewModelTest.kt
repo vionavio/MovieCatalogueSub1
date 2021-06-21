@@ -49,13 +49,13 @@ class FavoriteMoviesViewModelTest {
         movies.value = dummyMovies
 
         `when`(repository.getFavoriteMovie()).thenReturn(movies)
-        val moviesEntity = viewModel.getFavoriteMovie().value
+        val moviesEntity = viewModel.favoriteMovie().value
 
         verify(repository).getFavoriteMovie()
         assertNotNull(moviesEntity)
         assertEquals(randomNumber, moviesEntity?.size)
 
-        viewModel.getFavoriteMovie().observeForever(observer)
+        viewModel.favoriteMovie().observeForever(observer)
         verify(observer).onChanged(dummyMovies)
     }
 }

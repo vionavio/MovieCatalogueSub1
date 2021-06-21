@@ -2,7 +2,6 @@ package com.viona.moviecatalogue.ui.favorite.movies
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,15 +26,15 @@ class FavoriteMovieActivity : AppCompatActivity() {
         favoriteMoviesBinding = ActivityFavoriteMovieBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        initView()
+        initUI()
     }
 
-    private fun initView() {
+    private fun initUI() {
         supportActionBar?.title =getString(R.string.movie_favorite)
         adapter = MovieAdapter(this) { movie -> gotoResult(movie) }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModel.getFavoriteMovie().observe(this, {
+        viewModel.favoriteMovie().observe(this, {
             binding?.progressBar?.visibility = View.GONE
             if (it.isNullOrEmpty()) {
                 binding?.noMovieFavorites?.visibility = View.VISIBLE
@@ -50,15 +49,7 @@ class FavoriteMovieActivity : AppCompatActivity() {
         binding?.rvMovies?.adapter = adapter
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+    private fun initData(){}
 
     private fun gotoResult(movie: MovieEntity) {
         val intent = Intent(this, DetailMovieActivity::class.java)

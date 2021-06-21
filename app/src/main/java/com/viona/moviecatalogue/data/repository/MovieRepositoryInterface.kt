@@ -7,7 +7,7 @@ import com.viona.moviecatalogue.vo.Resource
 
 interface MovieRepositoryInterface {
 
-    fun getDetailMovie(): LiveData<Resource<PagedList<MovieEntity>>>
+    fun getMovie(): LiveData<Resource<PagedList<MovieEntity>>>
 
     fun getDetailMovie(id: Int): LiveData<Resource<MovieEntity>>
 

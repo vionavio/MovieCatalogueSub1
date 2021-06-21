@@ -2,7 +2,6 @@ package com.viona.moviecatalogue.ui.favorite.tv_shows
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,15 +26,15 @@ class FavoriteTVShowActivity : AppCompatActivity() {
         favoriteTVShowsBinding = ActivityFavoriteTvShowBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        initView()
+        initUI()
     }
 
-    private fun initView() {
+    private fun initUI() {
         supportActionBar?.title = getString(R.string.tv_show_favorite)
         adapter = TVShowAdapter(this) { tvShow -> gotoResult(tvShow) }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModel.getFavoriteTVShow().observe(this, {
+        viewModel.favoriteTVShow().observe(this, {
             binding?.progressBar?.visibility = View.GONE
 
             if (it.isNullOrEmpty()) {
@@ -49,16 +48,6 @@ class FavoriteTVShowActivity : AppCompatActivity() {
         binding?.rvTvShows?.layoutManager = LinearLayoutManager(this)
         binding?.rvTvShows?.setHasFixedSize(true)
         binding?.rvTvShows?.adapter = adapter
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun gotoResult(tvShow: TVShowEntity) {

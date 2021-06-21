@@ -19,7 +19,7 @@ class TVShowRepository(
     private val appExecutors: AppExecutors
 ) : TVShowRepositoryInterface {
 
-    override fun getDetailTVShow(): LiveData<Resource<PagedList<TVShowEntity>>> {
+    override fun getTVShow(): LiveData<Resource<PagedList<TVShowEntity>>> {
         return object :
             NetworkBoundResource<PagedList<TVShowEntity>, TVShowsResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<PagedList<TVShowEntity>> {

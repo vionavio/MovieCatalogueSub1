@@ -10,23 +10,23 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class DataDummy {
-    fun getMovies(): MoviesResponse {
-        return getFromJson("movies.json", MoviesResponse::class.java)
+    fun getMovie(): MoviesResponse {
+        return jsonData("movies.json", MoviesResponse::class.java)
     }
 
-    fun getMovie(): DetailMovieResponse {
-        return getFromJson("movie.json", DetailMovieResponse::class.java)
+    fun getDetailMovie(): DetailMovieResponse {
+        return jsonData("movie.json", DetailMovieResponse::class.java)
     }
 
-    fun getTVShows(): TVShowsResponse {
-        return getFromJson("tv_shows.json", TVShowsResponse::class.java)
+    fun getTVShow(): TVShowsResponse {
+        return jsonData("tv_shows.json", TVShowsResponse::class.java)
     }
 
-    fun getTVShow(): TVShowDetailResponse {
-        return getFromJson("tv_show.json", TVShowDetailResponse::class.java)
+    fun getDetailTVShow(): TVShowDetailResponse {
+        return jsonData("tv_show.json", TVShowDetailResponse::class.java)
     }
 
-    private fun <T> getFromJson(filename: String, type: Class<T>): T {
+    private fun <T> jsonData(filename: String, type: Class<T>): T {
         val testFolderResources = File(File("").absolutePath, "src/test/resources")
         val jsonFile = File(testFolderResources.absolutePath, filename)
         val iStream = FileInputStream(jsonFile)

@@ -131,7 +131,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             }
             R.id.action_favorite -> {
                 detailMovieViewModel.setFavorite()
-                showNotification()
+                notification()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -149,7 +149,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         }
     }
 
-    private fun showNotification() {
+    private fun notification() {
         val isFavorite = detailMovieViewModel.movie.value?.data?.favorite ?: false
         val message: String = if (isFavorite) getString(R.string.remove_favorite)
         else getString(R.string.add_favorite)

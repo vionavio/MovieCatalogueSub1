@@ -22,7 +22,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class TVShowDetailViewModelTest {
     private val dataDummy = DataDummy()
     private lateinit var viewModel: DetailTVShowViewModel
-    private val sampleTVShow = dataDummy.getTVShow()
+    private val sampleTVShow = dataDummy.getDetailTVShow()
     private val sampleTVShowId = sampleTVShow.id!!
 
     @get:Rule

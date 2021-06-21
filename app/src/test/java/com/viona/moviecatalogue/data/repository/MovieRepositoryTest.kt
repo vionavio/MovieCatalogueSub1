@@ -30,8 +30,8 @@ class MovieRepositoryTest {
 
     private val repository = MovieRepository(remote, local, appExecutor)
 
-    private val sampleMoviesResponse = dataDummy.getMovies()
-    private val sampleMovieResponse = dataDummy.getMovie()
+    private val sampleMoviesResponse = dataDummy.getMovie()
+    private val sampleMovieResponse = dataDummy.getDetailMovie()
     private val sampleMovieId = sampleMovieResponse.id!!
     private val sampleMovieEntity = MovieEntity.fromMovieResponse(sampleMovieResponse)
 
@@ -40,9 +40,9 @@ class MovieRepositoryTest {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
         `when`(local.getDetailMovie()).thenReturn(dataSourceFactory)
-        repository.getDetailMovie()
+        repository.getMovie()
 
-        val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
+        val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovie())!!
         val moviesPaged = PagedListUtil.mockPagedList(moviesEntity)
         val moviesResource = Resource.success(moviesPaged)
 
@@ -72,7 +72,7 @@ class MovieRepositoryTest {
         `when`(local.getFavoriteMovie()).thenReturn(dataSourceFactory)
         repository.getFavoriteMovie()
 
-        val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
+        val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovie())!!
         val moviesPaged = PagedListUtil.mockPagedList(moviesEntity)
         val moviesResource = Resource.success(moviesPaged)
 

@@ -7,7 +7,7 @@ import com.viona.moviecatalogue.vo.Resource
 
 interface TVShowRepositoryInterface {
 
-    fun getDetailTVShow(): LiveData<Resource<PagedList<TVShowEntity>>>
+    fun getTVShow(): LiveData<Resource<PagedList<TVShowEntity>>>
 
     fun getDetailTVShow(id: Int): LiveData<Resource<TVShowEntity>>
 

@@ -19,7 +19,7 @@ class MovieRepository(
     private val appExecutors: AppExecutors
 ) : MovieRepositoryInterface {
 
-    override fun getDetailMovie(): LiveData<Resource<PagedList<MovieEntity>>> {
+    override fun getMovie(): LiveData<Resource<PagedList<MovieEntity>>> {
         return object :
             NetworkBoundResource<PagedList<MovieEntity>, MoviesResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<PagedList<MovieEntity>> {

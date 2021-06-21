@@ -36,7 +36,6 @@ class MovieFragment : Fragment() {
         if (activity != null) {
 
             val movieAdapter = MovieAdapter(requireContext()) { movie -> gotoResult(movie) }
-
             movieViewModel.getMovie().observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {
                     when (movies.status) {

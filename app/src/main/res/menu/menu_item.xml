@@ -10,5 +10,5 @@
         android:id="@+id/action_favorite"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorite"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>
