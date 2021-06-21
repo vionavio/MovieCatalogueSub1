@@ -3,9 +3,10 @@ package com.viona.moviecatalogue.ui.tv_show.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.google.gson.Gson
-import com.viona.moviecatalogue.data.repository.DataRepository
-import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
+import com.viona.moviecatalogue.data.repository.TVShowRepository
+import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
+import com.viona.moviecatalogue.utils.DataDummy
+import com.viona.moviecatalogue.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -16,69 +17,52 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
-import java.io.InputStreamReader
 
 @RunWith(MockitoJUnitRunner::class)
-class DetailTVShowViewModelTest {
-
+class TVShowDetailViewModelTest {
+    private val dataDummy = DataDummy()
     private lateinit var viewModel: DetailTVShowViewModel
-    private lateinit var dataTVShow: TVShowDetailResponse
-    private var tvShowId: Int = 0
-
-    @Mock
-    private lateinit var repository: DataRepository
+    private val sampleTVShow = dataDummy.getTVShow()
+    private val sampleTVShowId = sampleTVShow.id!!
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var observer: Observer<TVShowDetailResponse?>
+    private lateinit var repository: TVShowRepository
 
+    @Mock
+    private lateinit var observer: Observer<Resource<TVShowEntity>>
 
     @Before
     fun setUp() {
         viewModel = DetailTVShowViewModel(repository)
+        viewModel.setTVShowId(sampleTVShowId)
     }
 
     @Test
-    fun setSelectedTVShow() {
-    }
+    fun getMovie() {
+        val tvShowEntity = TVShowEntity.fromTVShowResponse(sampleTVShow)
+        val tvShowResource = Resource.success(tvShowEntity)
+        val tvShowLive = MutableLiveData<Resource<TVShowEntity>>()
+        tvShowLive.value = tvShowResource
 
-    @Test
-    fun getTVShow() {
-        dataTVShow = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("tv_show.json")),
-            TVShowDetailResponse::class.java
-        )
-        val tvShowLive = MutableLiveData<TVShowDetailResponse>()
-        tvShowLive.value = dataTVShow
-
-        dataTVShow.id?.let { tvShowId = it }
-        Mockito.`when`(repository.getTVShowDetail(tvShowId))
-            .thenReturn(MutableLiveData(dataTVShow))
-
-        viewModel.setTVShowId(tvShowId)
-        viewModel.getTVShowDetail()
-        val tvShow = viewModel.tvShow.value
-
-        assertNotNull(tvShow)
-
-        assertEquals(dataTVShow.id, tvShow?.id)
-        assertEquals(dataTVShow.name, tvShow?.name)
-        assertEquals(dataTVShow.originalName, tvShow?.originalName)
-        assertEquals(dataTVShow.voteAverage as Double, tvShow?.voteAverage as Double, 0.0001)
-        assertEquals(dataTVShow.voteCount, tvShow.voteCount)
-        assertEquals(dataTVShow.numberOfEpisodes, tvShow.numberOfEpisodes)
-        assertEquals(dataTVShow.numberOfSeasons, tvShow.numberOfSeasons)
-        assertEquals(dataTVShow.spokenLanguages, tvShow.spokenLanguages)
-        assertEquals(dataTVShow.genres, tvShow.genres)
-        assertEquals(dataTVShow.overview, tvShow.overview)
-        assertEquals(dataTVShow.status, tvShow.status)
-        assertEquals(dataTVShow.posterPath, tvShow.posterPath)
-        assertEquals(dataTVShow.firstAirDate, tvShow.firstAirDate)
-        assertEquals(dataTVShow.popularity as Double, tvShow.popularity as Double, 0.0001)
+        Mockito.`when`(repository.getTVShow(sampleTVShowId)).thenReturn(tvShowLive)
 
         viewModel.tvShow.observeForever(observer)
-        verify(observer).onChanged(dataTVShow)
+        verify(observer).onChanged(tvShowResource)
+
+        val movie = viewModel.tvShow.value?.data
+
+        assertNotNull(movie)
+        assertEquals(sampleTVShow.id, movie?.id)
+        assertEquals(sampleTVShow.name, movie?.name)
+        assertEquals(sampleTVShow.overview, movie?.overview)
+        assertEquals(sampleTVShow.posterPath, movie?.posterPath)
+        assertEquals(sampleTVShow.firstAirDate, movie?.firstAirDate)
+        assertEquals(sampleTVShow.voteCount, movie?.voteCount)
+
+        assertEquals(sampleTVShow.popularity as Double, movie?.popularity as Double, 0.0001)
+        assertEquals(sampleTVShow.voteAverage as Double, movie.voteAverage, 0.0001)
     }
 }

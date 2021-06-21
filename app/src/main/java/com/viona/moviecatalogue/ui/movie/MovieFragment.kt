@@ -66,8 +66,4 @@ class MovieFragment : Fragment() {
         context?.startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        fragmentMovieBinding = null
-    }
 }

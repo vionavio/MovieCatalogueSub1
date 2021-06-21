@@ -80,8 +80,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_poster" />
 
-
-
             <TextView
                 android:id="@+id/overview"
                 android:layout_width="wrap_content"
@@ -169,7 +167,7 @@
                 android:layout_marginTop="@dimen/_4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/language"
-                tools:text="language" />
+                tools:text="japan" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

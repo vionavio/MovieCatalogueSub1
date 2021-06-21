@@ -66,9 +66,5 @@ class TVShowFragment : Fragment() {
         intent.putExtra(Constants.EXTRA_TV_SHOW, tvShow.id)
         context?.startActivity(intent)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        fragmentTVShowBinding = null
-    }
+    
 }

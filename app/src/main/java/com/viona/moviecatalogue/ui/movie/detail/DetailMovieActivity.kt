@@ -56,8 +56,6 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                                 mainBinding.progressBars.root.visibility = View.GONE
                                 mainBinding.scrollview.visibility = View.VISIBLE
 
-                                val state = movie.favorite
-                                setFavoriteState(state)
                                 getDetail(movie)
                             }
                             Status.ERROR -> {

@@ -52,16 +52,13 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
                 tvShow.observe(this@DetailTVShowActivity, { tvShows ->
                     if (tvShows != null) {
-                        /*  activityDetailTvShowBinding.progressBars.root.visibility = View.GONE
-                          activityDetailTvShowBinding.scrollview.visibility = View.VISIBLE
-                          getDetail(tvShows)
-  */
+
                         when (tvShows.status) {
                             Status.LOADING -> mainBinding.progressBars.root.visibility =
                                 View.VISIBLE
                             Status.SUCCESS -> tvShows.data?.let { tvShow ->
                                 mainBinding.progressBars.root.visibility = View.GONE
-
+                                mainBinding.scrollview.visibility = View.VISIBLE
                                 getDetail(tvShow)
                             }
                             Status.ERROR -> {

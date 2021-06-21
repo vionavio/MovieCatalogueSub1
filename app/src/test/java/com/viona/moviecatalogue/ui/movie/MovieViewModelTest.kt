@@ -3,10 +3,12 @@ package com.viona.moviecatalogue.ui.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.google.gson.Gson
-import com.viona.moviecatalogue.data.repository.DataRepository
+import com.viona.moviecatalogue.data.repository.MovieRepository
+import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
-import com.viona.moviecatalogue.models.MovieEntity
+import com.viona.moviecatalogue.vo.Resource
 import junit.framework.TestCase
 import org.junit.Assert.*
 import org.junit.Before
@@ -20,18 +22,21 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.InputStreamReader
 
 @RunWith(MockitoJUnitRunner::class)
-class MovieViewModelTest {
-
-    private lateinit var viewModel: MovieViewModel
-
-    @Mock
-    private lateinit var repository: DataRepository
+class MoviesViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    private lateinit var viewModel: MovieViewModel
+
     @Mock
-    private lateinit var observer: Observer<MoviesResponse?>
+    private lateinit var repository: MovieRepository
+
+    @Mock
+    private lateinit var observer: Observer<Resource<PagedList<MovieEntity>>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<MovieEntity>
 
     @Before
     fun setUp() {
@@ -39,30 +44,22 @@ class MovieViewModelTest {
     }
 
     @Test
-    fun getMovie() {
-        val sampleMovies = Gson().fromJson(
-            InputStreamReader(javaClass.getResourceAsStream("movies.json")),
-            MoviesResponse::class.java
-        )
-        val movies = MutableLiveData<MoviesResponse>()
-        movies.value = sampleMovies
+    fun getMovies() {
+        val dummyMovies = Resource.success(pagedList)
+        val randomNumber = (0 until 100).random()
+        Mockito.`when`(dummyMovies.data?.size).thenReturn(randomNumber)
 
-        Mockito.`when`(repository.getMovies()).thenReturn(MutableLiveData(sampleMovies))
-        viewModel.getMovie()
+        val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
+        movies.value = dummyMovies
 
-        TestCase.assertNotNull(sampleMovies)
-        TestCase.assertNotNull(viewModel.movies)
-        assertEquals(sampleMovies, viewModel.movies.value)
-        assertEquals(sampleMovies.results?.size, viewModel.movies.value?.results?.size)
+        Mockito.`when`(repository.getMovies()).thenReturn(movies)
+        val moviesEntity = viewModel.getMovie().value?.data
 
-        viewModel.movies.observeForever(observer)
-        verify(observer).onChanged(sampleMovies)
-    }
+        verify(repository).getMovies()
+        TestCase.assertNotNull(moviesEntity)
+        TestCase.assertEquals(randomNumber, moviesEntity?.size)
 
-    @Test
-    fun emptyMovie() {
-        val movieEntities = listOf<MovieEntity>()
-        assertFalse(movieEntities.isNotEmpty())
-        assertNotEquals(12, movieEntities.size)
+        viewModel.getMovie().observeForever(observer)
+        verify(observer).onChanged(dummyMovies)
     }
 }
