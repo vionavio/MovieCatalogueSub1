@@ -47,10 +47,10 @@ class TVShowsViewModelTest {
         val tvShows = MutableLiveData<Resource<PagedList<TVShowEntity>>>()
         tvShows.value = dummyTVShows
 
-        Mockito.`when`(repository.getTVShows()).thenReturn(tvShows)
+        Mockito.`when`(repository.getDetailTVShow()).thenReturn(tvShows)
         val tvShowsEntity = viewModel.getTVShows().value?.data
 
-        verify(repository).getTVShows()
+        verify(repository).getDetailTVShow()
         assertNotNull(tvShowsEntity)
         assertEquals(randomNumber, tvShowsEntity?.size)
 

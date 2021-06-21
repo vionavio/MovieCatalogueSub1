@@ -43,15 +43,15 @@ class FavoriteViewModelTest {
         val numberLive = MutableLiveData<Int>()
         val numberRandom = (0 until 100).random()
         numberLive.value = numberRandom
-        `when`(movieRepository.getFavoriteMoviesCount()).thenReturn(numberLive)
+        `when`(movieRepository.getFavoriteMovieCount()).thenReturn(numberLive)
 
-        val count = viewModel.getFavoriteMoviesCount().value
-        verify(movieRepository).getFavoriteMoviesCount()
+        val count = viewModel.getFavoriteMovieCount().value
+        verify(movieRepository).getFavoriteMovieCount()
         verifyNoInteractions(tvShowRepository)
         assertNotNull(count)
         assertEquals(numberRandom, count)
 
-        viewModel.getFavoriteMoviesCount().observeForever(observer)
+        viewModel.getFavoriteMovieCount().observeForever(observer)
         verify(observer).onChanged(numberRandom)
     }
 
@@ -60,15 +60,15 @@ class FavoriteViewModelTest {
         val numberLive = MutableLiveData<Int>()
         val numberRandom = (0 until 100).random()
         numberLive.value = numberRandom
-        `when`(tvShowRepository.getFavoriteTVShowsCount()).thenReturn(numberLive)
+        `when`(tvShowRepository.getFavoriteTVShowCount()).thenReturn(numberLive)
 
-        val count = viewModel.getFavoriteTVShowsCount().value
-        verify(tvShowRepository).getFavoriteTVShowsCount()
+        val count = viewModel.getFavoriteTVShowCount().value
+        verify(tvShowRepository).getFavoriteTVShowCount()
         verifyNoInteractions(movieRepository)
         assertNotNull(count)
         assertEquals(numberRandom, count)
 
-        viewModel.getFavoriteTVShowsCount().observeForever(observer)
+        viewModel.getFavoriteTVShowCount().observeForever(observer)
         verify(observer).onChanged(numberRandom)
     }
 }

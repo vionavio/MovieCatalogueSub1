@@ -1,10 +1,6 @@
 package com.viona.moviecatalogue.ui.tv_show.detail
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ImageSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,9 +11,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
-import com.viona.moviecatalogue.data.source.remote.response.GenresItem
-import com.viona.moviecatalogue.data.source.remote.response.SpokenLanguagesItem
-import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
@@ -28,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     private lateinit var activityDetailTvShowBinding: ActivityDetailTvShowBinding
-    private val mainBinding get() = activityDetailTvShowBinding
+    private val binding get() = activityDetailTvShowBinding
 
     private val detailTVShowViewModel: DetailTVShowViewModel by viewModel()
     private var tvShow = mutableListOf<String?>()
@@ -54,18 +47,18 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                     if (tvShows != null) {
 
                         when (tvShows.status) {
-                            Status.LOADING -> mainBinding.progressBars.root.visibility =
+                            Status.LOADING -> binding.progressBars.root.visibility =
                                 View.VISIBLE
                             Status.SUCCESS -> tvShows.data?.let { tvShow ->
-                                mainBinding.progressBars.root.visibility = View.GONE
-                                mainBinding.scrollview.visibility = View.VISIBLE
+                                binding.progressBars.root.visibility = View.GONE
+                                binding.scrollview.visibility = View.VISIBLE
                                 getDetail(tvShow)
                             }
                             Status.ERROR -> {
-                                mainBinding.progressBars.root.visibility = View.GONE
+                                binding.progressBars.root.visibility = View.GONE
                                 Notification.showToast(
                                     this@DetailTVShowActivity,
-                                    "Terjadi kesalahan"
+                                    getString(R.string.error)
                                 )
                             }
                         }
@@ -81,7 +74,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     private fun getDetail(tvShows: TVShowEntity) {
-        mainBinding.apply {
+        binding.apply {
             tvShowTitle.text = tvShows.name
             tvOriginalName.text = tvShows.originalName
             tvLanguage.text = tvShows.originalLanguage
@@ -96,7 +89,6 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 add(tvShows.name)
             }
         }
-
         imgPoster(tvShows)
 
         if (tvShows.backdrop_path != null) backdropPath(tvShows)
@@ -125,7 +117,7 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_favorite, menu)
+        menuInflater.inflate(R.menu.menu_item, menu)
         this.menu = menu
 
         detailTVShowViewModel.tvShow.observe(this, { tvShowResource ->
@@ -142,9 +134,9 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
         menu?.let {
             val menuItem = it.findItem(R.id.action_favorite)
             if (state) {
-                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorited_white)
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorited)
             } else {
-                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white)
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
             }
         }
     }
@@ -166,12 +158,10 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
 
     private fun showNotification() {
         val isFavorite = detailTVShowViewModel.tvShow.value?.data?.favorite ?: false
-        val message: String = if (isFavorite) {
-            "Menghapus dari favorit..."
-        } else {
-            "Menambahkan ke favorit..."
-        }
-        mainBinding.root.let { Notification.showSnackbar(it, message) }
+        val message: String = if (isFavorite) getString(R.string.remove_favorite)
+        else getString(R.string.add_favorite)
+
+        binding.root.let { Notification.showSnackbar(it, message) }
     }
 
     override fun onShareClick(tvShow: MutableList<String?>) {

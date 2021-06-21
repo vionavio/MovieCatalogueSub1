@@ -4,13 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
-import com.google.gson.Gson
 import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
-import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.vo.Resource
 import junit.framework.TestCase
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -19,7 +16,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
-import java.io.InputStreamReader
 
 @RunWith(MockitoJUnitRunner::class)
 class MoviesViewModelTest {
@@ -52,10 +48,10 @@ class MoviesViewModelTest {
         val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
         movies.value = dummyMovies
 
-        Mockito.`when`(repository.getMovies()).thenReturn(movies)
+        Mockito.`when`(repository.getDetailMovie()).thenReturn(movies)
         val moviesEntity = viewModel.getMovie().value?.data
 
-        verify(repository).getMovies()
+        verify(repository).getDetailMovie()
         TestCase.assertNotNull(moviesEntity)
         TestCase.assertEquals(randomNumber, moviesEntity?.size)
 

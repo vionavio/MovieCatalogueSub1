@@ -7,9 +7,13 @@ import com.viona.moviecatalogue.vo.Resource
 
 interface MovieRepositoryInterface {
 
-    fun getMovies(): LiveData<Resource<PagedList<MovieEntity>>>
-    fun getMovie(id: Int): LiveData<Resource<MovieEntity>>
-    fun getFavoriteMovies(): LiveData<PagedList<MovieEntity>>
+    fun getDetailMovie(): LiveData<Resource<PagedList<MovieEntity>>>
+
+    fun getDetailMovie(id: Int): LiveData<Resource<MovieEntity>>
+
+    fun getFavoriteMovie(): LiveData<PagedList<MovieEntity>>
+
     fun setFavoriteMovie(movie: MovieEntity, state: Boolean)
-    fun getFavoriteMoviesCount(): LiveData<Int>
+
+    fun getFavoriteMovieCount(): LiveData<Int>
 }

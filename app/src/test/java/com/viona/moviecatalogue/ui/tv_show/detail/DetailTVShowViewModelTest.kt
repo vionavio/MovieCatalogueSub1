@@ -47,7 +47,7 @@ class TVShowDetailViewModelTest {
         val tvShowLive = MutableLiveData<Resource<TVShowEntity>>()
         tvShowLive.value = tvShowResource
 
-        Mockito.`when`(repository.getTVShow(sampleTVShowId)).thenReturn(tvShowLive)
+        Mockito.`when`(repository.getDetailTVShow(sampleTVShowId)).thenReturn(tvShowLive)
 
         viewModel.tvShow.observeForever(observer)
         verify(observer).onChanged(tvShowResource)

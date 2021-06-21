@@ -36,4 +36,11 @@
     <string name="budget">Budget</string>
     <string name="budgets">$ %s</string>
     <string name="text_count_item">%d items</string>
+    <string name="movie_favorite">Movie Favorite</string>
+    <string name="tv_show_favorite">TV Show Favorite</string>
+    <string name="no_favorites_tv_show">No favorites TV Show yet</string>
+    <string name="no_favorites_movie">No favorites Movie yet</string>
+    <string name="error">Error..</string>
+    <string name="add_favorite">Add to Favorites</string>
+    <string name="remove_favorite">Remove to Favorites</string>
 </resources>

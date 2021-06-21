@@ -5,35 +5,31 @@ import androidx.paging.DataSource
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.local.room.AppDatabase
 
-class MovieLocalDatasource(database: AppDatabase) {
+class MovieLocalDataSource(database: AppDatabase) {
     private var movieDao = database.movieDao()
 
-    fun getMovies(): DataSource.Factory<Int, MovieEntity> {
+    fun getDetailMovie(): DataSource.Factory<Int, MovieEntity> {
         return movieDao.getMovie()
     }
 
-    fun getFavoriteMovies(): DataSource.Factory<Int, MovieEntity> {
+    fun getFavoriteMovie(): DataSource.Factory<Int, MovieEntity> {
         return movieDao.getFavoriteMovie()
     }
 
-    fun getFavoriteCounts(): LiveData<Int> {
+    fun getFavoriteCount(): LiveData<Int> {
         return movieDao.getFavoriteCount()
     }
 
-    fun getMovie(id: Int): LiveData<MovieEntity> {
+    fun getDetailMovie(id: Int): LiveData<MovieEntity> {
         return movieDao.getDetailMovie(id)
     }
 
-    fun insertMovies(movies: List<MovieEntity>) {
+    fun insertDetailMovie(movies: List<MovieEntity>) {
         return movieDao.insertAll(movies)
     }
 
-    fun insertMovie(movieEntity: MovieEntity) {
+    fun insertDetailMovie(movieEntity: MovieEntity) {
         movieDao.insertMovie(movieEntity)
-    }
-
-    fun updateMovie(movieEntity: MovieEntity) {
-        movieDao.updateMovie(movieEntity)
     }
 
     fun setMovieFavorite(movieEntity: MovieEntity, newState: Boolean) {

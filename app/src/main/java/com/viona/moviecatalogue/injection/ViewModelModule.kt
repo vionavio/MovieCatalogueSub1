@@ -1,8 +1,8 @@
 package com.viona.moviecatalogue.injection
 
 import com.viona.moviecatalogue.ui.favorite.FavoriteViewModel
-import com.viona.moviecatalogue.ui.favorite.movies.FavoriteMoviesViewModel
-import com.viona.moviecatalogue.ui.favorite.tv_shows.FavoriteTVShowsViewModel
+import com.viona.moviecatalogue.ui.favorite.movies.FavoriteMovieViewModel
+import com.viona.moviecatalogue.ui.favorite.tv_shows.FavoriteTVShowViewModel
 import com.viona.moviecatalogue.ui.movie.MovieViewModel
 import com.viona.moviecatalogue.ui.movie.detail.DetailMovieViewModel
 import com.viona.moviecatalogue.ui.tv_show.TVShowViewModel
@@ -19,6 +19,6 @@ val viewModelModules = module {
 
     viewModel { FavoriteViewModel(get(), get()) }
 
-    viewModel { FavoriteMoviesViewModel(get()) }
-    viewModel { FavoriteTVShowsViewModel(get()) }
+    viewModel { FavoriteMovieViewModel(get()) }
+    viewModel { FavoriteTVShowViewModel(get()) }
 }

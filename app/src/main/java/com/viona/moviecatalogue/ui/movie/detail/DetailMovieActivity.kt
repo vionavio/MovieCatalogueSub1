@@ -23,7 +23,7 @@ import java.util.*
 class DetailMovieActivity : AppCompatActivity(), MovieCallback {
 
     private lateinit var activityDetailMovieBinding: ActivityDetailMovieBinding
-    private val mainBinding get() = activityDetailMovieBinding
+    private val binding get() = activityDetailMovieBinding
 
     private val detailMovieViewModel: DetailMovieViewModel by viewModel()
     private var movie = mutableListOf<String?>()
@@ -32,8 +32,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movie)
+
         activityDetailMovieBinding = ActivityDetailMovieBinding.inflate(layoutInflater)
-        setContentView(mainBinding.root)
+        setContentView(binding.root)
 
         initData()
         initUI()
@@ -50,19 +51,19 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
 
                     if (movies != null) {
                         when (movies.status) {
-                            Status.LOADING -> mainBinding.progressBars.root.visibility =
+                            Status.LOADING -> binding.progressBars.root.visibility =
                                 View.VISIBLE
                             Status.SUCCESS -> movies.data?.let { movie ->
-                                mainBinding.progressBars.root.visibility = View.GONE
-                                mainBinding.scrollview.visibility = View.VISIBLE
+                                binding.progressBars.root.visibility = View.GONE
+                                binding.scrollview.visibility = View.VISIBLE
 
                                 getDetail(movie)
                             }
                             Status.ERROR -> {
-                                mainBinding.progressBars.root.visibility = View.GONE
+                                binding.progressBars.root.visibility = View.GONE
                                 Notification.showToast(
                                     this@DetailMovieActivity,
-                                    "Terjadi kesalahan"
+                                    getString(R.string.error)
                                 )
                             }
                         }
@@ -111,7 +112,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_favorite, menu)
+        menuInflater.inflate(R.menu.menu_item, menu)
         this.menu = menu
         detailMovieViewModel.movie.observe(this, { movieResource ->
             movieResource.data?.let {
@@ -141,21 +142,19 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
         menu?.let {
             val menuItem = it.findItem(R.id.action_favorite)
             if (state) {
-                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorited_white)
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorited)
             } else {
-                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white)
+                menuItem.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
             }
         }
     }
 
     private fun showNotification() {
         val isFavorite = detailMovieViewModel.movie.value?.data?.favorite ?: false
-        val message: String = if (isFavorite) {
-            "Menghapus dari favorit..."
-        } else {
-            "Menambahkan ke favorit..."
-        }
-        mainBinding.root.let { Notification.showSnackbar(it, message) }
+        val message: String = if (isFavorite) getString(R.string.remove_favorite)
+        else getString(R.string.add_favorite)
+
+        binding.root.let { Notification.showSnackbar(it, message) }
     }
 
     override fun onShareClick(movie: MutableList<String?>) {

@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.databinding.FavoriteFragmentBinding
-import com.viona.moviecatalogue.ui.favorite.movies.FavoriteMoviesActivity
-import com.viona.moviecatalogue.ui.favorite.tv_shows.FavoriteTVShowsActivity
+import com.viona.moviecatalogue.ui.favorite.movies.FavoriteMovieActivity
+import com.viona.moviecatalogue.ui.favorite.tv_shows.FavoriteTVShowActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FavoriteFragment : Fragment() {
 
-    private var _favoriteFragmentBinding: FavoriteFragmentBinding? = null
-    private val binding get() = _favoriteFragmentBinding
+    private var favoriteFragmentBinding: FavoriteFragmentBinding? = null
+    private val binding get() = favoriteFragmentBinding
 
     private val viewModel: FavoriteViewModel by viewModel()
 
@@ -24,7 +24,7 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _favoriteFragmentBinding = FavoriteFragmentBinding.inflate(layoutInflater, container, false)
+        favoriteFragmentBinding = FavoriteFragmentBinding.inflate(layoutInflater, container, false)
         return binding?.root
     }
 
@@ -38,21 +38,21 @@ class FavoriteFragment : Fragment() {
         binding?.progressBarMovies?.visibility = View.VISIBLE
         binding?.progressBarTvShows?.visibility = View.VISIBLE
 
-        viewModel.getFavoriteMoviesCount().observe(viewLifecycleOwner, {
+        viewModel.getFavoriteMovieCount().observe(viewLifecycleOwner, {
             binding?.progressBarMovies?.visibility = View.GONE
             binding?.tvMoviesCount?.text = getString(R.string.text_count_item, it)
         })
-        viewModel.getFavoriteTVShowsCount().observe(viewLifecycleOwner, {
+        viewModel.getFavoriteTVShowCount().observe(viewLifecycleOwner, {
             binding?.progressBarTvShows?.visibility = View.GONE
             binding?.tvTvShowCount?.text = getString(R.string.text_count_item, it)
         })
 
         binding?.cardMovies?.setOnClickListener {
-            val intent = Intent(context, FavoriteMoviesActivity::class.java)
+            val intent = Intent(context, FavoriteMovieActivity::class.java)
             startActivity(intent)
         }
         binding?.cardTvShows?.setOnClickListener {
-            val intent = Intent(context, FavoriteTVShowsActivity::class.java)
+            val intent = Intent(context, FavoriteTVShowActivity::class.java)
             startActivity(intent)
         }
     }

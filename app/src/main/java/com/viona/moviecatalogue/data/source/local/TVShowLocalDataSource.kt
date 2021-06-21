@@ -5,7 +5,7 @@ import androidx.paging.DataSource
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.data.source.local.room.AppDatabase
 
-class TVShowLocalDatasource(database: AppDatabase) {
+class TVShowLocalDataSource(database: AppDatabase) {
     private var tvShowDao = database.tvShowDao()
 
     fun getTVShows(): DataSource.Factory<Int, TVShowEntity> {

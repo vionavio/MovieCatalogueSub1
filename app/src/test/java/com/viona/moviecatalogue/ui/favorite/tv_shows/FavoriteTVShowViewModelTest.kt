@@ -18,12 +18,12 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class FavoriteTVShowsViewModelTest {
+class FavoriteTVShowViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: FavoriteTVShowsViewModel
+    private lateinit var viewModel: FavoriteTVShowViewModel
 
     @Mock
     private lateinit var repository: TVShowRepository
@@ -36,7 +36,7 @@ class FavoriteTVShowsViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteTVShowsViewModel(repository)
+        viewModel = FavoriteTVShowViewModel(repository)
     }
 
     @Test
@@ -48,14 +48,14 @@ class FavoriteTVShowsViewModelTest {
         val movies = MutableLiveData<PagedList<TVShowEntity>>()
         movies.value = dummyTVShows
 
-        `when`(repository.getFavoriteTVShows()).thenReturn(movies)
-        val moviesEntity = viewModel.getFavoriteTVShows().value
+        `when`(repository.getFavoriteTVShow()).thenReturn(movies)
+        val moviesEntity = viewModel.getFavoriteTVShow().value
 
-        verify(repository).getFavoriteTVShows()
+        verify(repository).getFavoriteTVShow()
         assertNotNull(moviesEntity)
         assertEquals(randomNumber, moviesEntity?.size)
 
-        viewModel.getFavoriteTVShows().observeForever(observer)
+        viewModel.getFavoriteTVShow().observeForever(observer)
         verify(observer).onChanged(dummyTVShows)
     }
 }

@@ -6,39 +6,44 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
-import com.viona.moviecatalogue.databinding.ActivityFavoriteMoviesBinding
+import com.viona.moviecatalogue.databinding.ActivityFavoriteMovieBinding
 import com.viona.moviecatalogue.ui.movie.MovieAdapter
 import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
-import com.viona.moviecatalogue.ui.movie.detail.MovieCallback
 import com.viona.moviecatalogue.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteMoviesActivity : AppCompatActivity(), MovieCallback {
+class FavoriteMovieActivity : AppCompatActivity() {
 
-    private var _favoriteMoviesBinding: ActivityFavoriteMoviesBinding? = null
-    private val binding get() = _favoriteMoviesBinding
+    private var favoriteMoviesBinding: ActivityFavoriteMovieBinding? = null
+    private val binding get() = favoriteMoviesBinding
 
-    private val viewModel: FavoriteMoviesViewModel by viewModel()
+    private val viewModel: FavoriteMovieViewModel by viewModel()
     private lateinit var adapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        _favoriteMoviesBinding = ActivityFavoriteMoviesBinding.inflate(layoutInflater)
+        favoriteMoviesBinding = ActivityFavoriteMovieBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         initView()
     }
 
     private fun initView() {
-        supportActionBar?.title = "Favorite Movies"
+        supportActionBar?.title =getString(R.string.movie_favorite)
         adapter = MovieAdapter(this) { movie -> gotoResult(movie) }
 
         binding?.progressBar?.visibility = View.VISIBLE
-        viewModel.getFavoriteMovies().observe(this, {
+        viewModel.getFavoriteMovie().observe(this, {
             binding?.progressBar?.visibility = View.GONE
-            adapter.submitList(it)
+            if (it.isNullOrEmpty()) {
+                binding?.noMovieFavorites?.visibility = View.VISIBLE
+                binding?.rvMovies?.visibility = View.GONE
+            } else {
+                adapter.submitList(it)
+                adapter.notifyDataSetChanged()
+            }
         })
         binding?.rvMovies?.layoutManager = LinearLayoutManager(this)
         binding?.rvMovies?.setHasFixedSize(true)
@@ -52,12 +57,7 @@ class FavoriteMoviesActivity : AppCompatActivity(), MovieCallback {
                 return true
             }
         }
-
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onShareClick(movie: MutableList<String?>) {
-
     }
 
     private fun gotoResult(movie: MovieEntity) {

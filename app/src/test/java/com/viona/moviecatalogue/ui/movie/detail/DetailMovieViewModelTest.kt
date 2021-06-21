@@ -47,7 +47,7 @@ class MovieDetailViewModelTest {
         val movieLive = MutableLiveData<Resource<MovieEntity>>()
         movieLive.value = movieResource
 
-        Mockito.`when`(repository.getMovie(sampleMovieId)).thenReturn(movieLive)
+        Mockito.`when`(repository.getDetailMovie(sampleMovieId)).thenReturn(movieLive)
 
         viewModel.movie.observeForever(observer)
         verify(observer).onChanged(movieResource)

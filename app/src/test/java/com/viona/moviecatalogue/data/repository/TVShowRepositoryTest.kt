@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.ilham.jpro.lastsubmission.LiveDataTestUtil
 import com.ilham.jpro.lastsubmission.PagedListUtil
-import com.viona.moviecatalogue.data.source.local.TVShowLocalDatasource
+import com.viona.moviecatalogue.data.source.local.TVShowLocalDataSource
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.data.source.remote.TVShowRemoteDataSource
@@ -25,7 +25,7 @@ class TVShowRepositoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val remote = mock(TVShowRemoteDataSource::class.java)
-    private val local = mock(TVShowLocalDatasource::class.java)
+    private val local = mock(TVShowLocalDataSource::class.java)
     private val appExecutor = mock(AppExecutors::class.java)
     private val dataDummy = DataDummy()
 
@@ -42,7 +42,7 @@ class TVShowRepositoryTest {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TVShowEntity>
         `when`(local.getTVShows()).thenReturn(dataSourceFactory)
-        repository.getTVShows()
+        repository.getDetailTVShow()
 
         val tvShowsEntity = TVShowEntity.fromTVShowsResponse(dataDummy.getTVShows())!!
         val tvShowsPaged = PagedListUtil.mockPagedList(tvShowsEntity)
@@ -60,7 +60,7 @@ class TVShowRepositoryTest {
         dummyTVShow.value = tvShowEntity
         `when`(local.getTVShow(sampleTVShowId)).thenReturn(dummyTVShow)
 
-        val tvShowLive = LiveDataTestUtil.getValue(repository.getTVShow(sampleTVShowId))
+        val tvShowLive = LiveDataTestUtil.getValue(repository.getDetailTVShow(sampleTVShowId))
         verify(local).getTVShow(sampleTVShowId)
         assertNotNull(tvShowLive)
         assertNotNull(tvShowLive.data)
@@ -72,7 +72,7 @@ class TVShowRepositoryTest {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TVShowEntity>
         `when`(local.getFavoriteTVShows()).thenReturn(dataSourceFactory)
-        repository.getFavoriteTVShows()
+        repository.getFavoriteTVShow()
 
         val tvShowsEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
         val tvShowsPaged = PagedListUtil.mockPagedList(tvShowsEntity)
@@ -97,7 +97,7 @@ class TVShowRepositoryTest {
         randomNumber.value = (0 until 100).random()
         `when`(local.getFavoriteCounts()).thenReturn(randomNumber)
 
-        val countLive = LiveDataTestUtil.getValue(repository.getFavoriteTVShowsCount())
+        val countLive = LiveDataTestUtil.getValue(repository.getFavoriteTVShowCount())
         verify(local).getFavoriteCounts()
         assertEquals(randomNumber.value, countLive)
     }

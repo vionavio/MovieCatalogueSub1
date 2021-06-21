@@ -3,7 +3,7 @@ package com.viona.moviecatalogue.data.repository
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.viona.moviecatalogue.data.source.local.TVShowLocalDatasource
+import com.viona.moviecatalogue.data.source.local.TVShowLocalDataSource
 import com.viona.moviecatalogue.data.source.NetworkBoundResource
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.data.source.remote.ApiResponse
@@ -15,11 +15,11 @@ import com.viona.moviecatalogue.vo.Resource
 
 class TVShowRepository(
     private val remote: TVShowRemoteDataSource,
-    private val local: TVShowLocalDatasource,
+    private val local: TVShowLocalDataSource,
     private val appExecutors: AppExecutors
 ) : TVShowRepositoryInterface {
 
-    override fun getTVShows(): LiveData<Resource<PagedList<TVShowEntity>>> {
+    override fun getDetailTVShow(): LiveData<Resource<PagedList<TVShowEntity>>> {
         return object :
             NetworkBoundResource<PagedList<TVShowEntity>, TVShowsResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<PagedList<TVShowEntity>> {
@@ -47,7 +47,7 @@ class TVShowRepository(
         }.asLiveData()
     }
 
-    override fun getTVShow(id: Int): LiveData<Resource<TVShowEntity>> {
+    override fun getDetailTVShow(id: Int): LiveData<Resource<TVShowEntity>> {
         return object : NetworkBoundResource<TVShowEntity, TVShowDetailResponse>(appExecutors) {
             override fun loadFromDB(): LiveData<TVShowEntity> {
                 return local.getTVShow(id)
@@ -69,7 +69,7 @@ class TVShowRepository(
         }.asLiveData()
     }
 
-    override fun getFavoriteTVShows(): LiveData<PagedList<TVShowEntity>> {
+    override fun getFavoriteTVShow(): LiveData<PagedList<TVShowEntity>> {
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setInitialLoadSizeHint(4)
@@ -83,7 +83,7 @@ class TVShowRepository(
         return appExecutors.diskIO().execute { local.setTVShowFavorite(tvShow, state) }
     }
 
-    override fun getFavoriteTVShowsCount(): LiveData<Int> {
+    override fun getFavoriteTVShowCount(): LiveData<Int> {
         return local.getFavoriteCounts()
     }
 }

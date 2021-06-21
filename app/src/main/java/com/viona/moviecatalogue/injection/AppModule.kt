@@ -3,8 +3,8 @@ package com.viona.moviecatalogue.injection
 import com.viona.moviecatalogue.data.network.NetworkConfig
 import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.repository.TVShowRepository
-import com.viona.moviecatalogue.data.source.local.MovieLocalDatasource
-import com.viona.moviecatalogue.data.source.local.TVShowLocalDatasource
+import com.viona.moviecatalogue.data.source.local.MovieLocalDataSource
+import com.viona.moviecatalogue.data.source.local.TVShowLocalDataSource
 import com.viona.moviecatalogue.data.source.local.room.AppDatabase
 import com.viona.moviecatalogue.data.source.remote.MovieRemoteDataSource
 import com.viona.moviecatalogue.data.source.remote.TVShowRemoteDataSource
@@ -14,9 +14,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val appModules = module {
-    /*single { NetworkConfig() }
-    single { RemoteDataSource(get()) }
-    single { DataRepository(get()) }*/
 
     // context
     factory { AppDatabase.getInstance(androidContext()) }
@@ -28,9 +25,9 @@ val appModules = module {
 
     // datasource
     single { MovieRemoteDataSource(get()) }
-    single { MovieLocalDatasource(get()) }
+    single { MovieLocalDataSource(get()) }
     single { TVShowRemoteDataSource(get()) }
-    single { TVShowLocalDatasource(get()) }
+    single { TVShowLocalDataSource(get()) }
 
     // repository
     single { MovieRepository(get(), get(), get()) }

@@ -40,8 +40,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.favorite.movies.FavoriteMoviesActivity"/>
-        <activity android:name=".ui.favorite.tv_shows.FavoriteTVShowsActivity"/>
+        <activity android:name=".ui.favorite.movies.FavoriteMovieActivity"/>
+        <activity android:name=".ui.favorite.tv_shows.FavoriteTVShowActivity"/>
 
 
     </application>

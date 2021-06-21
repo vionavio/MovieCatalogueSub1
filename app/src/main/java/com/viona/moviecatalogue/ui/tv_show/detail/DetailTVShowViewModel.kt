@@ -6,7 +6,6 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.viona.moviecatalogue.data.repository.TVShowRepository
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
-import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.vo.Resource
 
 class DetailTVShowViewModel(private val repository: TVShowRepository) : ViewModel() {
@@ -18,7 +17,7 @@ class DetailTVShowViewModel(private val repository: TVShowRepository) : ViewMode
 
     var tvShow: LiveData<Resource<TVShowEntity>> =
         Transformations.switchMap(id) { mId ->
-            repository.getTVShow(mId)
+            repository.getDetailTVShow(mId)
         }
 
     fun setFavorite() {

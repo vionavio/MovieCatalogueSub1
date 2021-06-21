@@ -20,27 +20,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@drawable/gradient_catalogue"
             android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ic_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/movie"
+                android:src="@drawable/ic_movie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_movies_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="Movie"
+                android:text="@string/movie"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/ic_movie" />
 
             <TextView
                 android:id="@+id/tv_movies_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Movie Favorite"
+                android:text="@string/movie_favorite"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="@+id/tv_movies_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_movies_title" />
@@ -71,27 +79,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@drawable/gradient_catalogue"
             android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/movie"
+                android:src="@drawable/ic_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_tv_show_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="TV Show"
+                android:text="@string/tv_show"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <TextView
                 android:id="@+id/tv_tv_show_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="TV Show Favorite"
+                android:text="@string/tv_show_favorite"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="@+id/tv_tv_show_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_tv_show_title" />
@@ -108,6 +124,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

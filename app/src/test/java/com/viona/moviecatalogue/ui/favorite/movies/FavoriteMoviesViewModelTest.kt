@@ -23,7 +23,7 @@ class FavoriteMoviesViewModelTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: FavoriteMoviesViewModel
+    private lateinit var viewModel: FavoriteMovieViewModel
 
     @Mock
     private lateinit var repository: MovieRepository
@@ -36,7 +36,7 @@ class FavoriteMoviesViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteMoviesViewModel(repository)
+        viewModel = FavoriteMovieViewModel(repository)
     }
 
     @Test
@@ -48,14 +48,14 @@ class FavoriteMoviesViewModelTest {
         val movies = MutableLiveData<PagedList<MovieEntity>>()
         movies.value = dummyMovies
 
-        `when`(repository.getFavoriteMovies()).thenReturn(movies)
-        val moviesEntity = viewModel.getFavoriteMovies().value
+        `when`(repository.getFavoriteMovie()).thenReturn(movies)
+        val moviesEntity = viewModel.getFavoriteMovie().value
 
-        verify(repository).getFavoriteMovies()
+        verify(repository).getFavoriteMovie()
         assertNotNull(moviesEntity)
         assertEquals(randomNumber, moviesEntity?.size)
 
-        viewModel.getFavoriteMovies().observeForever(observer)
+        viewModel.getFavoriteMovie().observeForever(observer)
         verify(observer).onChanged(dummyMovies)
     }
 }

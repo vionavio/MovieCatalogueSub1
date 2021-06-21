@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.ilham.jpro.lastsubmission.LiveDataTestUtil
 import com.ilham.jpro.lastsubmission.PagedListUtil
-import com.viona.moviecatalogue.data.source.local.MovieLocalDatasource
+import com.viona.moviecatalogue.data.source.local.MovieLocalDataSource
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.remote.MovieRemoteDataSource
 import com.viona.moviecatalogue.utils.AppExecutors
@@ -24,7 +24,7 @@ class MovieRepositoryTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private val remote = mock(MovieRemoteDataSource::class.java)
-    private val local = mock(MovieLocalDatasource::class.java)
+    private val local = mock(MovieLocalDataSource::class.java)
     private val appExecutor = mock(AppExecutors::class.java)
     private val dataDummy = DataDummy()
 
@@ -39,14 +39,14 @@ class MovieRepositoryTest {
     fun getMovies() {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
-        `when`(local.getMovies()).thenReturn(dataSourceFactory)
-        repository.getMovies()
+        `when`(local.getDetailMovie()).thenReturn(dataSourceFactory)
+        repository.getDetailMovie()
 
         val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
         val moviesPaged = PagedListUtil.mockPagedList(moviesEntity)
         val moviesResource = Resource.success(moviesPaged)
 
-        verify(local).getMovies()
+        verify(local).getDetailMovie()
         assertNotNull(moviesResource.data)
         assertEquals(sampleMoviesResponse.results?.size, moviesResource.data?.size)
     }
@@ -56,10 +56,10 @@ class MovieRepositoryTest {
         val dummyMovie = MutableLiveData<MovieEntity>()
         val movieEntity = MovieEntity.fromMovieResponse(sampleMovieResponse)
         dummyMovie.value = movieEntity
-        `when`(local.getMovie(sampleMovieId)).thenReturn(dummyMovie)
+        `when`(local.getDetailMovie(sampleMovieId)).thenReturn(dummyMovie)
 
-        val movieLive = LiveDataTestUtil.getValue(repository.getMovie(sampleMovieId))
-        verify(local).getMovie(sampleMovieId)
+        val movieLive = LiveDataTestUtil.getValue(repository.getDetailMovie(sampleMovieId))
+        verify(local).getDetailMovie(sampleMovieId)
         assertNotNull(movieLive)
         assertNotNull(movieLive.data)
         assertEquals(movieEntity, movieLive.data)
@@ -69,14 +69,14 @@ class MovieRepositoryTest {
     fun getFavoriteMovies() {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
-        `when`(local.getFavoriteMovies()).thenReturn(dataSourceFactory)
-        repository.getFavoriteMovies()
+        `when`(local.getFavoriteMovie()).thenReturn(dataSourceFactory)
+        repository.getFavoriteMovie()
 
         val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovies())!!
         val moviesPaged = PagedListUtil.mockPagedList(moviesEntity)
         val moviesResource = Resource.success(moviesPaged)
 
-        verify(local).getFavoriteMovies()
+        verify(local).getFavoriteMovie()
         assertNotNull(moviesResource)
         assertEquals(sampleMoviesResponse.results?.size, moviesResource.data?.size)
     }
@@ -93,10 +93,10 @@ class MovieRepositoryTest {
     fun getFavoriteMoviesCount() {
         val randomNumber = MutableLiveData<Int>()
         randomNumber.value = (0 until 100).random()
-        `when`(local.getFavoriteCounts()).thenReturn(randomNumber)
+        `when`(local.getFavoriteCount()).thenReturn(randomNumber)
 
-        val countLive = LiveDataTestUtil.getValue(repository.getFavoriteMoviesCount())
-        verify(local).getFavoriteCounts()
+        val countLive = LiveDataTestUtil.getValue(repository.getFavoriteMovieCount())
+        verify(local).getFavoriteCount()
         assertEquals(randomNumber.value, countLive)
     }
 }

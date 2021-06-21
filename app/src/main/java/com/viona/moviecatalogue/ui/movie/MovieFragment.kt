@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.databinding.FragmentMovieBinding
 import com.viona.moviecatalogue.ui.movie.detail.DetailMovieActivity
@@ -46,7 +47,7 @@ class MovieFragment : Fragment() {
                         }
                         Status.ERROR -> {
                             binding?.progressBars?.root?.visibility = View.GONE
-                            Notification.showToast(context, "Terjadi Kesalahan")
+                            Notification.showToast(context, getString(R.string.error))
                         }
                     }
                 }
@@ -65,5 +66,4 @@ class MovieFragment : Fragment() {
         intent.putExtra(Constants.EXTRA_MOVIE, movie.id)
         context?.startActivity(intent)
     }
-
 }

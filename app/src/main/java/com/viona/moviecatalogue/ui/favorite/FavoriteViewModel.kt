@@ -6,15 +6,15 @@ import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.repository.TVShowRepository
 
 class FavoriteViewModel(
-    private val movieRepository: MovieRepository,
-    private val tvShowRepository: TVShowRepository
+    private val movieRepo: MovieRepository,
+    private val tvShowRepo: TVShowRepository
 ) : ViewModel() {
 
-    fun getFavoriteMoviesCount(): LiveData<Int> {
-        return movieRepository.getFavoriteMoviesCount()
+    fun getFavoriteMovieCount(): LiveData<Int> {
+        return movieRepo.getFavoriteMovieCount()
     }
 
-    fun getFavoriteTVShowsCount(): LiveData<Int> {
-        return tvShowRepository.getFavoriteTVShowsCount()
+    fun getFavoriteTVShowCount(): LiveData<Int> {
+        return tvShowRepo.getFavoriteTVShowCount()
     }
 }

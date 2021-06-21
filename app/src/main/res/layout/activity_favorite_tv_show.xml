@@ -4,28 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.favorite.tv_shows.FavoriteTVShowsActivity">
+    tools:context=".ui.favorite.tv_shows.FavoriteTVShowActivity">
 
-     <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tv_shows"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
         android:clipToPadding="false"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:paddingStart="@dimen/_4dp"
+        android:paddingEnd="@dimen/_4dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/items_movie">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/items_movie"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/no_tv_show_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_favorites_tv_show"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
