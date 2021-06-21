@@ -16,7 +16,7 @@ interface ApiService {
     @GET("movie/{id}")
     fun getMovieDetail(@Path("id") id: Int): Call<DetailMovieResponse>
 
-    @GET("tv/top_rated")
+    @GET("tv/popular")
     fun getTVShows(): Call<TVShowsResponse>
 
     @GET("tv/{id}")
