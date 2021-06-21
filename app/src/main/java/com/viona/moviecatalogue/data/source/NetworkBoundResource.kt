@@ -7,7 +7,7 @@ import com.viona.moviecatalogue.data.source.remote.StatusResponse
 import com.viona.moviecatalogue.utils.AppExecutors
 import com.viona.moviecatalogue.vo.Resource
 
-abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecutors: AppExecutors) {
+abstract class NetworkBoundResource<ResultType, RequestType>(private val executors: AppExecutors) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
@@ -22,8 +22,8 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
             if (shouldFetch(data)) {
                 fetchFromNetwork(dbSource)
             } else {
-                result.addSource(dbSource) { newData ->
-                    result.value = Resource.success(newData)
+                result.addSource(dbSource) { prevData ->
+                    result.value = Resource.success(prevData)
                 }
             }
         }
@@ -43,35 +43,34 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
 
         val apiResponse = createCall()
 
-        result.addSource(dbSource) { newData ->
-            result.value = Resource.loading(newData)
+        result.addSource(dbSource) { data ->
+            result.value = Resource.loading(data)
         }
 
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
             when (response.status) {
-
                 StatusResponse.SUCCESS ->
-                    mExecutors.diskIO().execute {
+                    executors.diskIO().execute {
                         saveCallResult(response.body)
-                        mExecutors.mainThread().execute {
-                            result.addSource(loadFromDB()) { newData ->
-                                result.value = Resource.success(newData)
+                        executors.mainThread().execute {
+                            result.addSource(loadFromDB()) { data ->
+                                result.value = Resource.success(data)
                             }
                         }
                     }
 
-                StatusResponse.EMPTY -> mExecutors.mainThread().execute {
-                    result.addSource(loadFromDB()) { newData ->
-                        result.value = Resource.success(newData)
+                StatusResponse.EMPTY -> executors.mainThread().execute {
+                    result.addSource(loadFromDB()) { data ->
+                        result.value = Resource.success(data)
                     }
                 }
 
                 StatusResponse.ERROR -> {
                     onFetchFailed()
-                    result.addSource(dbSource) { newData ->
-                        result.value = Resource.error(response.message, newData)
+                    result.addSource(dbSource) { data ->
+                        result.value = Resource.error(response.message, data)
                     }
                 }
             }

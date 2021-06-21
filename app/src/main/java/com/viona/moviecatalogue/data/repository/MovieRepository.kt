@@ -38,7 +38,7 @@ class MovieRepository(
             }
 
             override fun createCall(): LiveData<ApiResponse<MoviesResponse>> {
-                return remote.getMovies()
+                return remote.getMovie()
             }
 
             override fun saveCallResult(data: MoviesResponse) {

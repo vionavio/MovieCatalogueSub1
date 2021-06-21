@@ -33,8 +33,8 @@ class MainActivityTest {
     private val movieRemoteDataSource = MovieRemoteDataSource(networkConfig.getApiService())
     private val tvShowRemoteDataSource = TVShowRemoteDataSource(networkConfig.getApiService())
 
-    private val sampleMovies = movieRemoteDataSource.getMovies()
-    private val sampleTVShows = tvShowRemoteDataSource.getTVShows()
+    private val sampleMovies = movieRemoteDataSource.getMovie()
+    private val sampleTVShows = tvShowRemoteDataSource.getTVShow()
 
     private lateinit var instrumentalContext: Context
 

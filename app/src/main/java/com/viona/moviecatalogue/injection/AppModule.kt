@@ -15,25 +15,19 @@ import org.koin.dsl.module
 
 val appModules = module {
 
-    // context
     factory { AppDatabase.getInstance(androidContext()) }
 
-    // core
     single { NetworkConfig() }
     single { get<NetworkConfig>().getApiService() }
     single { AppExecutors() }
 
-    // datasource
     single { MovieRemoteDataSource(get()) }
     single { MovieLocalDataSource(get()) }
     single { TVShowRemoteDataSource(get()) }
     single { TVShowLocalDataSource(get()) }
 
-    // repository
     single { MovieRepository(get(), get(), get()) }
     single { TVShowRepository(get(), get(), get()) }
 
-    // utils
     single { DataDummy() }
-
 }

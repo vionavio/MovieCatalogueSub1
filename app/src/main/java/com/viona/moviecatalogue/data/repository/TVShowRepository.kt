@@ -38,7 +38,7 @@ class TVShowRepository(
             }
 
             override fun createCall(): LiveData<ApiResponse<TVShowsResponse>> {
-                return remote.getTVShows()
+                return remote.getTVShow()
             }
 
             override fun saveCallResult(data: TVShowsResponse) {
