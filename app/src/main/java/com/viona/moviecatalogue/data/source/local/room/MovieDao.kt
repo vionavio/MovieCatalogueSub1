@@ -7,7 +7,7 @@ import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movie ORDER BY popularity DESC")
+    @Query("SELECT * FROM movie")
     fun getMovie(): DataSource.Factory<Int, MovieEntity>
 
     @Query("SELECT * FROM movie WHERE favorite = 1")

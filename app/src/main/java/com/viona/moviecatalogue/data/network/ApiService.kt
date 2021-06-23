@@ -1,6 +1,6 @@
 package com.viona.moviecatalogue.data.network
 
-import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -14,7 +14,7 @@ interface ApiService {
     fun getMovies(): Call<MoviesResponse>
 
     @GET("movie/{id}")
-    fun getMovieDetail(@Path("id") id: Int): Call<DetailMovieResponse>
+    fun getMovieDetail(@Path("id") id: Int): Call<MovieResultsItem>
 
     @GET("tv/popular")
     fun getTVShows(): Call<TVShowsResponse>

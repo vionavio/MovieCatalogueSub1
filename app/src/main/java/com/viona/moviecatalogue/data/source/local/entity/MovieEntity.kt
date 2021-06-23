@@ -4,12 +4,10 @@ import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
 import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 
 @Entity(tableName = "movie")
-
 data class MovieEntity(
     @PrimaryKey
     @NonNull
@@ -55,7 +53,7 @@ data class MovieEntity(
             return movies.results?.map { fromMovieItem(it) }
         }
 
-        fun fromMovieResponse(movie: DetailMovieResponse?): MovieEntity {
+        fun fromMovieResponse(movie: MovieResultsItem?): MovieEntity {
             return fromMovieItem(MovieResultsItem.fromMovieDetailResponse(movie))
         }
 

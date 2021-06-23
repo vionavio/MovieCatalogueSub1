@@ -49,13 +49,13 @@ class TVShowViewModelTest {
         tvShows.value = dummyTVShow
 
         Mockito.`when`(repository.getTVShow()).thenReturn(tvShows)
-        val tvShowsEntity = viewModel.getTVShows().value?.data
+        val tvShowsEntity = viewModel.getTVShow().value?.data
 
         Mockito.verify(repository).getTVShow()
         assertNotNull(tvShowsEntity)
         assertEquals(randomNumber, tvShowsEntity?.size)
 
-        viewModel.getTVShows().observeForever(observer)
+        viewModel.getTVShow().observeForever(observer)
         Mockito.verify(observer).onChanged(dummyTVShow)
     }
 }

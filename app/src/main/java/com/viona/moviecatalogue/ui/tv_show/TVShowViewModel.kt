@@ -5,5 +5,5 @@ import com.viona.moviecatalogue.data.repository.TVShowRepository
 
 class TVShowViewModel(private val dataRepository: TVShowRepository) : ViewModel() {
 
-    fun getTVShows() = dataRepository.getTVShow()
+    fun getTVShow() = dataRepository.getTVShow()
 }

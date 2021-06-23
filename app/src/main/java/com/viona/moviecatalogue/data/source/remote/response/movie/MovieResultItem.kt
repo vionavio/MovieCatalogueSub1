@@ -42,7 +42,7 @@ data class MovieResultsItem(
     val voteCount: Int? = null
 ) {
     companion object {
-        fun fromMovieDetailResponse(movie: DetailMovieResponse?): MovieResultsItem {
+        fun fromMovieDetailResponse(movie: MovieResultsItem?): MovieResultsItem {
             return MovieResultsItem(
                 id = movie?.id ?: 0,
                 title = movie?.title ?: "",

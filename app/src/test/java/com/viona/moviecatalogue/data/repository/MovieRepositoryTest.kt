@@ -40,14 +40,14 @@ class MovieRepositoryTest {
     fun getMovie() {
         val dataSourceFactory =
             mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
-        `when`(local.getDetailMovie()).thenReturn(dataSourceFactory)
+        `when`(local.getMovie()).thenReturn(dataSourceFactory)
         repository.getMovie()
 
         val moviesEntity = MovieEntity.fromMoviesResponse(dataDummy.getMovie())!!
         val moviesPaged = PagedListUtil.mockPagedList(moviesEntity)
         val moviesResource = Resource.success(moviesPaged)
 
-        verify(local).getDetailMovie()
+        verify(local).getMovie()
         assertNotNull(moviesResource.data)
         assertEquals(sampleMoviesResponse.results?.size, moviesResource.data?.size)
     }

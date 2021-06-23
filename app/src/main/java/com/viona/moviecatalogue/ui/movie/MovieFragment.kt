@@ -20,10 +20,12 @@ class MovieFragment : Fragment() {
 
     private var fragmentMovieBinding: FragmentMovieBinding? = null
     private val binding get() = fragmentMovieBinding
+
     private val movieViewModel: MovieViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         fragmentMovieBinding = FragmentMovieBinding.inflate(layoutInflater, container, false)
@@ -34,14 +36,15 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-
             val movieAdapter = MovieAdapter(requireContext()) { movie -> gotoResult(movie) }
+
             movieViewModel.getMovie().observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {
                     when (movies.status) {
                         Status.LOADING -> binding?.progressBars?.root?.visibility = View.VISIBLE
                         Status.SUCCESS -> {
                             binding?.progressBars?.root?.visibility = View.GONE
+
                             movieAdapter.submitList(movies.data)
                         }
                         Status.ERROR -> {

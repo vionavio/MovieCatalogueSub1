@@ -8,7 +8,7 @@ import com.viona.moviecatalogue.data.source.local.room.AppDatabase
 class MovieLocalDataSource(database: AppDatabase) {
     private var movieDao = database.movieDao()
 
-    fun getDetailMovie(): DataSource.Factory<Int, MovieEntity> {
+    fun getMovie(): DataSource.Factory<Int, MovieEntity> {
         return movieDao.getMovie()
     }
 
@@ -24,11 +24,11 @@ class MovieLocalDataSource(database: AppDatabase) {
         return movieDao.getDetailMovie(id)
     }
 
-    fun insertDetailMovie(movies: List<MovieEntity>) {
+    fun insertMovie(movies: List<MovieEntity>) {
         return movieDao.insertAll(movies)
     }
 
-    fun insertDetailMovie(movieEntity: MovieEntity) {
+    fun insertMovie(movieEntity: MovieEntity) {
         movieDao.insertMovie(movieEntity)
     }
 

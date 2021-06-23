@@ -69,7 +69,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun upButton() {
+    fun backButton() {
         onView(withText(R.string.favorite)).perform(click())
         onView(withId(R.id.fragment_favorite)).check(matches(isDisplayed()))
         onView(isRoot()).perform(ViewActions.pressBack())
@@ -97,7 +97,7 @@ class MainActivityTest {
         onView(withText(R.string.movies)).perform(click())
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
 
-        val sampleMovie = sampleMovies.value?.body?.results?.first()
+        val sampleMovie = sampleMovies.value?.body?.results?.get(0)
         val position = sampleMovies.value?.body?.results?.indexOf(sampleMovie)
 
         onView(withId(R.id.rv_movie)).perform(
@@ -132,12 +132,11 @@ class MainActivityTest {
         onView(withText(R.string.movies)).perform(click())
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
 
-        val res = sampleMovies.value?.body?.results!!
-        val sampleMovie = res.first()
-        val position = res.indexOf(sampleMovie)
+        val sampleMovie = sampleMovies.value?.body?.results?.get(0)
+        val position = sampleMovies.value?.body?.results?.indexOf(sampleMovie)
 
         onView(withId(R.id.rv_movie)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())
+            position?.let { RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(it, click()) }
         )
 
         onView(withId(R.id.action_favorite)).perform(click())

@@ -1,7 +1,7 @@
 package com.viona.moviecatalogue.utils
 
 import com.google.gson.Gson
-import com.viona.moviecatalogue.data.source.remote.response.movie.DetailMovieResponse
+import com.viona.moviecatalogue.data.source.remote.response.movie.MovieResultsItem
 import com.viona.moviecatalogue.data.source.remote.response.movie.MoviesResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowDetailResponse
 import com.viona.moviecatalogue.data.source.remote.response.tvShow.TVShowsResponse
@@ -14,8 +14,8 @@ class DataDummy {
         return jsonData("movies.json", MoviesResponse::class.java)
     }
 
-    fun getDetailMovie(): DetailMovieResponse {
-        return jsonData("movie.json", DetailMovieResponse::class.java)
+    fun getDetailMovie(): MovieResultsItem {
+        return jsonData("movie.json", MovieResultsItem::class.java)
     }
 
     fun getTVShow(): TVShowsResponse {
