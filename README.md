@@ -35,6 +35,8 @@ Keterangan test ada di file README
 
 # Instrumental Testing Movie Catalogue
 
+ --Pastikan blum ada movie atau tv show yang menjadi favorit--
+
 1. Test Tab
    a. Klik tab movies
       Memastikan fragment_movie tampil
