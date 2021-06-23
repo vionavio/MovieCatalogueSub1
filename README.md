@@ -60,9 +60,8 @@ Keterangan test ada di file README
 
 4. Menampilkan data detail movie
     Memberi tindakan klik pada data pertama di rv_movie
-    Memastikan ImageView poster tampil
-    Memastikan TextView untuk img_poster tampil sesuai yang diharapkan
-    Memastikan TextView untuk backdrop_path tampil sesuai yang diharapkan
+    Memastikan ImageView untuk img_poster tampil sesuai yang diharapkan
+    Memastikan ImageView untuk backdrop_path tampil sesuai yang diharapkan
     Memastikan TextView untuk item_title tampil sesuai yang diharapkan
     Memastikan TextView untuk original title tampil sesuai yang diharapkan
     Memastikan TextView untuk detail_rate tampil sesuai yang diharapkan
@@ -71,25 +70,78 @@ Keterangan test ada di file README
     
     Memastikan TextView untuk sum_rate tampil sesuai yang diharapkan
     Memastikan TextView untuk date_release tampil sesuai yang diharapkan
-    Memastikan Menu share dapat di klik
+    Memastikan Menu collapse action bar dapat di klik
+    
+5. Menampilkan data favorite movie
+    Memberi tindakan klik pada tab favorites
+    Membaca jumlah items pada tv_movie_count 
+    Memberi tindakan klik pada tab movies
+    Memastikan RecyclerView rv_movie dalam keadaan tampil sesuai yang diharapkan
+    Memberi tindakan klik pada item movie pertama pada rv_movie
+    Memberi tindakan klik pada tombol favorite pada action_favorites
+    Memberi tindakan klik tombol kembali
+    Memberi tindakan klik pada tab favorites
+    Memastikan TextView pada tv_movie_count sesuai yang diharapkan "(number) items"
+    Memberi tindakan klik pada RecyclerView index 0 pada fragment favorites
+    Memastikan TextView untuk title sesuai yang diharapkan
+    Memberi tindakan klik pada index 0 film tersebut
+    
+    Memastikan ImageView untuk img_poster tampil sesuai yang diharapkan
+    Memastikan ImageView untuk backdrop_path tampil sesuai yang diharapkan
+    Memastikan TextView untuk item_title tampil sesuai yang diharapkan
+    Memastikan TextView untuk original title tampil sesuai yang diharapkan      Memastikan TextView untuk detail_rate tampil sesuai yang diharapkan
+    Memastikan TextView untuk backdrop_path tampil sesuai yang diharapkan
+    Memastikan TextView untuk description tampil sesuai yang diharapkan
+    Memastikan TextView untuk popularity tampil sesuai yang diharapkan
+        
+    Memastikan TextView untuk sum_rate tampil sesuai yang diharapkan
+    Memastikan TextView untuk date_release tampil sesuai yang diharapkan
+    Memastikan Menu collapse action bar dapat di klik
+    
+    Memberi tindakan klik pada tombol favorite untuk action_favorite
+    Memberi tindakan klik tombol kembali
+    Memberi tindakan klik tombol kembali
+    Memastikan TextView pada tv_movie_count sesuai yang diharapkan "(number) items"
 
-5. Menampilkan data tv show
+6. Menampilkan data tv show
     Memastikan tv show dalam keadaan tampil
     Gulir tv show ke posisi data terakhir
     Memastikan TextView untuk title tampil sesuai yang diharapkan
     
-6. Menampilkan data detail tv show
+7. Menampilkan data detail tv show
     Tindakan klik pada data pertama di rv_tv_show
-    Memastikan ImageView pada poster tampil
-    Memastikan TextView untuk title/name tampil sesuai yang diharapkan
-    Memastikan TextView untuk original name tampil sesuai yang diharapkan
-    Memastikan TextView untuk rating tampil sesuai yang diharapkan
-    Memastikan TextView untuk episode tampil sesuai yang diharapkan
-    Memastikan TextView untuk season tampil sesuai yang diharapkan
-    Memastikan TextView untuk spoken languages tampil sesuai yang diharapkan
-    Memastikan TextView untuk genres tampil sesuai yang diharapkan
-    Memastikan TextView untuk description tampil sesuai yang diharapkan
-    Memastikan TextView untuk status tampil sesuai yang diharapkan
-    Memastikan TextView untuk first air date tampil sesuai yang diharapkan
-    Memastikan TextView untuk popularity tampil sesuai yang diharapkan
-    Memastikan Menu share dapat di klik
+    Memastikan ImageView untuk img_poster  tampil
+    Memastikan ImageView pada tv_backdrop_path tampil
+    Memastikan TextView untuk tv_show_title padatitle/name tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_original_name pada original name tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_desc pada description tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_air_date pada first air date tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_language pada language tampil sesuai yang diharapkan
+    Memastikan Menu collapse action bar dapat di klik
+    
+8. Menampilkan data favorite movie
+    Memberi tindakan klik pada tab favorites
+    Membaca jumlah items pada tv_tv_show_count 
+    Memberi tindakan klik pada tab tv shows
+    Memastikan RecyclerView rv_tv_show dalam keadaan tampil sesuai yang diharapkan
+    Memberi tindakan klik pada item tv show pertama pada rv_tv_show
+    Memberi tindakan klik pada tombol favorite pada action_favorites
+    Memberi tindakan klik tombol kembali
+    Memberi tindakan klik pada tab favorites
+    Memastikan TextView pada tv_show_count sesuai yang diharapkan "(number) items"
+    Memberi tindakan klik pada RecyclerView index 0 pada fragment favorites
+    Memastikan TextView untuk title sesuai yang diharapkan
+    Memberi tindakan klik pada index 0 tv show tersebut
+    
+    Memastikan ImageView untuk img_poster  tampil
+    Memastikan ImageView pada tv_backdrop_path tampil
+    Memastikan TextView untuk tv_show_title padatitle/name tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_original_name pada original name tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_desc pada description tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_air_date pada first air date tampil sesuai yang diharapkan
+    Memastikan TextView untuk tv_language pada language tampil sesuai yang diharapkan     Memastikan Menu collapse action bar dapat di klik
+    
+    Memberi tindakan klik pada tombol favorite untuk action_favorite
+    Memberi tindakan klik tombol kembali
+    Memberi tindakan klik tombol kembali
+    Memastikan TextView pada tv_tv_show_count sesuai yang diharapkan "(number) items"

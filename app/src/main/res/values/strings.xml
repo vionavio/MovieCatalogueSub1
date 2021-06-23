@@ -43,4 +43,6 @@
     <string name="error">Error..</string>
     <string name="add_favorite">Add to Favorites</string>
     <string name="remove_favorite">Remove to Favorites</string>
+    <string name="items">items</string>
+    <string name="text_view">Text of the view</string>
 </resources>
