@@ -18,7 +18,7 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class MoviesViewModelTest {
+class MovieViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -40,22 +40,22 @@ class MoviesViewModelTest {
     }
 
     @Test
-    fun getMovies() {
-        val dummyMovies = Resource.success(pagedList)
+    fun getMovie() {
+        val dummyMovie = Resource.success(pagedList)
         val randomNumber = (0 until 100).random()
-        Mockito.`when`(dummyMovies.data?.size).thenReturn(randomNumber)
+        Mockito.`when`(dummyMovie.data?.size).thenReturn(randomNumber)
 
         val movies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
-        movies.value = dummyMovies
+        movies.value = dummyMovie
 
         Mockito.`when`(repository.getMovie()).thenReturn(movies)
-        val moviesEntity = viewModel.getMovie().value?.data
+        val movieEntity = viewModel.getMovie().value?.data
 
         verify(repository).getMovie()
-        TestCase.assertNotNull(moviesEntity)
-        TestCase.assertEquals(randomNumber, moviesEntity?.size)
+        TestCase.assertNotNull(movieEntity)
+        TestCase.assertEquals(randomNumber, movieEntity?.size)
 
         viewModel.getMovie().observeForever(observer)
-        verify(observer).onChanged(dummyMovies)
+        verify(observer).onChanged(dummyMovie)
     }
 }

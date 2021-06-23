@@ -5,14 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.repository.TVShowRepository
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
+
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -22,7 +23,7 @@ class FavoriteViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var viewModel: FavoriteViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     @Mock
     private lateinit var movieRepository: MovieRepository
@@ -35,40 +36,40 @@ class FavoriteViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteViewModel(movieRepository, tvShowRepository)
+        favoriteViewModel = FavoriteViewModel(movieRepository, tvShowRepository)
     }
 
     @Test
-    fun getFavoriteMoviesCount() {
+    fun getFavoriteMovieCount() {
         val numberLive = MutableLiveData<Int>()
         val numberRandom = (0 until 100).random()
         numberLive.value = numberRandom
-        `when`(movieRepository.getFavoriteMovieCount()).thenReturn(numberLive)
+        Mockito.`when`(movieRepository.getFavoriteMovieCount()).thenReturn(numberLive)
 
-        val count = viewModel.getFavoriteMovieCount().value
+        val count = favoriteViewModel.getFavoriteMovieCount().value
         verify(movieRepository).getFavoriteMovieCount()
-        verifyNoInteractions(tvShowRepository)
+        Mockito.verifyNoInteractions(tvShowRepository)
         assertNotNull(count)
         assertEquals(numberRandom, count)
 
-        viewModel.getFavoriteMovieCount().observeForever(observer)
+        favoriteViewModel.getFavoriteMovieCount().observeForever(observer)
         verify(observer).onChanged(numberRandom)
     }
 
     @Test
-    fun getFavoriteTVShowsCount() {
+    fun getFavoriteTVShowCount() {
         val numberLive = MutableLiveData<Int>()
         val numberRandom = (0 until 100).random()
         numberLive.value = numberRandom
-        `when`(tvShowRepository.getFavoriteTVShowCount()).thenReturn(numberLive)
+        Mockito.`when`(tvShowRepository.getFavoriteTVShowCount()).thenReturn(numberLive)
 
-        val count = viewModel.getFavoriteTVShowCount().value
+        val count = favoriteViewModel.getFavoriteTVShowCount().value
         verify(tvShowRepository).getFavoriteTVShowCount()
-        verifyNoInteractions(movieRepository)
+        Mockito.verifyNoInteractions(movieRepository)
         assertNotNull(count)
         assertEquals(numberRandom, count)
 
-        viewModel.getFavoriteTVShowCount().observeForever(observer)
+        favoriteViewModel.getFavoriteTVShowCount().observeForever(observer)
         verify(observer).onChanged(numberRandom)
     }
 }

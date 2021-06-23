@@ -6,6 +6,7 @@ import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.repository.TVShowRepository
 
 class FavoriteViewModel(
+
     private val movieRepo: MovieRepository,
     private val tvShowRepo: TVShowRepository
 ) : ViewModel() {

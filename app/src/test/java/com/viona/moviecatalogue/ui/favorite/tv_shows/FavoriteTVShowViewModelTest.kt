@@ -13,8 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -23,7 +22,7 @@ class FavoriteTVShowViewModelTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: FavoriteTVShowViewModel
+    private lateinit var favoriteTVShowViewModel: FavoriteTVShowViewModel
 
     @Mock
     private lateinit var repository: TVShowRepository
@@ -36,26 +35,26 @@ class FavoriteTVShowViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteTVShowViewModel(repository)
+        favoriteTVShowViewModel = FavoriteTVShowViewModel(repository)
     }
 
     @Test
-    fun getFavoriteTVShows() {
+    fun favoriteTVShow() {
         val dummyTVShows = pagedList
         val randomNumber = (0 until 100).random()
-        `when`(dummyTVShows.size).thenReturn(randomNumber)
+        Mockito.`when`(dummyTVShows.size).thenReturn(randomNumber)
 
         val movies = MutableLiveData<PagedList<TVShowEntity>>()
         movies.value = dummyTVShows
 
-        `when`(repository.getFavoriteTVShow()).thenReturn(movies)
-        val moviesEntity = viewModel.favoriteTVShow().value
+        Mockito.`when`(repository.getFavoriteTVShow()).thenReturn(movies)
+        val moviesEntity = favoriteTVShowViewModel.favoriteTVShow().value
 
-        verify(repository).getFavoriteTVShow()
+        Mockito.verify(repository).getFavoriteTVShow()
         assertNotNull(moviesEntity)
         assertEquals(randomNumber, moviesEntity?.size)
 
-        viewModel.favoriteTVShow().observeForever(observer)
-        verify(observer).onChanged(dummyTVShows)
+        favoriteTVShowViewModel.favoriteTVShow().observeForever(observer)
+        Mockito.verify(observer).onChanged(dummyTVShows)
     }
 }

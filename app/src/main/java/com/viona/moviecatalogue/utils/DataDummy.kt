@@ -27,7 +27,7 @@ class DataDummy {
     }
 
     private fun <T> jsonData(filename: String, type: Class<T>): T {
-        val testFolderResources = File(File("").absolutePath, "src/test/resources")
+        val testFolderResources = File(File("").absolutePath, "src/test/resources/com/viona/moviecatalogue/data/repository")
         val jsonFile = File(testFolderResources.absolutePath, filename)
         val iStream = FileInputStream(jsonFile)
 

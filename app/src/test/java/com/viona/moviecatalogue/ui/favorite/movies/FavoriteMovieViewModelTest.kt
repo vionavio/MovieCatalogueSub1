@@ -6,24 +6,23 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.viona.moviecatalogue.data.repository.MovieRepository
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Test
+
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class FavoriteMoviesViewModelTest {
+class FavoriteMovieViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: FavoriteMovieViewModel
+    private lateinit var favoriteMovieViewModel: FavoriteMovieViewModel
 
     @Mock
     private lateinit var repository: MovieRepository
@@ -36,26 +35,26 @@ class FavoriteMoviesViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteMovieViewModel(repository)
+        favoriteMovieViewModel = FavoriteMovieViewModel(repository)
     }
 
     @Test
-    fun getFavoriteMovies() {
+    fun favoriteMovie() {
         val dummyMovies = pagedList
         val randomNumber = (0 until 100).random()
-        `when`(dummyMovies.size).thenReturn(randomNumber)
+        Mockito.`when`(dummyMovies.size).thenReturn(randomNumber)
 
         val movies = MutableLiveData<PagedList<MovieEntity>>()
         movies.value = dummyMovies
 
-        `when`(repository.getFavoriteMovie()).thenReturn(movies)
-        val moviesEntity = viewModel.favoriteMovie().value
+        Mockito.`when`(repository.getFavoriteMovie()).thenReturn(movies)
+        val movieEntity = favoriteMovieViewModel.favoriteMovie().value
 
-        verify(repository).getFavoriteMovie()
-        assertNotNull(moviesEntity)
-        assertEquals(randomNumber, moviesEntity?.size)
+        Mockito.verify(repository).getFavoriteMovie()
+        assertNotNull(movieEntity)
+        assertEquals(randomNumber, movieEntity?.size)
 
-        viewModel.favoriteMovie().observeForever(observer)
-        verify(observer).onChanged(dummyMovies)
+        favoriteMovieViewModel.favoriteMovie().observeForever(observer)
+        Mockito.verify(observer).onChanged(dummyMovies)
     }
 }

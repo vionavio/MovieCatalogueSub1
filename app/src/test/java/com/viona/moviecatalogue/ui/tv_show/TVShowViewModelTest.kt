@@ -7,18 +7,18 @@ import androidx.paging.PagedList
 import com.viona.moviecatalogue.data.repository.TVShowRepository
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.vo.Resource
-import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
+
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class TVShowsViewModelTest {
+class TVShowViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -34,6 +34,7 @@ class TVShowsViewModelTest {
     @Mock
     private lateinit var pagedList: PagedList<TVShowEntity>
 
+
     @Before
     fun setUp() {
         viewModel = TVShowViewModel(repository)
@@ -41,20 +42,20 @@ class TVShowsViewModelTest {
 
     @Test
     fun getTVShows() {
-        val dummyTVShows = Resource.success(pagedList)
+        val dummyTVShow = Resource.success(pagedList)
         val randomNumber = (0 until 100).random()
-        Mockito.`when`(dummyTVShows.data?.size).thenReturn(randomNumber)
+        Mockito.`when`(dummyTVShow.data?.size).thenReturn(randomNumber)
         val tvShows = MutableLiveData<Resource<PagedList<TVShowEntity>>>()
-        tvShows.value = dummyTVShows
+        tvShows.value = dummyTVShow
 
         Mockito.`when`(repository.getTVShow()).thenReturn(tvShows)
         val tvShowsEntity = viewModel.getTVShows().value?.data
 
-        verify(repository).getTVShow()
+        Mockito.verify(repository).getTVShow()
         assertNotNull(tvShowsEntity)
         assertEquals(randomNumber, tvShowsEntity?.size)
 
         viewModel.getTVShows().observeForever(observer)
-        verify(observer).onChanged(dummyTVShows)
+        Mockito.verify(observer).onChanged(dummyTVShow)
     }
 }
