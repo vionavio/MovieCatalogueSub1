@@ -128,7 +128,7 @@ Keterangan test ada di file README
     Memberi tindakan klik pada tombol favorite pada action_favorites
     Memberi tindakan klik tombol kembali
     Memberi tindakan klik pada tab favorites
-    Memastikan TextView pada tv_show_count sesuai yang diharapkan "(number) items"
+    Memastikan TextView pada tv_tv_show_count sesuai yang diharapkan "(number) items"
     Memberi tindakan klik pada RecyclerView index 0 pada fragment favorites
     Memastikan TextView untuk title sesuai yang diharapkan
     Memberi tindakan klik pada index 0 tv show tersebut
