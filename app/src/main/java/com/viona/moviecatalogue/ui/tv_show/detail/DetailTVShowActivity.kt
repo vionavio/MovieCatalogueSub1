@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
+import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
 import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.viona.moviecatalogue.utils.Constants
@@ -81,18 +82,15 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
             tvShowRate.text = resources.getString(
                 R.string.rates, tvShows.voteAverage, tvShows.voteCount
             )
-
             tvDesc.text = tvShows.overview
             tvPopularity.text = tvShows.popularity.toString()
             tvAirDate.text = tvShows.firstAirDate
-            tvShow.apply {
-                add(tvShows.name)
-            }
+            tvShow.add(tvShows.name)
         }
         imgPoster(tvShows)
 
-        if (tvShows.backdrop_path != null) backdropPath(tvShows)
-        else imgPoster(tvShows)
+        if (tvShows.backdrop_path != "") backdropPath(tvShows)
+        else backdropPathBackup(tvShows)
     }
 
     private fun backdropPath(tvShows: TVShowEntity) {
@@ -106,6 +104,17 @@ class DetailTVShowActivity : AppCompatActivity(), TVShowCallback {
                 )
                 .into(activityDetailTvShowBinding.tvBackdropPath)
         }
+    }
+
+    private fun backdropPathBackup(tvShows: TVShowEntity) {
+        GlideApp.with(this)
+            .load(Constants.IMAGE_URL + tvShows.posterPath)
+            .centerCrop()
+            .apply(
+                RequestOptions.placeholderOf(R.drawable.ic_loading_backdrop)
+                    .error(R.drawable.ic_error_backdrop)
+            )
+            .into(activityDetailTvShowBinding.tvBackdropPath)
     }
 
     private fun imgPoster(tvShows: TVShowEntity) {

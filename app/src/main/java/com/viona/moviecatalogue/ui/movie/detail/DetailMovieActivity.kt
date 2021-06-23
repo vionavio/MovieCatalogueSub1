@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.viona.moviecatalogue.R
 import com.viona.moviecatalogue.data.source.local.entity.MovieEntity
+import com.viona.moviecatalogue.data.source.local.entity.TVShowEntity
 import com.viona.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.viona.moviecatalogue.utils.Constants
 import com.viona.moviecatalogue.utils.GlideApp
@@ -90,11 +91,15 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
             tvDescription.text = movies.overview
             tvDateRelease.text = movies.releaseDate
             tvLanguage.text = movies.originalLanguage
-
-            movie.apply {
-                add(movies.title)
-            }
+            movie.add(movies.title)
         }
+        imgPoster(movies)
+
+        if (movies.backdrop_path != "") backdropPath(movies)
+        else backdropPathBackup(movies)
+    }
+
+    private fun backdropPath(movies: MovieEntity) {
         GlideApp.with(this)
             .load(Constants.IMAGE_URL + movies.backdrop_path)
             .centerCrop()
@@ -103,7 +108,20 @@ class DetailMovieActivity : AppCompatActivity(), MovieCallback {
                     .error(R.drawable.ic_error_backdrop)
             )
             .into(activityDetailMovieBinding.backdropPath)
+    }
 
+    private fun backdropPathBackup(movies: MovieEntity) {
+        GlideApp.with(this)
+            .load(Constants.IMAGE_URL + movies.posterPath)
+            .centerCrop()
+            .apply(
+                RequestOptions.placeholderOf(R.drawable.ic_loading_backdrop)
+                    .error(R.drawable.ic_error_backdrop)
+            )
+            .into(activityDetailMovieBinding.backdropPath)
+    }
+
+    private fun imgPoster(movies: MovieEntity) {
         GlideApp.with(this)
             .load(Constants.IMAGE_URL + movies.posterPath)
             .transform(RoundedCorners(Constants.ROUND_RADIUS))
